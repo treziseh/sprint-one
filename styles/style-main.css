@@ -14,6 +14,7 @@ body {
   background-color: #d1d1d1;
   overflow-x: hidden;
   width: 150px;
+  text-align: center;
 }
 
 .sidebar a {
