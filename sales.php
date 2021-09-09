@@ -13,6 +13,24 @@
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
+    
+    <?php
+    function sql_store_sale() {
+        require_once ("settings.php");
+        $conn = @mysqli_connect($host,
+        $user,
+        $pwd,
+        $sql_db
+        );
+        
+        if (!conn) {
+            echo "<p>Database connection failure</p>";
+        } else {
+            echo "<p>Database connection Successful</p>";
+        }
+    }
+    sql_store_sale();
+    ?> 
 
     <?php # include_once "footer.inc" ?>
   </body>
