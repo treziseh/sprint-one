@@ -6,7 +6,7 @@
     <meta name="description" content="PHP-SRePS Login">
     <meta name="author" content="Nick, William, David, Harry">
     <!-- <link rel="icon" href="images/ICON16.png" type="image/gif" sizes="16x16"> -->
-    <title>PHP-SRePS Login</title>
+    <title>Reports</title>
 
     <!-- Custom styles for this page -->
     <link href="styles/style-main.css" rel="stylesheet">
