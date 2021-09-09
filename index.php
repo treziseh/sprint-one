@@ -8,10 +8,10 @@
     <!-- <link rel="icon" href="images/ICON16.png" type="image/gif" sizes="16x16"> -->
     <title>PHP-SRePS Login</title>
 
-    <!-- soheil rox -->
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
+    <h1><a href="sales.php" id="tempLogin">LOGIN</a></h1>
 
     <?php # include_once "footer.inc" ?>
   </body>
