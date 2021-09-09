@@ -29,7 +29,8 @@
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
 
         if (!$conn) {
-            echo "<p>" + sqlsrv_errors() + "</p>";
+            echo "<p>Failed</p>";
+            die( print_r( sqlsrv_errors(), true));
         } else {
             echo "<p>Database connection Successful</p>";
         }
