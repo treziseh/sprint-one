@@ -12,7 +12,6 @@
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <?php include_once "sidebar.inc" ?>
 
     <?php # include_once "footer.inc" ?>
   </body>
