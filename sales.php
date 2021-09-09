@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="PHP-SRePS Login">
     <meta name="author" content="Nick, William, David, Harry">
-    <meta name="version" content="Version 9"> <!-- Delete This line later --> 
+    <meta name="version" content="Version 10"> <!-- Delete This line later --> 
     <!-- <link rel="icon" href="images/ICON16.png" type="image/gif" sizes="16x16"> -->
     <title>Sales</title>
 
@@ -17,11 +17,16 @@
 
     <?php
     function sql_store_sale() {
-        require_once ("db-settings.php");
-        $conn = mssql_connect($host,
+        /*require_once ("db-settings.php");
+        $conn = @mysqli_connect($host,
         $user,
         $pwd,
-        );
+        $sql_db
+        ); */
+
+        $serverName = "sreps-main.database.windows.net";
+        $connectionInfo = array( "Database"=>"sreps-database-main", "UID"=>"admin.phpsreps", "PWD"=>"dycsaX-mopru3-modhyg");
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
         
         if (!$conn) {
             echo "<p>Database connection failure</p>";
