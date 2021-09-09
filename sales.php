@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="PHP-SRePS Login">
     <meta name="author" content="Nick, William, David, Harry">
-    <meta name="version" content="Version 11"> <!-- Delete This line later --> 
+    <meta name="version" content="Version 12"> <!-- Delete This line later --> 
     <!-- <link rel="icon" href="images/ICON16.png" type="image/gif" sizes="16x16"> -->
     <title>Sales</title>
 
@@ -23,11 +23,11 @@
         $pwd,
         $sql_db
         ); */
-
+        /*
         $serverName = "sreps-main.database.windows.net";
         $connectionInfo = array( "Database"=>"sreps-database-main", "UID"=>"admin.phpsreps", "PWD"=>"dycsaX-mopru3-modhyg");
         $conn = sqlsrv_connect( $serverName, $connectionInfo);
-        
+        */
         if (!$conn) {
             echo "<p>Database connection failure</p>";
         } else {
