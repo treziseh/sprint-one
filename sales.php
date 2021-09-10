@@ -58,7 +58,9 @@
 
         $query = "SELECT * FROM inventory";
         $result = sqlsrv_query($conn, $query);
-
+        if ($result === false) { //Checks to see if query was passed 
+                die( print_r( sqlsrv_errors(), true));
+            }
         echo "<table>"; // start a table tag in the HTML
 
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
