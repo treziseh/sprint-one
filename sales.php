@@ -51,6 +51,23 @@
     }
 
     function main() {
+        require_once ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "SELECT * FROM inventory";
+        $result = sqlsrv_query($conn, $query);
+
+        echo "<table>"; // start a table tag in the HTML
+
+        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+        echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['base_price'] . "</td><td>" . $row['rrp'] . "</td><td>" . $row['mtd_sold'] . "</td><td>" . $row['exp_quant'] . "</td></tr>";  //$row['index'] the index here is a field name
+        }
+
+        echo "</table>"; //Close the table in HTML
+        sqlsrv_close($conn);
+        
         validate(); //Calls validate function 
     }
 
