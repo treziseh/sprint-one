@@ -38,6 +38,7 @@
       <br>
       <input class='form-control' name='mtd' required type='number' id='mtd' placeholder='Month to Date Sold'>
       <br>
+      <br>
       <label for='exp_quan'>EXP Quantity:</label>
       <br>
       <input class='form-control' name='exp_quan' required type='number' id='exp_quan' placeholder='Month to Date Sold'>
