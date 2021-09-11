@@ -21,6 +21,7 @@
         <label for="password">Password</label>
         <input type="text" maxlength="50" name="password" id="password" required="required" size="20"><br>
         <input type="submit" name="login" id="login" value="Log In">
+        <a href="sales.php">Temp Login</a>
       </form>
     </div>
 
