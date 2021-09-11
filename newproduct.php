@@ -19,26 +19,31 @@
       <div class='col-xs-12'>
       <h1>New Product</h1>
       <form method='post'>
-      <label for='bcode'>Barcode:</label>
+      <label for='itemName'>Item Name:</label>
       <br>
-      <input class='form-control' name='bcode' required type='text' id='bcode' placeholder='Type the product barcode'>
+      <textarea required id='itemName' name='itemName' cols='30' rows='5' class='form-control'></textarea>
       <br>
-      <label for='desc'>Description:</label>
       <br>
-      <textarea required id='desc' name='desc' cols='30' rows='5' class='form-control'></textarea>
+      <label for='basePrice'>Base Price:</label>
       <br>
-      <label for='salePrice'>Sale Price:</label>
+      <input class='form-control' name='basePrice' required type='number' id='basePrice' placeholder='Enter base price'>
       <br>
-      <input class='form-control' name='salePrice' required type='number' id='salePrice' placeholder='Enter sale price'>
       <br>
-      <label for='purchasePrice'>Purchase Price:</label>
+      <label for='sellPrice'>RRP:</label>
       <br>
-      <input class='form-control' name='purchasePrice' required type='number' id='purchasePrice' placeholder='Enter purchase price'>
+      <input class='form-control' name='sellPrice' required type='number' id='sellPrice' placeholder='Enter recommended retail price'>
       <br>
-      <label for='soh'>Stock on Hand:</label>
       <br>
-      <input class='form-control' name='soh' required type='number' id='soh' placeholder='Enter stock on hand value'>
-      <br><br><input class='btn btn-info' type='submit' value='Add'>
+      <label for='mtd'>MTD Sold:</label>
+      <br>
+      <input class='form-control' name='mtd' required type='number' id='mtd' placeholder='Month to Date Sold'>
+      <br>
+      <label for='exp_quan'>EXP Quantity:</label>
+      <br>
+      <input class='form-control' name='exp_quan' required type='number' id='exp_quan' placeholder='Month to Date Sold'>
+      <br>
+      <br>
+      <input class='btn btn-info' type='submit' value='Add' name='add'>
 
       </form>
       </div>
