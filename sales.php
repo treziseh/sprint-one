@@ -27,10 +27,10 @@
             die( print_r( sqlsrv_errors(), true));
         } else {
             echo "<p>Database connection Successful</p>"; //Delete Later 
-            /*$query = "SELECT sales_ID FROM sales ORDER BY sales_ID DESC LIMIT 1;";
+            $query = "SELECT sales_ID FROM sales ORDER BY sales_ID DESC LIMIT 1";
             $result = sqlsrv_query($conn, $query);
             $row = sqlsrv_fetch_array($result)
-            if ($row['sales_ID'] == NULL) {
+            /*if ($row['sales_ID'] == NULL) {
                 $salesID = 1;
             } else {
                 $salesID = $row['sales_ID'] + 1;
