@@ -23,7 +23,7 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       //Test insert query execution
-      $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
+      /*$sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
       VALUES ('Test', '1', '1', '1', '1')";
 
       if (sqlsrv_query($conn, $sql)){
@@ -33,9 +33,9 @@
         echo "Error: " . $sql . "
         " . mysqli_error($conn);
       }
-      mysqli_close($conn);
+      mysqli_close($conn);*/
 
-      /*if(isset($_POST['add'])) {
+      if(isset($_POST['add'])) {
         $itemName = $_POST['item_name'];
         $basePrice = $_POST['base_price'];
         $sellPrice = $_POST['rrp'];
@@ -43,7 +43,7 @@
         $exp_quan = $_POST['exp_quant'];
         // Attempt insert query execution
         $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
-        if (mysqli_query($conn, $sql)){
+        if (sqlsrv_query($conn, $sql)){
           echo "New record created sucessfully!";
         }
         else {
@@ -51,7 +51,7 @@
           " . mysqli_error($conn);
         }
         mysqli_close($conn);
-      }*/
+      }
     }
 
     function validate() {
