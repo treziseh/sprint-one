@@ -43,6 +43,7 @@
         $mtd = $_POST['mtd_sold'];
         $exp_quan = $_POST['exp_quant'];
 
+        //Testing value collection of input field
         echo $itemName;
 
         // Attempt insert query execution
@@ -90,6 +91,7 @@
       }
 
       echo "
+        <form method='post' id='newProduct' action='newproduct.php'>
         <div class='col-xs-12'>
         <h1>New Product</h1>
         <form method='post'>
