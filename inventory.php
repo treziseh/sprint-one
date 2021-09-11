@@ -13,7 +13,44 @@
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
+    <?php
+    function main() {
+        require_once ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+        $query = "SELECT * FROM inventory";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+
+        <div class="col-xs-12">
+          <h1>Products</h1>
+
+          <br>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Barcode</th>
+                <th>Description</th>
+                <th>Purchase Price</th>
+                <th>Sale Price</th>
+                <th>SOH</th>
+              </tr>
+            </thead>
+            <tbody>
+                while($row = sqlsrv_fetch_array($result)){
+                  <tr>
+                    <td> $row['item_name'] </td>
+                  </tr>
+                }
+            </tbody>
+          </table>
+        </div>
+      }
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
