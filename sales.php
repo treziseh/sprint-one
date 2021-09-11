@@ -83,7 +83,6 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        $uName = $_SESSION['username'];
         echo $uName;
         echo "<form method='post' id='saleForm' action='sales.php'>";
         echo "<input type='hidden' name='username' id='username' value='$uName'/>";
