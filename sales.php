@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if (!isset($_SESSION['username'])) {
+    header("location: index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,17 +43,7 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            // User management script
-            session_start();
-            if (isset($_SESSION['username'])) {
-              $uName = $_SESSION['username'];
-            } else {
-              // Change to prevent unauthenticated access
-              $uName = "NO_USER";
-              /*
-              header("location: index.php");
-              */
-            }
+            $uName = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
