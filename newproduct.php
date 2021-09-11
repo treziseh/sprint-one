@@ -19,7 +19,7 @@
       <div class='col-xs-12'>
       <h1>New Product</h1>
       <form method='post'>
-      <label for="bcode">Barcode:</label>
+      <label for='bcode'>Barcode:</label>
       <input class='form-control' name='bcode' required type='text' id='bcode' placeholder='Type the product barcode'>
 
       </form>
