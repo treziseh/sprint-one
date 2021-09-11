@@ -37,11 +37,11 @@
 
       //Grabbing data values from textboxes
       if(isset($_POST['add'])) {
-        $itemName = $_POST['item_name'];
-        $basePrice = $_POST['base_price'];
-        $sellPrice = $_POST['rrp'];
-        $mtd = $_POST['mtd_sold'];
-        $exp_quan = $_POST['exp_quant'];
+        $item_name = $_POST['itemName'];
+        $base_price = $_POST['basePrice'];
+        $rrp = $_POST['sellPrice'];
+        $mtd_sold = $_POST['mtd'];
+        $exp_quant = $_POST['exp_quan'];
 
         //Testing value collection of input field
         echo $itemName;
