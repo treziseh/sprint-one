@@ -51,7 +51,7 @@
                 }
             }
             $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
-            VALUES ('1', 'Bla', '11/09/2021', 'Bob', '69')";
+            VALUES ('1', 'Example', '11/09/2021', 'Bob', '69')";
             $queryResult = sqlsrv_query($conn, $queryInsert);
             if ($queryResult === false) { //Checks to see if query was passed 
                 die( print_r( sqlsrv_errors(), true));
