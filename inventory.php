@@ -13,7 +13,18 @@
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
+      <?php
+        $include_once "db-settings.php";
+        try{
+          $conn = new PDO("mysql:host=$host", $username, $password);
 
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          echo "Connected successfully";
+        }
+        catch(PDOException $e) {
+          echo "Connection failed: " . $e->getMessage();
+        }
+        ?>
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
