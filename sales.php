@@ -43,7 +43,8 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            $uName = $_POST['username'];
+            $uNamePost = $_POST['username'];
+            echo "<h1>$uNamePost</h1>";
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
@@ -51,7 +52,7 @@
                     $itemName = $row['item_name'];
                     $quantity = $_POST[$row['item_name'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
-                    VALUES ('$salesID', '$itemName', '$saleDate', '$uName', '$quantity')"; //Query to add new record to sales table, variable names due to change
+                    VALUES ('$salesID', '$itemName', '$saleDate', '$uNamePost', '$quantity')"; //Query to add new record to sales table, variable names due to change
                     $queryResult = sqlsrv_query($conn, $queryInsert);
                 }
             }
@@ -83,6 +84,7 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
+        $uName = $_SESSION['uname'];
         echo $uName;
         echo "<form method='post' id='saleForm' action='sales.php'>";
         echo "<input type='hidden' name='username' id='username' value='$uName'/>";
@@ -121,7 +123,6 @@
         validate(); //Calls validate function
     }
 
-    $uName = $_SESSION['username'];
     main(); //Calls main function
     ?>
 
