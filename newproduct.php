@@ -18,7 +18,7 @@
     function validate() {
         $validateResult = true;
 
-        if (!isset($_POST["submit"])) {
+        if (!isset($_POST["add"])) {
             $validateResult = false;
             echo "Form was not sent"; //Delete Later
         } else {
