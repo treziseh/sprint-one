@@ -34,16 +34,9 @@
             $row = sqlsrv_fetch_array($result);
             if ($row['sales_ID'] == NULL) {
                 $salesID = 1;
-                echo "First";
-                echo $row['sales_ID'];
             } else {
                 $salesID = $row['sales_ID'] + 1;
-                echo "Second";
-                echo $row['sales_ID'];
             }
-            echo "***********";
-            echo $salesID;
-            echo "***********";
             $saleDate = date('m/d/Y');
             $uName = "Bob";
             $query = "SELECT item_name FROM inventory";
@@ -52,16 +45,10 @@
                 if (isset($_POST[$row['item_name']])) {
                     $itemName = $row['item_name']; 
                     $quantity = $_POST[$row['item_name'] . "Quantity"]; 
-                    //$queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
-                    //VALUES ('$salesID', '$itemName', '$saleDate', '$uName', '$quantity')"; //Query to add new record to sales table, variable names due to change
-                    //$queryResult = sqlsrv_query($conn, $queryInsert);
+                    $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
+                    VALUES ('$salesID', '$itemName', '$saleDate', '$uName', '$quantity')"; //Query to add new record to sales table, variable names due to change
+                    $queryResult = sqlsrv_query($conn, $queryInsert);
                 }
-            }
-            $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
-            VALUES ('1', 'Example2', '11/09/2021', 'Bob', '69')";
-            $queryResult = sqlsrv_query($conn, $queryInsert);
-            if ($queryResult === false) { //Checks to see if query was passed 
-                die( print_r( sqlsrv_errors(), true));
             }
         } 
         sqlsrv_close($conn);
@@ -72,9 +59,6 @@
 
         if (!isset($_POST["submit"])) {
             $validateResult = false;
-            echo "Form was not sent"; //Delte Later
-        } else {
-            echo "Form was sent"; //Delte Later
         }
 
         if ($validateResult) {
