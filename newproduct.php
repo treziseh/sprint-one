@@ -35,14 +35,17 @@
       }
       mysqli_close($conn);*/
 
+      //Grabbing data values from textboxes
       if(isset($_POST['add'])) {
         $itemName = $_POST['item_name'];
         $basePrice = $_POST['base_price'];
         $sellPrice = $_POST['rrp'];
         $mtd = $_POST['mtd_sold'];
         $exp_quan = $_POST['exp_quant'];
+
         // Attempt insert query execution
-        $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
+        $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
+        VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
         if (sqlsrv_query($conn, $sql)){
           echo "New record created sucessfully!";
         }
