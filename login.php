@@ -17,7 +17,7 @@ function processLogin() {
     echo "<p>my name bob</p>";
 
   } else {
-    echo "<p>failed</p>";
+    //echo "<p>failed</p>";
     session_start();
     $_SESSION['errmsg'] = "Authentication failed, please try again";
     header("location: login.php?" . session_id());
