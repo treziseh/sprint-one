@@ -24,8 +24,7 @@
         if (!$conn) {
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
-        } else {
-            echo "<p>Database connection Successful</p>"; //Delete Later 
+        } else { 
             $query = "SELECT TOP 1 sales_ID FROM sales ORDER BY sales_ID DESC";
             $result = sqlsrv_query($conn, $query);
             if ($result === false) { //Checks to see if query was passed 
@@ -115,7 +114,6 @@
     }
 
     main(); //Calls main function
-    echo "<p>PHP Ain't 'Broke</p>"; //Delete Later
     ?>
 
     <?php # include_once "footer.inc" ?>
