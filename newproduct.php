@@ -22,7 +22,9 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       //Test insert query execution
-      $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('Test', '1', '1', '1', '1')";
+      $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
+      VALUES ('Test', '1', '1', '1', '1')";
+
       if (mysqli_query($conn, $sql)){
         echo "New record created sucessfully!";
       }
