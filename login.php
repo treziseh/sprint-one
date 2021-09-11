@@ -14,7 +14,7 @@ function processLogin() {
   $row = sqlsrv_fetch_array($result);
 
   if ($row['pword'] == "Bobbert") { // change to POST var
-    echo "<p>my name bob</p>";
+    //echo "<p>my name bob</p>";
 
   } else {
     //echo "<p>failed</p>";

@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  if (isset($_SESSION['errmsg'])) {
+    $errmsg = $_SESSION['errmsg'];
+    $err_output = "<p>$errmsg</p>";
+  } else {
+    $err_output = "";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,11 +24,7 @@
     <div class="loginBox">
       <h1 id="loginTitle">PHP-SRePS Staff Login</h1>
       <?php
-        session_start();
-        if (isset($_SESSION['errmsg'])) {
-          $errmsg = $_SESSION['errmsg'];
-          echo "<p>$errmsg</p>";
-        }
+        echo $err_output;
       ?>
       <form action="sales.php" method="post"> <!-- Change to processlogin.php -->
         <label for="username">Username</label>
