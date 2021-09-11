@@ -20,7 +20,7 @@ function processLogin() {
     //echo "<p>failed</p>";
     session_start();
     $_SESSION['errmsg'] = "Authentication failed, please try again";
-    header("location: login.php?" . session_id());
+    header("location: index.php?" . session_id());
   }
 }
 
