@@ -22,19 +22,6 @@
       //Create connection
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-      //Test insert query execution
-      /*$sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
-      VALUES ('Test', '1', '1', '1', '1')";
-
-      if (sqlsrv_query($conn, $sql)){
-        echo "New record created sucessfully!";
-      }
-      else {
-        echo "Error: " . $sql . "
-        " . mysqli_error($conn);
-      }
-      mysqli_close($conn);*/
-
       //Grabbing data values from textboxes
       if(isset($_POST['add'])) {
         $item_name = $_POST['itemName'];
@@ -55,13 +42,6 @@
         }
         mysqli_close($conn);
       }
-
-      //Testing value collection of input field
-      echo $itemName;
-      echo $basePrice;
-      echo $sellPrice;
-      echo $mtd;
-      echo $exp_quan;
     }
 
     function validate() {
