@@ -21,12 +21,6 @@
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-      $query = "SELECT * FROM inventory";
-      $result = sqlsrv_query($conn, $query);
-      if ($result === false) { //Checks to see if query was passed
-              die( print_r( sqlsrv_errors(), true));
-      }
-
       //Test insert query execution
       $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('Test', '1', '1', '1', '1')";
       if (mysqli_query($conn, $sql)){
@@ -78,11 +72,13 @@
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-      $query = "SELECT * FROM inventory";
-      $result = sqlsrv_query($conn, $query);
-      if ($result === false) { //Checks to see if query was passed
-              die( print_r( sqlsrv_errors(), true));
+      if (!$conn) {
+          echo "<p>Failed</p>";
+          die( print_r( sqlsrv_errors(), true));
+      } else {
+          echo "<p>Database connection Successful</p>"; //Delete Later
       }
+
       echo "
         <div class='col-xs-12'>
         <h1>New Product</h1>
