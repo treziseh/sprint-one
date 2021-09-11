@@ -20,7 +20,25 @@
       <h1>New Product</h1>
       <form method='post'>
       <label for='bcode'>Barcode:</label>
+      <br>
       <input class='form-control' name='bcode' required type='text' id='bcode' placeholder='Type the product barcode'>
+      <br>
+      <label for='desc'>Description:</label>
+      <br>
+      <textarea required id='desc' name='desc' cols='30' rows='5' class='form-control'></textarea>
+      <br>
+      <label for='salePrice'>Sale Price:</label>
+      <br>
+      <input class='form-control' name='salePrice' required type='number' id='salePrice' placeholder='Enter sale price'>
+      <br>
+      <label for='purchasePrice'>Purchase Price:</label>
+      <br>
+      <input class='form-control' name='purchasePrice' required type='number' id='purchasePrice' placeholder='Enter purchase price'>
+      <br>
+      <label for='soh'>Stock on Hand:</label>
+      <br>
+      <input class='form-control' name='soh' required type='number' id='soh' placeholder='Enter stock on hand value'>
+      <br><br><input class='btn btn-info' type='submit' value='Add'>
 
       </form>
       </div>
