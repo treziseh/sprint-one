@@ -65,9 +65,9 @@
         </table>
         </div>
         ";
+
         sqlsrv_close($conn);
 
-        validate(); //Calls validate function
     }
     main(); //Calls main function
     ?>
