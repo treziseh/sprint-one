@@ -67,7 +67,7 @@
         }
 
         if ($validateResult) {
-            //sql_store_sale(); //Calls sql store function if validation checks are passed
+            sql_store_sale(); //Calls sql store function if validation checks are passed
         }
     }
 
