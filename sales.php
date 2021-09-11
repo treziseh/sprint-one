@@ -64,11 +64,29 @@
 
         echo "<form method='post' id='saleForm' action='sales.php'>";
         echo "<table>"; // start a table tag in the HTML
-        echo "<tr><th>Item Name</th><th>Base Price</th><th>RRP</th><th>MTD Sold</th><th>Exp Quant</th><th>Add</th><th>Quantity To Add</th></tr>";
+        echo "
+        <tr>
+            <th>Item Name</th>
+            <th>Base Price</th>
+            <th>RRP</th>
+            <th>MTD Sold</th>
+            <th>Exp Quant</th>
+            <th>Add</th>
+            <th>Quantity To Add</th>
+        </tr>
+        ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-        echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['base_price'] . "</td><td>" . $row['rrp'] . "</td><td>" . $row['mtd_sold'] . "</td><td>" . $row['exp_quant'] . "</td>
-        <td><input type='checkbox' id='" . $row['item_name'] . "' name='" . $row['item_name'] . "' value='true'></td>
-        <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['exp_quant'] . "' value='0'></td></tr>";
+        echo "
+        <tr>
+            <td>" . $row['item_name'] . "</td>
+            <td>" . $row['base_price'] . "</td>
+            <td>" . $row['rrp'] . "</td>
+            <td>" . $row['mtd_sold'] . "</td>
+            <td>" . $row['exp_quant'] . "</td>
+            <td><input type='checkbox' id='" . $row['item_name'] . "' name='" . $row['item_name'] . "' value='true'></td>
+            <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['exp_quant'] . "' value='0'></td>
+        </tr>
+        ";
         }
         echo "</table>"; //Close the table in HTML
         echo "<input type= 'submit' value='Submit'/>";
