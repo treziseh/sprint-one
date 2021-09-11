@@ -26,7 +26,7 @@
             die( print_r( sqlsrv_errors(), true));
         } else {
             echo "<p>Database connection Successful</p>"; //Delete Later 
-            $query = "SELECT sales_ID FROM sales ORDER BY sales_ID DESC LIMIT 1";
+            $query = "SELECT TOP 1 sales_ID FROM sales ORDER BY sales_ID DESC";
             $result = sqlsrv_query($conn, $query);
             if ($result === false) { //Checks to see if query was passed 
                 die( print_r( sqlsrv_errors(), true));
