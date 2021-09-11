@@ -60,7 +60,9 @@
         </form>
         </div>
       ";
+      sqlsrv_close($conn);
     }
+    main();
     ?>
 
     <?php # include_once "footer.inc" ?>
