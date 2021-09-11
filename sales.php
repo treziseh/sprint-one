@@ -21,7 +21,7 @@
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        /*
         if (!$conn) {
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
@@ -50,7 +50,7 @@
             }
             if ($queryResult === false) { //Checks to see if query was passed 
                 die( print_r( sqlsrv_errors(), true));
-            }
+            } */
             sqlsrv_close($conn);
         }
     }
