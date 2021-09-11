@@ -3,8 +3,10 @@
   if (isset($_SESSION['errmsg'])) {
     $errmsg = $_SESSION['errmsg'];
     $err_output = "<p>$errmsg</p>";
+    session_destroy();
   } else {
     $err_output = "";
+    session_destroy();
   }
 ?>
 <!DOCTYPE html>
@@ -26,7 +28,7 @@
       <?php
         echo $err_output;
       ?>
-      <form action="sales.php" method="post"> <!-- Change to processlogin.php -->
+      <form action="login.php" method="post"> <!-- Change to processlogin.php -->
         <label for="username">Username</label>
         <input type="text" maxlength="50" name="username" id="username" required="required" size="20"><br><br>
         <label for="password">Password</label>

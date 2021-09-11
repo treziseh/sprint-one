@@ -1,20 +1,28 @@
 <?php
 function processLogin() {
+  if (isset($_POST["username"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+  } else {
+    header("location: index.php");
+  }
+
   require_once ("db-settings.php");
   $serverName = $host;
   $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
   $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-  $query = "SELECT * FROM login WHERE (uname = 'Bob')"; // change to POST var
+  $query = "SELECT * FROM login WHERE (uname = '$username')"; // change to POST var
   $result = sqlsrv_query($conn, $query);
   if ($result === false) { //Checks to see if query was passed
-          die( print_r( sqlsrv_errors(), true));
+    die( print_r( sqlsrv_errors(), true));
   }
 
   $row = sqlsrv_fetch_array($result);
 
-  if ($row['pword'] == "Bobbert") { // change to POST var
+  if ($row['pword'] == "$password") { // change to POST var
     //echo "<p>my name bob</p>";
+    header("location: sales.php");
 
   } else {
     //echo "<p>failed</p>";
