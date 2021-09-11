@@ -45,7 +45,7 @@
     function validate() {
         $validateResult = true;
 
-        if (!isset($_POST['submit'])) {
+        if (!isset($_POST["submit"])) {
             $validateResult = false;
             echo "Form was not sent";
         } else {
@@ -96,8 +96,8 @@
         ";
         }
         echo "</table>"; //Close the table in HTML
-        echo "<input type= 'submit' value='Submit'/>";
-        echo "<input type= 'reset' value='Reset'/>";
+        echo "<input type='submit' name='submit' value='Submit'/>";
+        echo "<input type='reset' name='reset' value='Reset'/>";
         echo "</form>";
 
         sqlsrv_close($conn);
