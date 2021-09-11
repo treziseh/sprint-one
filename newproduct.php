@@ -43,6 +43,8 @@
         $mtd = $_POST['mtd_sold'];
         $exp_quan = $_POST['exp_quant'];
 
+        echo $itemName;
+
         // Attempt insert query execution
         $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
         VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
