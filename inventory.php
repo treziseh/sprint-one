@@ -14,6 +14,61 @@
   <body>
     <?php include_once "sidebar.inc" ?>
 
+    <?php
+    function main() {
+        require_once ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "SELECT * FROM inventory";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+
+        echo "
+        <div class='col-xs-12'>
+        <h1>Products</h1>
+
+        <br>
+        <table border='1'>
+        <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Base Price</th>
+          <th>RRP</th>
+          <th>MTD Sold</th>
+          <th>EXP Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        ";
+
+        while($row = sqlsrv_fetch_array($result)){
+          echo "
+          <tr>
+          <td>" . $row['item_name'] . "</td>
+          <td>" . $row['base_price'] . "</td>
+          <td>" . $row['rrp'] . "</td>
+          <td>" . $row['mtd_sold'] . "</td>
+          <td>" . $row['exp_quant'] . "</td>
+          </tr>
+          </tbody>
+          ";
+        }
+
+        echo "
+        </tbody>
+        </table>
+        </div>
+        ";
+        sqlsrv_close($conn);
+
+        validate(); //Calls validate function
+    }
+    main(); //Calls main function
+    ?>
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
