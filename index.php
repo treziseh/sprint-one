@@ -14,6 +14,13 @@
 
     <div class="loginBox">
       <h1 id="loginTitle">PHP-SRePS Staff Login</h1>
+      <?php
+        session_start();
+        if (isset($_SESSION['errmsg'])) {
+          $errmsg = $_SESSION['errmsg'];
+          echo "<p>$errmsg</p>";
+        }
+      ?>
       <form action="sales.php" method="post"> <!-- Change to processlogin.php -->
         <label for="username">Username</label>
         <input type="text" maxlength="50" name="username" id="username" required="required" size="20"><br><br>

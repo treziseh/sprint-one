@@ -13,10 +13,14 @@ function processLogin() {
 
   $row = sqlsrv_fetch_array($result);
 
-  if ($row['pword'] == "Bob") { // change to POST var
+  if ($row['pword'] == "Bobbert") { // change to POST var
     echo "<p>my name bob</p>";
+
   } else {
     echo "<p>failed</p>";
+    session_start();
+    $_SESSION['errmsg'] = "Authentication failed, please try again";
+    header("location: login.php?" . session_id());
   }
 }
 
