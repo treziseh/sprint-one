@@ -1,3 +1,16 @@
+<?php
+  // User management script
+  session_start();
+  if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+  } else {
+    // Change to prevent unauthenticated access
+    $username = "NO_USER";
+    /*
+    header("location: index.php");
+    */
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +20,7 @@
     <meta name="author" content="Nick, William, David, Harry">
     <!-- <link rel="icon" href="images/ICON16.png" type="image/gif" sizes="16x16"> -->
     <title>Sales</title>
-    
+
     <!-- Custom styles for this page -->
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
@@ -15,19 +28,19 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
-    function sql_store_sale() { 
+    function sql_store_sale() {
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-        
+
         if (!$conn) {
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
-        } else { 
+        } else {
             $query = "SELECT TOP 1 sales_ID FROM sales ORDER BY sales_ID DESC";
             $result = sqlsrv_query($conn, $query);
-            if ($result === false) { //Checks to see if query was passed 
+            if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
             $row = sqlsrv_fetch_array($result);
@@ -37,19 +50,19 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            $uName = "Bob";
+            $uName = $username;
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['item_name']])) {
-                    $itemName = $row['item_name']; 
-                    $quantity = $_POST[$row['item_name'] . "Quantity"]; 
+                    $itemName = $row['item_name'];
+                    $quantity = $_POST[$row['item_name'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
                     VALUES ('$salesID', '$itemName', '$saleDate', '$uName', '$quantity')"; //Query to add new record to sales table, variable names due to change
                     $queryResult = sqlsrv_query($conn, $queryInsert);
                 }
             }
-        } 
+        }
         sqlsrv_close($conn);
     }
 
@@ -73,7 +86,7 @@
 
         $query = "SELECT * FROM inventory";
         $result = sqlsrv_query($conn, $query);
-        if ($result === false) { //Checks to see if query was passed 
+        if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
 
@@ -109,8 +122,8 @@
         echo "</form>";
 
         sqlsrv_close($conn);
-        
-        validate(); //Calls validate function 
+
+        validate(); //Calls validate function
     }
 
     main(); //Calls main function

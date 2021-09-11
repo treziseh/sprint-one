@@ -12,7 +12,7 @@ function processLogin() {
   $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
   $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-  $query = "SELECT * FROM login WHERE (uname = '$username')"; // change to POST var
+  $query = "SELECT * FROM login WHERE (uname = '$username')";
   $result = sqlsrv_query($conn, $query);
   if ($result === false) { //Checks to see if query was passed
     die( print_r( sqlsrv_errors(), true));
@@ -20,9 +20,11 @@ function processLogin() {
 
   $row = sqlsrv_fetch_array($result);
 
-  if ($row['pword'] == "$password") { // change to POST var
+  if ($row['pword'] == "$password") {
     //echo "<p>my name bob</p>";
-    header("location: sales.php");
+    session_start();
+    $_SESSION['username'] = $username;
+    header("location: sales.php?" . session_id());
 
   } else {
     //echo "<p>failed</p>";
