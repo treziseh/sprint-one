@@ -43,9 +43,6 @@
         $mtd_sold = $_POST['mtd'];
         $exp_quant = $_POST['exp_quan'];
 
-        //Testing value collection of input field
-        echo $itemName;
-
         // Attempt insert query execution
         $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
         VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
@@ -58,6 +55,13 @@
         }
         mysqli_close($conn);
       }
+
+      //Testing value collection of input field
+      echo $itemName;
+      echo $basePrice;
+      echo $sellPrice;
+      echo $mtd;
+      echo $exp_quan;
     }
 
     function validate() {
