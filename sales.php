@@ -83,7 +83,7 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        echo "<form method='post' id='saleForm' action='sales.php'>";
+        echo "<form method='post' id='saleForm' action='sales.php' " . session_id() . ">";
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
