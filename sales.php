@@ -31,8 +31,11 @@
             $row = sqlsrv_fetch_array($result);
             if ($row['sales_ID'] == NULL) {
                 $salesID = 1;
+                echo "First";
             } else {
                 $salesID = $row['sales_ID'] + 1;
+                echo "Second";
+                echo $row['sales_ID'];
             }
             echo "***********";
             echo $salesID;
