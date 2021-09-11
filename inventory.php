@@ -29,10 +29,12 @@
 
         echo "
         <div class='col-xs-12'>
-        <h1>Products</h1>
-
+        <h1>Inventory</h1>
+        <div>
+          <a class='btn btn-success' href='./newproduct.php'>Nuevo <i class='fa fa-plus'></i></a>
+        </div>
         <br>
-        <table border='1'>
+        <table border='1' style='width: 100%'>
         <thead>
         <tr>
           <th>Item Name</th>
