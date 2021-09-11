@@ -15,6 +15,21 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
+    function validate() {
+        $validateResult = true;
+
+        if (!isset($_POST["submit"])) {
+            $validateResult = false;
+            echo "Form was not sent"; //Delete Later
+        } else {
+            echo "Form was sent"; //Delete Later
+        }
+
+        if ($validateResult) {
+            /*sql_store_sale(); //Calls sql store function if validation checks are passed*/
+        }
+    }
+
     function main() {
       require ("db-settings.php");
       $serverName = $host;
@@ -61,6 +76,7 @@
         </div>
       ";
       sqlsrv_close($conn);
+      validate(); //Calls validate function
     }
     main();
     ?>
