@@ -19,13 +19,14 @@
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+      //Create connection
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       //Test insert query execution
       $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant)
       VALUES ('Test', '1', '1', '1', '1')";
 
-      if (mysqli_query($conn, $sql)){
+      if (sqlsrv_query($conn, $sql)){
         echo "New record created sucessfully!";
       }
       else {
@@ -72,13 +73,15 @@
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+      //Create connection
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+      //Checking connection - DELETE LATER
       if (!$conn) {
           echo "<p>Failed</p>";
           die( print_r( sqlsrv_errors(), true));
       } else {
-          echo "<p>Database connection Successful</p>"; //Delete Later
+          echo "<p>Database connection Successful</p>";
       }
 
       echo "
@@ -116,7 +119,9 @@
         </div>
       ";
       sqlsrv_close($conn);
-      validate(); //Calls validate function to check if button worked
+
+      //Calls validate function to check if button submitted data
+      validate();
     }
     main();
     ?>
