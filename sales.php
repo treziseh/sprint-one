@@ -40,7 +40,7 @@
             $uName = "BlankNameForNow";
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
-            /*while($row = sqlsrv_fetch_array($result)) {
+            while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['item_name']])) {
                     $itemName = $row['item_name']; 
                     $quantity = $_POST[$row['item_name'] . "Quantity"]; 
@@ -51,7 +51,7 @@
             }
             if ($queryResult === false) { //Checks to see if query was passed 
                 die( print_r( sqlsrv_errors(), true));
-            }*/
+            }
         } 
         sqlsrv_close($conn);
     }
