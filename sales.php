@@ -55,6 +55,9 @@
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
                     VALUES ('$salesID', '$itemName', '$saleDate', '$uName', '$quantity')"; //Query to add new record to sales table, variable names due to change
                     $queryResult = sqlsrv_query($conn, $queryInsert);
+                    if ($queryResult === false) { //Checks to see if query was passed
+                        die( print_r( sqlsrv_errors(), true));
+                    }
                 }
             }
         }
