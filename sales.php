@@ -84,6 +84,7 @@
         }
 
         $uName = $_SESSION['username'];
+        echo $uName;
         echo "<form method='post' id='saleForm' action='sales.php'>";
         echo "<input type='hidden' name='username' id='username' value='$uName'/>";
         echo "<table>"; // start a table tag in the HTML
