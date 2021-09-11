@@ -11,7 +11,18 @@
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <h1><a href="sales.php" id="tempLogin">LOGIN</a></h1>
+
+    <h1 class="login">PHP-SRePS Staff Login</h1>
+
+    <div class="login">
+      <form action="sales.php" method="post"> <!-- Change to processlogin.php -->
+        <label for="username">Username</label>
+        <input type="text" maxlength="50" name="username" id="username" required="required" size="20"><br>
+        <label for="password">Password</label>
+        <input type="text" maxlength="50" name="password" id="password" required="required" size="20"><br>
+        <input type="submit" name="login" id="login" value="Log In">
+      </form>
+    </div>
 
     <?php # include_once "footer.inc" ?>
   </body>
