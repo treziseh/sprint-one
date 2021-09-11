@@ -1,16 +1,3 @@
-<?php
-  // User management script
-  session_start();
-  if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-  } else {
-    // Change to prevent unauthenticated access
-    $username = "NO_USER";
-    /*
-    header("location: index.php");
-    */
-  }
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,7 +37,17 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            $uName = $username;
+            // User management script
+            session_start();
+            if (isset($_SESSION['username'])) {
+              $uName = $_SESSION['username'];
+            } else {
+              // Change to prevent unauthenticated access
+              $uName = "NO_USER";
+              /*
+              header("location: index.php");
+              */
+            }
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
