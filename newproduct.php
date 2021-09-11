@@ -15,10 +15,39 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
+    function insertdata(){
+      require ("db-settings.php");
+      $serverName = $host;
+      $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+      $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+      $query = "SELECT * FROM inventory";
+      $result = sqlsrv_query($conn, $query);
+      if ($result === false) { //Checks to see if query was passed
+              die( print_r( sqlsrv_errors(), true));
+      }
+      if(isset($_POST['add'])) {
+        $bcode = $_POST[mtd_sold];
+        $desc = $_POST[item_name];
+        $salePrice = $_POST[base_price];
+        $purchasePrice = $_POST[rrp];
+        $soh = $_POST[exp_quant]
+        $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('$desc', '$saleprice', '$purchasePrice', '$bcode', 'soh')";
+        if (mysqli_query($conn, $sql)){
+          echo "New record created sucessfully!";
+        }
+        else {
+          echo "Error: " . $sql . "
+          " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+        }
+    }
+
     function validate() {
         $validateResult = true;
 
-        if (!isset($_POST["submit"])) {
+        if (!isset($_POST["add"])) {
             $validateResult = false;
             echo "Form was not sent"; //Delete Later
         } else {
@@ -26,7 +55,7 @@
         }
 
         if ($validateResult) {
-            /*sql_store_sale(); //Calls sql store function if validation checks are passed*/
+            insertdata(); //Calls sql store function if validation checks are passed
         }
     }
 
