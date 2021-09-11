@@ -27,12 +27,12 @@
               die( print_r( sqlsrv_errors(), true));
       }
       if(isset($_POST['add'])) {
-        $bcode = $_POST[mtd_sold];
-        $desc = $_POST[item_name];
-        $salePrice = $_POST[base_price];
-        $purchasePrice = $_POST[rrp];
-        $soh = $_POST[exp_quant]
-        $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('$desc', '$saleprice', '$purchasePrice', '$bcode', 'soh')";
+        $itemName = $_POST['item_name'];
+        $basePrice = $_POST['base_price'];
+        $sellPrice = $_POST['rrp'];
+        $mtd = $_POST['mtd_sold'];
+        $exp_quan = $_POST['exp_quant'];
+        $sql = "INSERT INTO inventory (item_name, base_price, rrp, mtd_sold, exp_quant) VALUES ('$item_name', '$base_price', '$rrp', '$mtd_sold', '$exp_quant')";
         if (mysqli_query($conn, $sql)){
           echo "New record created sucessfully!";
         }
