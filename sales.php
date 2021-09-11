@@ -47,9 +47,9 @@
 
         if (!isset($_POST['submit'])) {
             $validateResult = false;
-            echo "Form was not sent"
+            echo "Form was not sent";
         } else {
-            echo "Form was sent"
+            echo "Form was sent";
         }
 
         if ($validateResult) {
