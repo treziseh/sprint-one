@@ -45,6 +45,13 @@
     function validate() {
         $validateResult = true;
 
+        if (!isset($_POST['submit'])) {
+            $validateResult = false;
+            echo "Form was not sent"
+        } else {
+            echo "Form was sent"
+        }
+
         if ($validateResult) {
             //sql_store_sale(); //Calls sql store function if validation checks are passed
         }
