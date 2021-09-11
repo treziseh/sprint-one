@@ -10,6 +10,7 @@
     header("location: index.php");
     */
   }
+  echo $username;
 ?>
 <!DOCTYPE html>
 <html lang="en">
