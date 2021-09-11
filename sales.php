@@ -37,6 +37,9 @@
             }
             $saleDate = date('m/d/Y');
             $uName = "BlankNameForNow";
+            echo $salesID;
+            echo $saleDate;
+            echo $uName;
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
