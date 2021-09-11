@@ -16,7 +16,7 @@ function processLogin() {
   if ($row['pword'] == "Bob") { // change to POST var
     echo "<p>my name bob</p>";
   } else {
-    echo "<p>failed</p>"
+    echo "<p>failed</p>";
   }
 }
 
