@@ -43,7 +43,7 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            $uName = $_SESSION['username'];
+            //$uName = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
@@ -83,6 +83,7 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
+        $_SESSION['username'] = $uName
         echo "<form method='post' id='saleForm' action='sales.php' " . session_id() . ">";
         echo "<table>"; // start a table tag in the HTML
         echo "
@@ -119,6 +120,7 @@
         validate(); //Calls validate function
     }
 
+    $uName = $_SESSION['username'];
     main(); //Calls main function
     ?>
 
