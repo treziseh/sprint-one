@@ -32,6 +32,7 @@
             if ($row['sales_ID'] == NULL) {
                 $salesID = 1;
                 echo "First";
+                echo $row['sales_ID'];
             } else {
                 $salesID = $row['sales_ID'] + 1;
                 echo "Second";
