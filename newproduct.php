@@ -18,7 +18,7 @@
     echo "
       <div class='col-xs-12'>
       <h1>New Product</h1>
-      <form method='post' action='process.php'>
+      <form method='post'>
       <label for='bcode'>Barcode:</label>
       <br>
       <input class='form-control' name='bcode' required type='text' id='bcode' placeholder='Type the product barcode'>
@@ -38,7 +38,7 @@
       <label for='soh'>Stock on Hand:</label>
       <br>
       <input class='form-control' name='soh' required type='number' id='soh' placeholder='Enter stock on hand value'>
-      <br><br><input class='btn btn-info' type='submit' value='Add' name='add'>
+      <br><br><input class='btn btn-info' type='submit' value='Add'>
 
       </form>
       </div>
