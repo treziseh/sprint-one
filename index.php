@@ -10,7 +10,7 @@
 
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
-  <body>
+  <body id="loginBody">
 
     <h1 class="login">PHP-SRePS Staff Login</h1>
 

@@ -45,4 +45,9 @@ body {
 
 .login {
   margin: auto;
+  width: 50%
+}
+
+#loginBody {
+  width: 100%;
 }
