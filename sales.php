@@ -43,9 +43,7 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            //$uName = $_SESSION['username'];
-            $uName = "Bob";
-            echo $uName;
+            $uName = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
