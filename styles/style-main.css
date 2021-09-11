@@ -43,6 +43,7 @@ body {
 }
 
 .loginBox {
+  margin: 0 3em;
   padding: 25% 0;
   margin: auto;
   width: 25%;
