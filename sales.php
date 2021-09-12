@@ -43,9 +43,7 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            //$uNamePost = str_replace(' ', '', $_POST['username']);
-            $uNamePost = $_SESSION['username'];
-            echo "<h1>$uNamePost</h1>";
+            $uNameSess = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
@@ -53,7 +51,7 @@
                     $itemName = $row['item_name'];
                     $quantity = $_POST[$row['item_name'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
-                    VALUES ('$salesID', '$itemName', '$saleDate', '$uNamePost', '$quantity')"; //Query to add new record to sales table, variable names due to change
+                    VALUES ('$salesID', '$itemName', '$saleDate', '$uNameSess', '$quantity')"; //Query to add new record to sales table, variable names due to change
                     $queryResult = sqlsrv_query($conn, $queryInsert);
                 }
             }
@@ -86,9 +84,7 @@
         }
 
         $uName = $_SESSION['username'];
-        echo $uName;
         echo "<form method='post' id='saleForm' action='sales.php?'" . session_id() . ">";
-        echo "<input type='hidden' name='username' id='username' value='$uName'/>";
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
