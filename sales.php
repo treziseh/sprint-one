@@ -43,7 +43,7 @@
                 $salesID = $row['sales_ID'] + 1;
             }
             $saleDate = date('m/d/Y');
-            $uNamePost = $_POST['username'];
+            $uNamePost = str_replace(' ', '', $_POST['username']);
             echo "<h1>$uNamePost</h1>";
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
