@@ -88,11 +88,11 @@
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
+            <th>Barcode</th>
             <th>Item Name</th>
             <th>Base Price</th>
-            <th>RRP</th>
-            <th>MTD Sold</th>
-            <th>Exp Quant</th>
+            <th>Sale Price</th>
+            <th>SOH</th>
             <th>Add</th>
             <th>Quantity To Add</th>
         </tr>
@@ -100,13 +100,13 @@
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
         echo "
         <tr>
+            <td>" . $row['barcode'] . "</td>
             <td>" . $row['item_name'] . "</td>
             <td>" . $row['base_price'] . "</td>
-            <td>" . $row['rrp'] . "</td>
-            <td>" . $row['mtd_sold'] . "</td>
-            <td>" . $row['exp_quant'] . "</td>
+            <td>" . $row['sale_price'] . "</td>
+            <td>" . $row['soh'] . "</td>
             <td><input type='checkbox' id='" . $row['item_name'] . "' name='" . $row['item_name'] . "' value='true'></td>
-            <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['exp_quant'] . "' value='0'></td>
+            <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['soh'] . "' value='0'></td>
         </tr>
         ";
         }
