@@ -18,7 +18,22 @@
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <?php include_once "sidebar.inc" ?>
+    <?php
+      include_once "sidebar.inc"
+
+      /*
+      ECHO <h1>INCLUDE IN REPORT</h1>
+      checkboxes for each inventory item
+      dropdown month/week
+      SUBMIT button says generate report
+      in form with POST action to this page.session_id
+
+      IF POST VARS SET,
+      SELECT count of sales FOR item WITHIN specific date range (month or week)
+      ECHO TABLE COLUMNS for product name, number sold, daily average, day with most sold
+
+      */
+    ?>
 
     <?php # include_once "footer.inc" ?>
   </body>
