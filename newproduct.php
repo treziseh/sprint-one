@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if (!isset($_SESSION['username'])) {
+    header("location: index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,7 +81,7 @@
       }
 
       echo "
-        <form method='post' id='newProduct' action='newproduct.php'>
+        <form method='post' id='newProduct' action='newproduct.php?" . session_id() . "'>
         <div class='col-xs-12'>
         <h1>New Product</h1>
         <form method='post'>

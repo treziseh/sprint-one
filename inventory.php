@@ -37,7 +37,7 @@
         <div class='col-xs-12'>
         <h1>Inventory</h1>
         <div>
-          <a class='btn btn-success' href='./newproduct.php'>New Product <i class='fa fa-plus'></i></a>
+          <a class='btn btn-success' href='./newproduct.php" . session_id() . "'>New Product <i class='fa fa-plus'></i></a>
         </div>
         <br>
         <table border='1' style='width: 100%'>
@@ -76,7 +76,6 @@
 
     }
     main(); //Calls main function
-    echo $_SESSION['username'];
     ?>
     <?php # include_once "footer.inc" ?>
   </body>
