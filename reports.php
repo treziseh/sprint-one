@@ -32,6 +32,8 @@
       SELECT count of sales FOR item WITHIN specific date range (month or week)
       ECHO TABLE COLUMNS for product name, number sold, daily average, day with most sold
 
+      Display CSV generate button
+
       */
     ?>
 
