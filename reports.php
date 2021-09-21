@@ -83,7 +83,7 @@
           <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
           <th>Daily Average Sold</th>
           <th>Peak Day</th>
-          <th>Peak Number</th>
+          <th>Peak Day Sold</th>
         </tr>
         </thead>
         <tbody>
@@ -136,9 +136,7 @@
           <th>Barcode</th>
           <th>Item Name</th>
           <th>Expected Sales " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
-          <th>Daily Average Sold</th>
-          <th>Peak Day</th>
-          <th>Peak Number</th>
+          <th>Expected Daily Average</th>
         </tr>
         </thead>
         <tbody>
