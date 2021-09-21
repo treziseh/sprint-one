@@ -80,7 +80,7 @@
         <tr>
           <th>Barcode</th>
           <th>Item Name</th>
-          <th>Sold " . $timePeriod . "Starting" . $_POST['dateStarting'] . "</th>
+          <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
           <th>Sale Price</th>
           <th>Stock on Hand (SOH)</th>
           <th>Edit</th>
@@ -90,7 +90,7 @@
         <tbody>
         ";
 
-        echo "</tbody></table>"
+        echo "</tbody></table>";
       }
     ?>
     <?php # include_once "footer.inc" ?>
