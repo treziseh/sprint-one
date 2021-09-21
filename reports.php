@@ -116,12 +116,37 @@
           <option value="week">Week</option>
           <option value="month">Month</option>
         </select>
-        <label for="dateStarting">Date starting: </label>
-        <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPredict">
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
+    <?php
+      if (isset($_POST['reportPredict'])) {
+        if ($_POST['timePeriod'] == 'week') {
+          $timePeriod = 'Week';
+        } else {
+          $timePeriod = 'Month';
+        }
+
+        $startDate = date("d \- m \- Y");
+
+        echo "<table border='1' style='width: 100%'>
+        <thead>
+        <tr>
+          <th>Barcode</th>
+          <th>Item Name</th>
+          <th>Expected Sales " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
+          <th>Daily Average Sold</th>
+          <th>Peak Day</th>
+          <th>Peak Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        ";
+
+        echo "</tbody></table>";
+      }
+    ?>
     <?php sqlsrv_close($conn); ?>
   </body>
 </html>
