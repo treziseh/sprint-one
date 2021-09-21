@@ -128,7 +128,7 @@
           $timePeriod = 'Month';
         }
 
-        $startDate = date("d \- m \- Y");
+        $startDate = date("d\-m\-Y");
 
         echo "<table border='1' style='width: 100%'>
         <thead>
