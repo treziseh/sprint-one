@@ -48,7 +48,7 @@
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
                 echo "<p>Function Got Called 69</p>";
-                echo $row['item_name'];
+                echo "<p>" . $row['item_name']; . "</p>";
                 if (isset($_POST[$row['item_name']])) {
                     echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
