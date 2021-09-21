@@ -22,7 +22,6 @@
 
     <?php
     function sql_store_sale() {
-        echo "<p>Function Got Called</p>";
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -48,7 +47,9 @@
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
+                echo "<p>Function Got Called 69</p>";
                 if (isset($_POST[$row['item_name']])) {
+                    echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
                     $quantity = $_POST[$row['item_name'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
@@ -65,6 +66,7 @@
                     echo "<p>" . $quantity . "</p>";
                 }
             }
+            echo "<p>Function Got Called 99</p>";
         }
         sqlsrv_close($conn);
     }
