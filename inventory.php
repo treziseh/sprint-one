@@ -63,7 +63,7 @@
           <td>" . $row['base_price'] . "</td>
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
-          <td><center><a class='btn btn-warning' href='<echo 'editproduct.php?id=".$row['barcode'].">Edit <i class='fa fa-edit'></i></a></center></td>
+          <td><center><a class='btn btn-warning' href='<echo 'editproduct.php?id=".$row['barcode']."'>Edit <i class='fa fa-edit'></i></a></center></td>
           </tr>
           </tbody>
           ";
