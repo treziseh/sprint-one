@@ -49,6 +49,7 @@
           <th>Sale Price</th>
           <th>Stock on Hand (SOH)</th>
           <th>Edit</th>
+          <th>Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -63,6 +64,7 @@
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td><a class='btn btn-warning' href='<echo 'edit.php?id=" . $row['barcode'] ."><i class='fa fa-edit'></i></a></td>
+          <td> print '<center><a href='edit.php?id=" . $row['barcode'] ." class='buttonize'>View</a></center> </td>
           </tr>
           </tbody>
           ";
