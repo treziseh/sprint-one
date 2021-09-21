@@ -48,6 +48,7 @@
           <th>Base Price</th>
           <th>Sale Price</th>
           <th>Stock on Hand (SOH)</th>
+          <th>Edit</th>
         </tr>
         </thead>
         <tbody>
