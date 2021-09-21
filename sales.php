@@ -58,13 +58,6 @@
                         echo "<p>Failed</p>";
                         die( print_r( sqlsrv_errors(), true));
                     }
-                    echo "<p>" . $salesID . "</p>";
-                    echo "<p>" . $itemName . "</p>";
-                    echo "<p>" . $saleDate . "</p>";
-                    echo "<p>" . $uNameSess . "</p>";
-                    echo "<p>" . $quantity . "</p>";
-                } else {
-                    echo "<p>Not Set \o/</p>";
                 }
             }
         }
