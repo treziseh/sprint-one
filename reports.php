@@ -55,12 +55,13 @@
             echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
-        <label for="timePeriod">Choose a car:</label>
+        <label for="timePeriod">Time period: </label>
         <select name="timePeriod" id="timePeriod">
           <option value="week">Week</option>
           <option value="month">Month</option>
-          <!-- Show week / month picker based on choice -->
         </select>
+        <label for="dateStarting">Date starting: </label>
+        <input type="date" id="dateStarting" name="dateStarting">
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
