@@ -46,9 +46,10 @@
             $uNameSess = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
+            if (isset($_POST['Cerave Reparative Hand Cream'])) {
+                echo "<p>Is Set Here</p>";
+            }
             while($row = sqlsrv_fetch_array($result)) {
-                echo "<p>Function Got Called 69</p>";
-                echo "<p>" . $row['item_name'] . "</p>";
                 if (isset($_POST[$row['item_name']])) {
                     echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
@@ -65,9 +66,15 @@
                     echo "<p>" . $saleDate . "</p>";
                     echo "<p>" . $uNameSess . "</p>";
                     echo "<p>" . $quantity . "</p>";
+                } else {
+                    echo "<p>Not Set \o/</p>";
+                    echo "<p>" . $salesID . "</p>";
+                    echo "<p>" . $itemName . "</p>";
+                    echo "<p>" . $saleDate . "</p>";
+                    echo "<p>" . $uNameSess . "</p>";
+                    echo "<p>" . $quantity . "</p>";
                 }
             }
-            echo "<p>Function Got Called 99</p>";
         }
         sqlsrv_close($conn);
     }
