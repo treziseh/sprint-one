@@ -19,7 +19,7 @@
   </head>
   <body>
     <?php
-      include_once "sidebar.inc"
+      include_once "sidebar.inc";
 
       /*
       ECHO <h1>INCLUDE IN REPORT</h1>
@@ -36,6 +36,34 @@
 
       */
     ?>
+    <h1>Generate Report</h1>
+    <form action="reports.php?<?php echo session_id(); ?>" method="post">
+      <fieldset>
+        <?php
+          require_once ("db-settings.php");
+          $serverName = $host;
+          $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+          $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
+
+          $query = "SELECT barcode, item_name FROM inventory";
+          $result = sqlsrv_query($conn, $query);
+          if ($result === false) { //Checks to see if query was passed
+              die( print_r( sqlsrv_errors(), true));
+          }
+
+          while ($row = sqlsrv_fetch_array($result)) {
+            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+          }
+        ?>
+        <label for="timePeriod">Choose a car:</label>
+        <select name="timePeriod" id="timePeriod">
+          <option value="week">Week</option>
+          <option value="month">Month</option>
+          <!-- Show week / month picker based on choice -->
+        </select>
+        <input type="submit" value="Generate Report">
+      </fieldset>
+    </form>
 
     <?php # include_once "footer.inc" ?>
   </body>
