@@ -44,13 +44,13 @@
             }
             $saleDate = date('m/d/Y');
             $uNameSess = $_SESSION['username'];
-            $query = "SELECT item_name, barcode FROM inventory";
+            $query = "SELECT barcode, item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['barcode']])) { //Doesn't seem to work when item name contains white space/spaces so changed it to barcode'
                     echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
-                    $quantity = $_POST[$row['item_name'] . "Quantity"];
+                    $quantity = $_POST[$row['barcode'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
                     VALUES ('$salesID', '$itemName', '$saleDate', '$uNameSess', '$quantity')"; //Query to add new record to sales table, variable names due to change
                     $queryResult = sqlsrv_query($conn, $queryInsert);
@@ -118,7 +118,7 @@
             <td>" . $row['sale_price'] . "</td>
             <td>" . $row['soh'] . "</td>
             <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
-            <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['soh'] . "' value='0'></td>
+            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='0' max='" . $row['soh'] . "' value='0'></td>
         </tr>
         ";
         }
