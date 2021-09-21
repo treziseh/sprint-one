@@ -135,7 +135,7 @@
         <tr>
           <th>Barcode</th>
           <th>Item Name</th>
-          <th>Expected Sales " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
+          <th>Expected Sales " . $timePeriod . " Starting " . $startDate . "</th>
           <th>Expected Daily Average</th>
         </tr>
         </thead>
