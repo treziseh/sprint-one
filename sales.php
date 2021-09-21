@@ -47,9 +47,7 @@
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
-                $checkToSeeIfSet = str_replace(' ','+',$row['item_name']);
-                echo $checkToSeeIfSet;
-                if (isset($_POST[$checkToSeeIfSet])) {
+                if (isset($_POST[$row['barcode']])) {
                     echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
                     $quantity = $_POST[$row['item_name'] . "Quantity"];
@@ -119,7 +117,7 @@
             <td>" . $row['base_price'] . "</td>
             <td>" . $row['sale_price'] . "</td>
             <td>" . $row['soh'] . "</td>
-            <td><input type='checkbox' id='" . $row['item_name'] . "' name='" . $row['item_name'] . "' value='true'></td>
+            <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
             <td><input type='number' id='" . $row['item_name'] . "Quantity' name='" . $row['item_name'] . "Quantity' min='0' max='" . $row['soh'] . "' value='0'></td>
         </tr>
         ";
