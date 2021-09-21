@@ -46,7 +46,7 @@
             $uNameSess = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
-            if (isset($_POST['Cerave Reparative Hand Cream'])) {
+            if (isset($_POST["Cerave Reparative Hand Cream"])) {
                 echo "<p>Is Set Here</p>";
             }
             while($row = sqlsrv_fetch_array($result)) {
