@@ -28,7 +28,7 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
       if(!isset($_GET["barcode"])) exit();
-      $id = $_GET["barcode"];
+      $barcode = $_GET["barcode"];
 
       $sql = ("SELECT * FROM inventory WHERE barcode = " . $row['barcode'] .);
     }
