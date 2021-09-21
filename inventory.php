@@ -25,7 +25,7 @@
         require_once ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-        $conn = sqlsrv_connect($serverName, $connectionInfo);
+        $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
         $query = "SELECT * FROM inventory";
         $result = sqlsrv_query($conn, $query);
@@ -72,11 +72,11 @@
         </div>
         ";
 
-        sqlsrv_close($conn);
-
+        sqlsrv_close($conn); //Closes server connection
     }
     main(); //Calls main function
     ?>
+    
     <?php # include_once "footer.inc" ?>
   </body>
 </html>

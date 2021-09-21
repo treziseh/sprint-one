@@ -25,8 +25,7 @@
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-      //Create connection
-      $conn = sqlsrv_connect($serverName, $connectionInfo);
+      $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
       //Grabbing data values from textboxes
       if(isset($_POST['add'])) {
@@ -52,14 +51,12 @@
 
     function validate() {
         $validateResult = true;
-
         if (!isset($_POST["add"])) {
             $validateResult = false;
             echo "Form was not sent"; //Delete Later
         } else {
             echo "Form was sent"; //Delete Later
         }
-
         if ($validateResult) {
             insertdata(); //Calls sql store function if validation checks are passed
         }
@@ -115,12 +112,11 @@
         </form>
         </div>
       ";
-      sqlsrv_close($conn);
 
-      //Calls validate function to check if button submitted data
-      validate();
+      sqlsrv_close($conn); //Closes server connection
+      validate(); //Calls validate function to check if button submitted data
     }
-    main();
+    main(); //Calls main function
     ?>
 
     <?php # include_once "footer.inc" ?>
