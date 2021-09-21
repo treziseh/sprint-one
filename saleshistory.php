@@ -20,6 +20,39 @@
   <body>
     <?php include_once "sidebar.inc" ?>
 
+    <?php
+    function main() {
+        require ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "SELECT * FROM inventory, sales";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+
+        echo "<table>"; // start a table tag in the HTML
+        echo "
+        <tr>
+            <th>Sale ID</th>
+            <th>Date</th>
+            <th>Username</th>
+            <th>Sold Products</th>
+            <th>Total</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        ";
+        echo "</table>"; //Close the table in HTML
+
+        sqlsrv_close($conn);
+    }
+
+    main(); //Calls main function
+    ?>
+
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
