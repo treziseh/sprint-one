@@ -69,7 +69,28 @@
     </form>
     <?php
       if (isset($_POST['reportPast'])) {
-        echo "Jeff";
+        if ($_POST['timePeriod'] == 'week') {
+          $timePeriod = 'Week';
+        } else {
+          $timePeriod = 'Month';
+        }
+
+        echo "<table border='1' style='width: 100%'>
+        <thead>
+        <tr>
+          <th>Barcode</th>
+          <th>Item Name</th>
+          <th>Sold " . $timePeriod . "Starting" . $_POST['dateStarting'] . "</th>
+          <th>Sale Price</th>
+          <th>Stock on Hand (SOH)</th>
+          <th>Edit</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        ";
+
+        echo "</tbody></table>"
       }
     ?>
     <?php # include_once "footer.inc" ?>
