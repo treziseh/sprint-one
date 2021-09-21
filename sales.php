@@ -47,7 +47,7 @@
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
-                $checkToSeeIfSet = str_replace(' ','',$row['item_name']);
+                $checkToSeeIfSet = str_replace(' ','+',$row['item_name']);
                 echo $checkToSeeIfSet;
                 if (isset($_POST[$checkToSeeIfSet])) {
                     echo "<p>Function Got Called 00</p>";
