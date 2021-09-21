@@ -56,12 +56,12 @@
             echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
-        <label for="timePeriod">Time period: </label>
-        <select name="timePeriod" id="timePeriod">
+        <label for="ptimePeriod">Time period: </label>
+        <select name="ptimePeriod" id="timePeriod">
           <option value="week">Week</option>
           <option value="month">Month</option>
         </select>
-        <label for="dateStarting">Date starting: </label>
+        <label for="pdateStarting">Date starting: </label>
         <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPast">
         <input type="submit" value="Generate Report">
@@ -69,7 +69,7 @@
     </form>
     <?php
       if (isset($_POST['reportPast'])) {
-        if ($_POST['timePeriod'] == 'week') {
+        if ($_POST['ptimePeriod'] == 'week') {
           $timePeriod = 'Week';
         } else {
           $timePeriod = 'Month';
