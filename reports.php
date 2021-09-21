@@ -3,6 +3,10 @@
   if (!isset($_SESSION['username'])) {
     header("location: index.php");
   }
+
+  if (isset($_POST[''])) {
+
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +43,7 @@
     <h1>Generate Report</h1>
     <form action="reports.php?<?php echo session_id(); ?>" method="post">
       <fieldset>
+        <legend>MTD/WTD Report</legend>
         <?php
           require_once ("db-settings.php");
           $serverName = $host;
@@ -61,7 +66,7 @@
           <option value="month">Month</option>
         </select>
         <label for="dateStarting">Date starting: </label>
-        <input type="date" id="dateStarting" name="dateStarting">
+        <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
