@@ -65,11 +65,6 @@
                     echo "<p>" . $quantity . "</p>";
                 } else {
                     echo "<p>Not Set \o/</p>";
-                    echo "<p>" . $salesID . "</p>";
-                    echo "<p>" . $itemName . "</p>";
-                    echo "<p>" . $saleDate . "</p>";
-                    echo "<p>" . $uNameSess . "</p>";
-                    echo "<p>" . $quantity . "</p>";
                 }
             }
         }
@@ -101,7 +96,7 @@
         }
 
         $uName = $_SESSION['username'];
-        echo "<form method='get' id='saleForm' action='sales.php?'" . session_id() . ">";
+        echo "<form method='post' id='saleForm' action='sales.php?'" . session_id() . ">";
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
