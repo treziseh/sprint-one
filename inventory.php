@@ -43,11 +43,11 @@
         <table border='1' style='width: 100%'>
         <thead>
         <tr>
+          <th>Barcode</th>
           <th>Item Name</th>
           <th>Base Price</th>
-          <th>RRP</th>
-          <th>MTD Sold</th>
-          <th>EXP Quantity</th>
+          <th>Sale Price</th>
+          <th>Stock on Hand (SOH)</th>
         </tr>
         </thead>
         <tbody>
@@ -56,11 +56,11 @@
         while($row = sqlsrv_fetch_array($result)){
           echo "
           <tr>
+          <td>" . $row['barcode'] . "</td>
           <td>" . $row['item_name'] . "</td>
           <td>" . $row['base_price'] . "</td>
-          <td>" . $row['rrp'] . "</td>
-          <td>" . $row['mtd_sold'] . "</td>
-          <td>" . $row['exp_quant'] . "</td>
+          <td>" . $row['sale_price'] . "</td>
+          <td>" . $row['soh'] . "</td>
           </tr>
           </tbody>
           ";
