@@ -46,9 +46,6 @@
             $uNameSess = $_SESSION['username'];
             $query = "SELECT item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
-            if (isset($_POST["Cerave Reparative Hand Cream"])) {
-                echo "<p>Is Set Here</p>";
-            }
             while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['item_name']])) {
                     echo "<p>Function Got Called 00</p>";
@@ -104,7 +101,7 @@
         }
 
         $uName = $_SESSION['username'];
-        echo "<form method='post' id='saleForm' action='sales.php?'" . session_id() . ">";
+        echo "<form method='get' id='saleForm' action='sales.php?'" . session_id() . ">";
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
