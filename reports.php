@@ -117,6 +117,8 @@
           $i += 1;
         }
 
+        echo $query;
+
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
           die( print_r( sqlsrv_errors(), true));
