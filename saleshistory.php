@@ -19,7 +19,7 @@
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
-
+    <h1>Sales History</h1>
     <?php
     function main() {
         require ("db-settings.php");
@@ -87,7 +87,6 @@
                     <td></td>
                 </tr>
                 ";
-                //Date Currently Not Working
                 $preID = $curID;
             }
         }

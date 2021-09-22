@@ -19,6 +19,7 @@
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
+    <h1>Sales</h1>
 
     <?php
     function sql_store_sale() {
