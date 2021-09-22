@@ -100,12 +100,10 @@
           echo $row['item_name'];
           if (isset($_POST[$row['item_name']])) {
             //echo $_POST[$row['item_name']]);
-            array_push($includedItems, $row['item_name']);
+            array_push($includedItems, $_POST[$row['item_name']]);
           }
         }
-        foreach ($includedItems as $includedItem) {
-          echo $includedItem;
-        }
+        print_r($includedItems);
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
