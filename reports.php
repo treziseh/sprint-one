@@ -105,22 +105,18 @@
             array_push($includedItems, $row['item_name']);
           }
         }
-        print_r($includedItems);
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
-        /*if ($numSelected > 0) {
-          $i = 0;
-          $query .= " WHERE ";
-          while ($i <= $numSelected) {
-            if ($i == 0) {
-              $query .= " item_name = " . $_POST[$i];
-            } else {
-              $query .= " OR item_name = " . $_POST[$i];
-            }
-            $i += 1;
+        $i = 0;
+        while ($i <= sizeof($includedItems)) {
+          if ($i = 0) {
+            $query .= " WHERE item_name = " . $includedItems[$i];
+          } else {
+            $query .= " OR item_name = " . $includedItems[$i];
           }
-          echo $query;*/
+          $i += 1;
+        }
 
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
@@ -128,10 +124,10 @@
         }
 
 
-        /*while($row = sqlsrv_fetch_array($result)){
+        while($row = sqlsrv_fetch_array($result)){
           echo "
           <tr>
-          <td>" . $row['barcode'] . "</td>
+          <td>" . "BARCODE" . "</td>
           <td>" . $row['item_name'] . "</td>
           <td>" . $row['base_price'] . "</td>
           <td>" . $row['sale_price'] . "</td>
@@ -140,7 +136,7 @@
           </tr>
           </tbody>
           ";
-        }*/
+        }
 
         echo "</tbody></table>";
       }
