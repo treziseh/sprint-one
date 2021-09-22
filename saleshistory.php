@@ -33,7 +33,7 @@
                 die( print_r( sqlsrv_errors(), true));
         }
         echo $result;
-        $row = sqlsrv_fetch_array($result)
+        $row = sqlsrv_fetch_array($result);
         echo $row;
 
         echo "<table>"; // start a table tag in the HTML
