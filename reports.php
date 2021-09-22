@@ -106,48 +106,55 @@
         $query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
 
         foreach ($includedItems as $key => $value) {
-          if ($key != 0) {
+          /*if ($key != 0) {
             $query1 .= " OR";
-          }
+          }*/
           $query1 .= " item_name = '$value'";
+          $dateMin = strtotime($_POST['dateStarting']);
+          $uDateMin = date('Y-m-d', $dateMin);
+          $query1 .= " AND sale_date >= '$uDateMin'";
+
+          if ($pTimePeriod == 'month') {
+            $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 31 days'));
+          } else {
+            $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 7 days'));
+          }
+          $uDateMax = date('Y-m-d', $dateMax);
+          $query1 .= " AND sale_date <= '$uDateMax'";
+
+          $query1 .= " GROUP BY item_name, sale_date";
+
+          $result = sqlsrv_query($conn, $query1);
+          if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+          }
+
+          $highestQuantity = 0;
+          $highestDate = $uDateMin;
+          $totalQuantity = 0;
+          $numberDays = 0;
+          while ($row = sqlsrv_fetch_array($result)) {
+            $currentQuantity = $row['quantity'];
+            $currentDate = $row['sale_date'];
+            if ($currentQuantity > $highestQuantity) {
+              $highestQuantity = $currentQuantity;
+              $highestDate = $currentDate;
+            }
+            $totalQuantity += $currentQuantity;
+            $numberDays += 1;
+          }
+          $averageQuantity = $totalQuantity / $numberDays;
+
+          echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>$highestDate</td><td>$highestQuantity</td></tr>";
+
+          /*while($row = sqlsrv_fetch_array($result)) {
+            echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
+
+          }*/
+
         }
 
-        $dateMin = strtotime($_POST['dateStarting']);
-        $uDateMin = date('Y-m-d', $dateMin);
-        $query1 .= " AND sale_date >= '$uDateMin'";
 
-        if ($pTimePeriod == 'month') {
-          $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 31 days'));
-        } else {
-          $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 7 days'));
-        }
-        $uDateMax = date('Y-m-d', $dateMax);
-        $query1 .= " AND sale_date <= '$uDateMax'";
-
-        $query1 .= " GROUP BY item_name, sale_date";
-
-        $result = sqlsrv_query($conn, $query1);
-        if ($result === false) { //Checks to see if query was passed
-          die( print_r( sqlsrv_errors(), true));
-        }
-
-        /*while($row = sqlsrv_fetch_array($result)){
-          echo "
-          <tr>
-          <td>" . "BARCODE" . "</td>
-          <td>" . $row['item_name'] . "</td>
-          <td>" . $row['base_price'] . "</td>
-          <td>" . $row['sale_price'] . "</td>
-          <td>" . $row['soh'] . "</td>
-          <td><center><a class='btn btn-warning' href='<editproduct.php?id=" . $row['barcode'] . ">Edit <i class='fa fa-edit'></i></a></center></td
-          </tr>
-          </tbody>
-          ";
-        }*/
-        while($row = sqlsrv_fetch_array($result)){
-          echo "<tr><td>" . $row['item_name'] . "</td><td></td><td></td><td></td><td></td></tr>";
-
-        }
 
         echo "</tbody></table>";
 
