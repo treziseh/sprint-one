@@ -108,7 +108,7 @@
             die( print_r( sqlsrv_errors(), true));
         }
 
-        echo $_POST;
+        echo implode("|",$_POST);
 
         /*while($row = sqlsrv_fetch_array($result)){
           echo "
