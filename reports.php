@@ -121,7 +121,7 @@
         } else {
           $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 7 days'));
         }
-        $uDateMax = ate('Y-m-d', $dateMax);
+        $uDateMax = date('Y-m-d', $dateMax);
         $query1 .= " AND sale_date <= '$uDateMax'";
 
         $result = sqlsrv_query($conn, $query1);
