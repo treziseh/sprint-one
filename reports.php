@@ -100,7 +100,6 @@
           $node = $row['barcode'];
           if (isset($_POST[$node])) {
             array_push($includedItems, $row['item_name']);
-            print_r($includedItems);
           }
         }
 
@@ -114,6 +113,7 @@
             $query1 .= " OR item_name =  '$item'";
           }
         }
+        echo $query1;
 
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
