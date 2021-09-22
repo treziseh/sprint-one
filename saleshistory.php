@@ -27,7 +27,10 @@
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-        $query = "SELECT * FROM sales, inventory WHERE sales.item_name = inventory.item_name";
+        $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price 
+                  FROM sales S 
+                  INNER JOIN inventory I 
+                  ON S.item_name = I.item_name";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
