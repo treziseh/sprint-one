@@ -53,7 +53,7 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' onclick="updateCount()" id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
         <label for="ptimePeriod">Time period: </label>
@@ -65,17 +65,18 @@
         <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPast">
         <script type="text/javascript">
-          var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
+          function updateCount() {
+            var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
 
-          var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
+            var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
 
-          var input = document.createElement('input');//prepare a new input DOM element
-          input.setAttribute('name', 'itemsSelected');//set the param name
-          input.setAttribute('value', itemsSelected);//set the value
-          input.setAttribute('type', 'hidden')
+            var input = document.createElement('input');//prepare a new input DOM element
+            input.setAttribute('name', 'itemsSelected');//set the param name
+            input.setAttribute('value', itemsSelected);//set the value
+            input.setAttribute('type', 'hidden')
 
-          form.appendChild(input);//append the input to the form
-
+            form.appendChild(input);//append the input to the form
+          }
         </script>
         <input type="submit" value="Generate Report">
       </fieldset>
