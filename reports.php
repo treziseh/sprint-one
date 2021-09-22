@@ -89,6 +89,28 @@
         <tbody>
         ";
 
+        $query = "SELECT item_name, sale_date, quantity FROM sales";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+        }
+
+        echo $_POST;
+
+        /*while($row = sqlsrv_fetch_array($result)){
+          echo "
+          <tr>
+          <td>" . $row['barcode'] . "</td>
+          <td>" . $row['item_name'] . "</td>
+          <td>" . $row['base_price'] . "</td>
+          <td>" . $row['sale_price'] . "</td>
+          <td>" . $row['soh'] . "</td>
+          <td><center><a class='btn btn-warning' href='<editproduct.php?id=" . $row['barcode'] . ">Edit <i class='fa fa-edit'></i></a></center></td
+          </tr>
+          </tbody>
+          ";
+        }*/
+
         echo "</tbody></table>";
       }
     ?>
@@ -115,7 +137,7 @@
         <select name="timePeriod" id="timePeriod">
           <option value="week">Week</option>
           <option value="month">Month</option>
-        </select>
+        </select><br>
         <input type="hidden" name="reportPredict">
         <input type="submit" value="Generate Report">
       </fieldset>
