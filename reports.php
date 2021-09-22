@@ -16,6 +16,20 @@
 
     <!-- Custom styles for this page -->
     <link href="styles/style-main.css" rel="stylesheet">
+    <script type="text/javascript">
+      function updateCount() {
+        var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
+
+        var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
+
+        var input = document.createElement('input');//prepare a new input DOM element
+        input.setAttribute('name', 'itemsSelected');//set the param name
+        input.setAttribute('value', itemsSelected);//set the value
+        input.setAttribute('type', 'hidden')
+
+        form.appendChild(input);//append the input to the form
+      }
+    </script>
   </head>
   <body>
     <?php
@@ -64,20 +78,6 @@
         <label for="pdateStarting">Date starting: </label>
         <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPast">
-        <script type="text/javascript">
-          function updateCount() {
-            var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
-
-            var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
-
-            var input = document.createElement('input');//prepare a new input DOM element
-            input.setAttribute('name', 'itemsSelected');//set the param name
-            input.setAttribute('value', itemsSelected);//set the value
-            input.setAttribute('type', 'hidden')
-
-            form.appendChild(input);//append the input to the form
-          }
-        </script>
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
