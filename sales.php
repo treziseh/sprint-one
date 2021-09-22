@@ -48,7 +48,6 @@
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['barcode']])) { //Doesn't seem to work when item name contains white space/spaces so changed it to barcode'
-                    echo "<p>Function Got Called 00</p>";
                     $itemName = $row['item_name'];
                     $quantity = $_POST[$row['barcode'] . "Quantity"];
                     $queryInsert = "INSERT INTO sales (sales_ID, item_name, sale_date, uname, quantity)
