@@ -30,7 +30,8 @@
         $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price 
                   FROM sales S 
                   INNER JOIN inventory I 
-                  ON S.item_name = I.item_name";
+                  ON S.item_name = I.item_name
+                  ORDER BY sales_ID ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
@@ -41,6 +42,7 @@
         }
         while($row = sqlsrv_fetch_array($result)){
             echo $row['sales_ID'];
+            echo $row[0];
         }
 
         echo "<table>"; // start a table tag in the HTML
