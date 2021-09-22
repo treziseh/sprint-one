@@ -79,6 +79,7 @@
                             </tr>
                             ";
                             $total += $temprow[2] * $temprow[3];
+                            echo "<p>" . $total . "</p>";
                         }
                     echo "</table></td>
                     <td></td>
