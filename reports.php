@@ -18,6 +18,7 @@
     <link href="styles/style-main.css" rel="stylesheet">
     <script type="text/javascript">
       function updateCount() {
+        alert("Called");
         var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
 
         var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
