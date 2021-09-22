@@ -32,6 +32,9 @@
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
+        echo $result;
+        $row = sqlsrv_fetch_array($result)
+        echo $row;
 
         echo "<table>"; // start a table tag in the HTML
         echo "
@@ -48,7 +51,7 @@
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
         echo "
         <tr>
-            <td>" . $row['sales_id'] . "</td>
+            <td>" . $row['sales_ID'] . "</td>
             <td>" . $row['sale_date'] . "</td>
             <td>" . $row['uname'] . "</td>
             <td></td>
