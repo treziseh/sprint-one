@@ -106,13 +106,11 @@
         $query1 = "SELECT item_name, sale_date, quantity FROM sales WHERE";
 
         foreach ($includedItems as $key => $value) {
-          echo "$key IS $value\n";
           if ($key != 0) {
             $query1 .= " OR";
           }
           $query1 .= " item_name = '$value'";
         }
-        echo $query1;
 
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
