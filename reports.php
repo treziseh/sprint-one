@@ -99,7 +99,7 @@
         while ($row = sqlsrv_fetch_array($result)) {
           echo $row['item_name'];
           if (isset($_POST[$row['item_name']])) {
-            //echo $_POST[$row['item_name']]);
+            echo "yes";
             array_push($includedItems, $_POST[$row['item_name']]);
           }
         }
