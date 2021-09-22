@@ -103,7 +103,7 @@
           }
         }
 
-        $query1 = "SELECT item_name, sale_date, quantity FROM sales";
+        $query1 = "SELECT item_name, sale_date, quantity FROM sales WHERE";
 
         echo count($includedItems);
         for ($i = 0; $i <= (count($includedItems) - 1); $i++) {
@@ -111,10 +111,13 @@
           $item = $includedItems[$i];
           echo $item;
           if ($i = 1) {
-            $query1 .= " WHERE item_name = '$item'";
+            $query1 .= " item_name = '$item'";
           } else {
             $query1 .= " OR item_name =  '$item'";
           }
+        }
+        foreach ($includedItems as $key => $value) {
+          echo "$key IS $value";
         }
         echo $query1;
 
