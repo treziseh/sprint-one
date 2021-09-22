@@ -103,13 +103,13 @@
           }
         }
 
-        $query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
+        //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
 
         foreach ($includedItems as $key => $value) {
           /*if ($key != 0) {
             $query1 .= " OR";
           }*/
-          $query1 .= " item_name = '$value'";
+          $query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE item_name = '$value'";
           $dateMin = strtotime($_POST['dateStarting']);
           $uDateMin = date('Y-m-d', $dateMin);
           $query1 .= " AND sale_date >= '$uDateMin'";
