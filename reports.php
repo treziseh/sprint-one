@@ -53,18 +53,9 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            echo "<input type='checkbox' onclick='updateCount()' id='" . $row['barcode'] . "' name='" . $row['item_name'] . "' value='" . $row['item_name'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['item_name'] . "' value='" . $row['item_name'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
-        <script type="text/javascript">
-          function updateCount() {
-            var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            alert(itemsSelected);
-
-            var field = document.getElementById('numberOfItems');
-            field.value = itemsSelected;
-          }
-        </script>
         <label for="ptimePeriod">Time period: </label>
         <select name="ptimePeriod" id="timePeriod">
           <option value="week">Week</option>
@@ -73,7 +64,6 @@
         <label for="pdateStarting">Date starting: </label>
         <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPast">
-        <input type="hidden" id="numberOfItems" name="numberOfItems" value="">
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
@@ -84,7 +74,6 @@
         } else {
           $timePeriod = 'Month';
         }
-        $numSelected = $_POST['numberOfItems'];
 
         echo "<table border='1' style='width: 100%'>
         <thead>
@@ -99,6 +88,22 @@
         </thead>
         <tbody>
         ";
+
+        $query = "SELECT item_name FROM inventory";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+        }
+
+        $includedItems = [];
+        while ($row = sqlsrv_fetch_array($result)) {
+          if (isset($_POST[$row['item_name']])) {
+            array_push($includedItems, $row['item_name']);
+          }
+        }
+        foreach ($includedItems as $includedItem) {
+          echo $includedItem;
+        }
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
