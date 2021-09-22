@@ -107,11 +107,11 @@
           $query .= " WHERE "
           while ($i <= $numSelected) {
             if ($i == 0) {
-              $query .= " item_name = " . $_POST[$i]
+              $query .= " item_name = " . $_POST[$i];
             } else {
-              $query .= " OR item_name = " . $_POST[$i]
+              $query .= " OR item_name = " . $_POST[$i];
             }
-            $i += 1
+            $i += 1;
           }
 
           $result = sqlsrv_query($conn, $query);
