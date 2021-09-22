@@ -63,8 +63,24 @@
                             <th>Barcode</th>
                             <th>Item Name</th>
                             <th>Quantity</th>
-                        </tr>
-                    </table></td>
+                        </tr>";
+                        $tempquery = "SELECT I.barcode, S.item_name, S.quantity 
+                            FROM sales S 
+                            INNER JOIN inventory I 
+                            ON S.item_name = I.item_name
+                            WHERE sales_ID = "$curID"
+                            ORDER BY sales_ID ASC";
+                        $tempresult = sqlsrv_query($conn, $tempquery);
+                        while($temprow = sqlsrv_fetch_array($tempresult)) {
+                            echo "
+                            <tr>
+                                <td>" . $temprow[0] . "</td>
+                                <td>" . $temprow[1] . "</td>
+                                <td>" . $temprow[2] . "</td>
+                            </tr>
+                            ";
+                        }
+                    echo "</table></td>
                     <td></td>
                     <td></td>
                     <td></td>
