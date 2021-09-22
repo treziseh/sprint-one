@@ -123,10 +123,6 @@
           die( print_r( sqlsrv_errors(), true));
         }
 
-        while($row = sqlsrv_fetch_array($result)){
-          echo $row['item_name'];
-        }
-
         /*while($row = sqlsrv_fetch_array($result)){
           echo "
           <tr>
@@ -142,6 +138,10 @@
         }*/
 
         echo "</tbody></table>";
+
+        while($row = sqlsrv_fetch_array($result)){
+          echo $row['item_name'];
+        }
       }
     ?>
     <form action="reports.php?<?php echo session_id(); ?>" method="post">
