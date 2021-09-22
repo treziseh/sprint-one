@@ -56,7 +56,7 @@
                 echo "
                 <tr>
                     <td>" . $row[0] . "</td>
-                    <td></td> 
+                    <td>" . $row[2]->format('Y-m-d H:i:s') . "</td> 
                     <td>" . $row[4] . "</td>
                     <td><table>
                         <tr>
