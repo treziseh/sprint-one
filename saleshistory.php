@@ -49,25 +49,30 @@
             <th>Delete</th>
         </tr>
         ";
+        $preID = null;
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-            echo "
-            <tr>
-                <td>" . $row[0] . "</td>
-                <td></td> 
-                <td>" . $row[4] . "</td>
-                <td><table>
-                    <tr>
-                        <th>Barcode</th>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                    </tr>    
-                </table></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            ";
-            //Date Currently Not Working
+            $curID = $row[0];
+            if ($curID != $preID) {
+                echo "
+                <tr>
+                    <td>" . $row[0] . "</td>
+                    <td></td> 
+                    <td>" . $row[4] . "</td>
+                    <td><table>
+                        <tr>
+                            <th>Barcode</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                        </tr>    
+                    </table></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                ";
+                //Date Currently Not Working
+                $preID = $curID;
+            }
         }
         echo "</table>"; //Close the table in HTML
 
