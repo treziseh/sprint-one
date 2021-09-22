@@ -50,11 +50,10 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-            $saleDate = strtotime($row[2]);
             echo "
             <tr>
                 <td>" . $row[0] . "</td>
-                <td>" . $saleDate . "</td>
+                <td>" . strtotime($row[2]) . "</td>
                 <td>" . $row[4] . "</td>
                 <td></td>
                 <td></td>
