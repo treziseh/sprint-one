@@ -111,9 +111,9 @@
         for ($i = 0; $i < count($includedItems); $i++) {
           $item = $includedItems[$i];
           if ($i = 1) {
-            $query1 .= " WHERE item_name = $item";
+            $query1 .= " WHERE item_name = '$item'";
           } else {
-            $query1 .= " OR item_name =  $item";
+            $query1 .= " OR item_name =  '$item'";
           }
         }
 
