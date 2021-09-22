@@ -53,7 +53,8 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            //echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['item_name'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['item_name'] . "'>
+            <label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
         <label for="ptimePeriod">Time period: </label>
@@ -95,7 +96,7 @@
             die( print_r( sqlsrv_errors(), true));
         }
 
-        /*$includedItems = [];
+        $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
           $node = $row['barcode'];
           echo $node;
@@ -104,7 +105,7 @@
             array_push($includedItems, $_POST[$row['item_name']]);
           }
         }
-        print_r($includedItems);*/
+        print_r($includedItems);
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
@@ -125,7 +126,7 @@
           if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
           }
-        }
+
 
         /*while($row = sqlsrv_fetch_array($result)){
           echo "
