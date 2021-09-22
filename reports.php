@@ -102,24 +102,25 @@
           if (isset($_POST[$node])) {
             echo "yes";
             array_push($includedItems, $row['item_name']);
+            print_r($includedItems);
           }
         }
 
-        $query = "SELECT item_name, sale_date, quantity FROM sales";
+        $query1 = "SELECT item_name, sale_date, quantity FROM sales";
 
         $i = 0;
         while ($i <= sizeof($includedItems)) {
           if ($i = 0) {
-            $query .= " WHERE item_name = " . $includedItems[$i];
+            $query1 .= " WHERE item_name = " . $includedItems[$i];
           } else {
-            $query .= " OR item_name = " . $includedItems[$i];
+            $query1 .= " OR item_name = " . $includedItems[$i];
           }
           $i += 1;
         }
 
-        echo $query;
+        echo $query1;
 
-        $result = sqlsrv_query($conn, $query);
+        $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
           die( print_r( sqlsrv_errors(), true));
         }
