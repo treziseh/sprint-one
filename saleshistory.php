@@ -50,19 +50,24 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-            $date = strtotime($row[2]);
-            echo $date;
             echo "
             <tr>
                 <td>" . $row[0] . "</td>
-                <td>" . date('m/d/Y', $date) . "</td>
+                <td>""</td> 
                 <td>" . $row[4] . "</td>
-                <td></td>
+                <td><table>
+                    <tr>
+                        <th>Barcode</th>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                    </tr>"    
+                "</table></td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             ";
+            //Date Currently Not Working
         }
         echo "</table>"; //Close the table in HTML
 
