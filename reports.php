@@ -37,7 +37,7 @@
       */
     ?>
     <h1>Generate Report</h1>
-    <form action="reports.php?<?php echo session_id(); ?>" method="post">
+    <form id="mtdWtd" action="reports.php?<?php echo session_id(); ?>" method="post">
       <fieldset>
         <legend>MTD/WTD</legend>
         <?php
@@ -64,6 +64,19 @@
         <label for="pdateStarting">Date starting: </label>
         <input type="date" id="dateStarting" name="dateStarting"><br>
         <input type="hidden" name="reportPast">
+        <script type="text/javascript">
+          var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length);
+
+          var form = document.getElementById('mtdWtd');//retrieve the form as a DOM element
+
+          var input = document.createElement('input');//prepare a new input DOM element
+          input.setAttribute('name', 'itemsSelected');//set the param name
+          input.setAttribute('value', itemsSelected);//set the value
+          input.setAttribute('type', 'hidden')
+
+          form.appendChild(input);//append the input to the form
+
+        </script>
         <input type="submit" value="Generate Report">
       </fieldset>
     </form>
