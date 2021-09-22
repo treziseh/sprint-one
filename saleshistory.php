@@ -39,6 +39,9 @@
         while($row = sqlsrv_fetch_array($result)){
             print_r($row);
         }
+        while($row = sqlsrv_fetch_array($result)){
+            echo $row['sales_ID'];
+        }
 
         echo "<table>"; // start a table tag in the HTML
         echo "
