@@ -103,7 +103,7 @@
           }
         }
 
-        $query1 = "SELECT item_name, sale_date, quantity FROM sales WHERE";
+        $query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
 
         foreach ($includedItems as $key => $value) {
           if ($key != 0) {
@@ -123,6 +123,8 @@
         }
         $uDateMax = date('Y-m-d', $dateMax);
         $query1 .= " AND sale_date <= '$uDateMax'";
+
+        $query1 .= " GROUP BY item_name, sale_date";
 
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
