@@ -79,7 +79,6 @@
         echo "<table border='1' style='width: 100%'>
         <thead>
         <tr>
-          <th>Barcode</th>
           <th>Item Name</th>
           <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
           <th>Daily Average Sold</th>
@@ -136,12 +135,13 @@
           </tbody>
           ";
         }*/
+        while($row = sqlsrv_fetch_array($result)){
+          echo "<tr><td>" . $row['item_name'] . "</td><td></td><td></td><td></td><td></td></tr>";
+
+        }
 
         echo "</tbody></table>";
 
-        while($row = sqlsrv_fetch_array($result)){
-          echo $row['item_name'];
-        }
       }
     ?>
     <form action="reports.php?<?php echo session_id(); ?>" method="post">
