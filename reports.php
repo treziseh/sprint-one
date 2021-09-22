@@ -107,7 +107,7 @@
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
-        if ($numSelected > 0) {
+        /*if ($numSelected > 0) {
           $i = 0;
           $query .= " WHERE ";
           while ($i <= $numSelected) {
@@ -118,7 +118,7 @@
             }
             $i += 1;
           }
-          echo $query;
+          echo $query;*/
 
           $result = sqlsrv_query($conn, $query);
           if ($result === false) { //Checks to see if query was passed
