@@ -68,7 +68,7 @@
                             FROM sales S 
                             INNER JOIN inventory I 
                             ON S.item_name = I.item_name
-                            WHERE sales_ID = "$curID"
+                            WHERE sales_ID = $curID
                             ORDER BY sales_ID ASC";
                         /*$tempresult = sqlsrv_query($conn, $tempquery);
                         while($temprow = sqlsrv_fetch_array($tempresult)) {
