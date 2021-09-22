@@ -27,14 +27,11 @@
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-        $query = "SELECT * FROM inventory, sales";
+        $query = "SELECT * FROM sales, inventory WHERE sales.item_name = inventory.item_name";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-        echo $result;
-        $row = sqlsrv_fetch_array($result);
-        echo $row;
 
         echo "<table>"; // start a table tag in the HTML
         echo "
