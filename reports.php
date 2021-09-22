@@ -108,9 +108,9 @@
         foreach ($includedItems as $key => $value) {
           echo "$key IS $value\n";
           if ($key != 0) {
-            $query1 .= " OR ";
+            $query1 .= " OR";
           }
-          $query1 .= "item_name = '$value'";
+          $query1 .= " item_name = '$value'";
         }
         echo $query1;
 
