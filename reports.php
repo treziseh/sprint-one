@@ -122,10 +122,10 @@
           }
           echo $query;*/
 
-          $result = sqlsrv_query($conn, $query);
-          if ($result === false) { //Checks to see if query was passed
-              die( print_r( sqlsrv_errors(), true));
-          }
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+          die( print_r( sqlsrv_errors(), true));
+        }
 
 
         /*while($row = sqlsrv_fetch_array($result)){
