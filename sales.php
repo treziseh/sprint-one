@@ -89,7 +89,7 @@
 
         $uName = $_SESSION['username'];
         echo "<form method='post' id='saleForm' action='sales.php?'" . session_id() . ">";
-        echo "<table>"; // start a table tag in the HTML
+        echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
         echo "
         <tr>
             <th>Barcode</th>
