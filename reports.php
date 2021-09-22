@@ -113,8 +113,8 @@
         }
 
         $dateMin = strtotime($_POST['dateStarting']);
-        $uDateMin = date('Y-m-d H:i:s', $dateMin);
-        $query1 .= " AND sale_date >= $uDateMin";
+        $uDateMin = date('Y-m-d', $dateMin);
+        $query1 .= " AND sale_date >= '$uDateMin'";
 
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
