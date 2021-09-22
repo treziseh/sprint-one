@@ -134,7 +134,7 @@
           $totalQuantity = 0;
           $numberDays = 0;
           while ($row = sqlsrv_fetch_array($result)) {
-            $currentQuantity = $row['quantity'];
+            $currentQuantity = $row['SUM(quantity)'];
             $currentDate = $row['sale_date'];
             if ($currentQuantity > $highestQuantity) {
               $highestQuantity = $currentQuantity;
