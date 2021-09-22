@@ -15,7 +15,7 @@
     <title>Sales History</title>
 
     <!-- Custom styles for this page -->
-    <link href="styles/style-main.css" rel="stylesheet">
+    <link href="styles/style-main.css" rel="stylesheet"> 
   </head>
   <body>
     <?php include_once "sidebar.inc" ?>
@@ -45,6 +45,19 @@
             <th>Delete</th>
         </tr>
         ";
+        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+        echo "
+        <tr>
+            <td>" . $row['sales_id'] . "</td>
+            <td>" . $row['sale_date'] . "</td>
+            <td>" . $row['uname'] . "</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        ";
+        }
         echo "</table>"; //Close the table in HTML
 
         sqlsrv_close($conn);
