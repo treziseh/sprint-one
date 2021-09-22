@@ -42,7 +42,7 @@
             } else {
                 $salesID = $row['sales_ID'] + 1;
             }
-            $saleDate = date('m/d/Y');
+            $saleDate = date('d/m/Y');
             $uNameSess = $_SESSION['username'];
             $query = "SELECT barcode, item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
