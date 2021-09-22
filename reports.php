@@ -112,6 +112,10 @@
           $query1 .= " item_name = '$value'";
         }
 
+        $dateMin = $_POST['dateStarting'];
+        $uDateMin = date('Y-m-d', $dateMin);
+        $query1 .= " AND sale_date >= $dateMin";
+
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
           die( print_r( sqlsrv_errors(), true));
