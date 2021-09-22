@@ -98,11 +98,11 @@
         $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
           $node = $row['barcode'];
-          echo $row['barcode'];
-          if (isset($_POST[$node)) {
+          echo $node;
+          /*if (isset($_POST[$node)) {
             echo "yes";
             array_push($includedItems, $_POST[$row['item_name']]);
-          }
+          }*/
         }
         print_r($includedItems);
 
