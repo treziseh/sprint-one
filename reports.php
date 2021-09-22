@@ -108,14 +108,13 @@
 
         $query1 = "SELECT item_name, sale_date, quantity FROM sales";
 
-        $i = 0;
-        while ($i <= sizeof($includedItems)) {
+        for ($i = 0; $i < count($includedItems); $i++) {
+          $item = $includedItems[$i];
           if ($i = 0) {
-            $query1 .= " WHERE item_name = " . $includedItems[$i];
+            $query1 .= " WHERE item_name = '$item'";
           } else {
             $query1 .= " OR item_name = " . $includedItems[$i];
           }
-          $i += 1;
         }
 
         echo $query1;
