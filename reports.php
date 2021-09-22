@@ -53,7 +53,7 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            echo "<input type='checkbox' onclick='updateCount()' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' onclick='updateCount()' id='" . $row['barcode'] . "' name='" . $row['item_name'] . "' value='" . $row['item_name'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
         <script type="text/javascript">
@@ -84,6 +84,7 @@
         } else {
           $timePeriod = 'Month';
         }
+        $numSelected = $_POST['numberOfItems'];
 
         echo "<table border='1' style='width: 100%'>
         <thead>
@@ -100,12 +101,24 @@
         ";
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
-        $result = sqlsrv_query($conn, $query);
-        if ($result === false) { //Checks to see if query was passed
-            die( print_r( sqlsrv_errors(), true));
-        }
 
-        echo implode("|",$_POST);
+        if ($numSelected > 0) {
+          $i = 0;
+          $query .= " WHERE "
+          while ($i <= $numSelected) {
+            if ($i == 0) {
+              $query .= " item_name = " . $_POST[$i]
+            } else {
+              $query .= " OR item_name = " . $_POST[$i]
+            }
+            $i += 1
+          }
+
+          $result = sqlsrv_query($conn, $query);
+          if ($result === false) { //Checks to see if query was passed
+              die( print_r( sqlsrv_errors(), true));
+          }
+        }
 
         /*while($row = sqlsrv_fetch_array($result)){
           echo "
