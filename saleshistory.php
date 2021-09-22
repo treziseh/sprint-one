@@ -82,7 +82,7 @@
                             $total += $temprow[2] * $temprow[3];
                         }
                     echo "</table></td>
-                    <td>" . $total . "</td>
+                    <td>$" . $total . "</td>
                     <td></td>
                     <td></td>
                 </tr>
