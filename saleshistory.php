@@ -53,15 +53,15 @@
             echo "
             <tr>
                 <td>" . $row[0] . "</td>
-                <td>""</td> 
+                <td></td> 
                 <td>" . $row[4] . "</td>
                 <td><table>
                     <tr>
                         <th>Barcode</th>
                         <th>Item Name</th>
                         <th>Quantity</th>
-                    </tr>"    
-                "</table></td>
+                    </tr>    
+                </table></td>
                 <td></td>
                 <td></td>
                 <td></td>
