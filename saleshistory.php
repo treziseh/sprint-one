@@ -36,6 +36,10 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
+        while($row = sqlsrv_fetch_array($result)){
+            print_r($row);
+        }
+
         echo "<table>"; // start a table tag in the HTML
         echo "
         <tr>
@@ -49,17 +53,17 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-        echo "
-        <tr>
-            <td>" . $row['sales_ID'] . "</td>
-            <td>" . $row['sale_date'] . "</td>
-            <td>" . $row['uname'] . "</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        ";
+            echo "
+            <tr>
+                <td>" . $row['sales_ID'] . "</td>
+                <td>" . $row['sale_date'] . "</td>
+                <td>" . $row['uname'] . "</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            ";
         }
         echo "</table>"; //Close the table in HTML
 
