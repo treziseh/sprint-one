@@ -58,11 +58,11 @@
         ?>
         <script type="text/javascript">
           function updateCount() {
-            alert("Called");
             var itemsSelected = document.querySelectorAll(('input[type="checkbox"]:checked').length);
+            alert(itemsSelected);
 
             var field = document.getElementById('numberOfItems');//retrieve the form as a DOM element
-            field.value = itemsSelected
+            field.value = itemsSelected;
           }
         </script>
         <label for="ptimePeriod">Time period: </label>
