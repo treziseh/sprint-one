@@ -95,16 +95,16 @@
             die( print_r( sqlsrv_errors(), true));
         }
 
-        $includedItems = [];
+        /*$includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
           $node = $row['barcode'];
           echo $node;
-          /*if (isset($_POST[$node)) {
+          if (isset($_POST[$node)) {
             echo "yes";
             array_push($includedItems, $_POST[$row['item_name']]);
-          }*/
+          }
         }
-        print_r($includedItems);
+        print_r($includedItems);*/
 
         $query = "SELECT item_name, sale_date, quantity FROM sales";
 
