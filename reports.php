@@ -112,7 +112,7 @@
           $query1 .= " item_name = '$value'";
         }
 
-        $dateMin = $_POST['dateStarting'];
+        $dateMin = strtotime($_POST['dateStarting']);
         $uDateMin = date('Y-m-d H:i:s', $dateMin);
         $query1 .= " AND sale_date >= $uDateMin";
 
