@@ -58,10 +58,10 @@
         ?>
         <script type="text/javascript">
           function updateCount() {
-            var itemsSelected = document.querySelectorAll(('input[type="checkbox"]:checked').length);
+            var itemsSelected = document.querySelectorAll('input[type="checkbox"]:checked').length;
             alert(itemsSelected);
 
-            var field = document.getElementById('numberOfItems');//retrieve the form as a DOM element
+            var field = document.getElementById('numberOfItems');
             field.value = itemsSelected;
           }
         </script>
