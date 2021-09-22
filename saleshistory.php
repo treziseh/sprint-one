@@ -64,7 +64,7 @@
                             <th>Item Name</th>
                             <th>Quantity</th>
                         </tr>";
-                        $tempquery = "SELECT I.barcode, S.item_name, S.quantity 
+                        /*$tempquery = "SELECT I.barcode, S.item_name, S.quantity 
                             FROM sales S 
                             INNER JOIN inventory I 
                             ON S.item_name = I.item_name
@@ -79,7 +79,7 @@
                                 <td>" . $temprow[2] . "</td>
                             </tr>
                             ";
-                        }
+                        }*/
                     echo "</table></td>
                     <td></td>
                     <td></td>
