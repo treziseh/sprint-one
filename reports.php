@@ -102,7 +102,7 @@
           echo $node;
           if (isset($_POST[$node])) {
             echo "yes";
-            array_push($includedItems, $_POST[$row['item_name']]);
+            array_push($includedItems, $row['item_name']);
           }
         }
         print_r($includedItems);
