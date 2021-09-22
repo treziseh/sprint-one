@@ -51,6 +51,7 @@
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $date = strtotime($row[2]);
+            echo $date;
             echo "
             <tr>
                 <td>" . $row[0] . "</td>
