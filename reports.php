@@ -105,6 +105,7 @@
 
         $query1 = "SELECT item_name, sale_date, quantity FROM sales";
 
+        echo count($includedItems);
         for ($i = 0; $i < (count($includedItems) - 1); $i++) {
           echo $i;
           $item = $includedItems[$i];
