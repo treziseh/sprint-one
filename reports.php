@@ -106,7 +106,9 @@
         $query1 = "SELECT item_name, sale_date, quantity FROM sales";
 
         for ($i = 0; $i < (count($includedItems) - 1); $i++) {
+          echo $i;
           $item = $includedItems[$i];
+          echo $item;
           if ($i = 1) {
             $query1 .= " WHERE item_name = '$item'";
           } else {
