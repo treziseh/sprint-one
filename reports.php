@@ -97,9 +97,9 @@
 
         $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
-          echo $row['item_name'];
+          //echo $row['item_name'];
           if (isset($_POST[$row['item_name']])) {
-            echo $_POST[$row['item_name']]);
+            //echo $_POST[$row['item_name']]);
             array_push($includedItems, $row['item_name']);
           }
         }
