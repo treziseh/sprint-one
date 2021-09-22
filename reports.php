@@ -123,8 +123,11 @@
           die( print_r( sqlsrv_errors(), true));
         }
 
-
         while($row = sqlsrv_fetch_array($result)){
+          echo $row['item_name'];
+        }
+
+        /*while($row = sqlsrv_fetch_array($result)){
           echo "
           <tr>
           <td>" . "BARCODE" . "</td>
@@ -136,7 +139,7 @@
           </tr>
           </tbody>
           ";
-        }
+        }*/
 
         echo "</tbody></table>";
       }
