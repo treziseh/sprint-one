@@ -37,7 +37,7 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        echo "<table>"; // start a table tag in the HTML
+        echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
         echo "
         <tr>
             <th>Sale ID</th>
@@ -58,7 +58,7 @@
                     <td>" . $row[0] . "</td>
                     <td>" . $row[2]->format('Y-m-d') . "</td> 
                     <td>" . $row[4] . "</td>
-                    <td><table>
+                    <td><table border='1' style='width: 100%'>
                         <tr>
                             <th>Barcode</th>
                             <th>Item Name</th>
