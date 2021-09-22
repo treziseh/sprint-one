@@ -70,6 +70,7 @@
                             ON S.item_name = I.item_name
                             WHERE sales_ID = $curID";
                         $tempresult = sqlsrv_query($conn, $tempquery);
+                        $total = null;
                         while($temprow = sqlsrv_fetch_array($tempresult)) {
                             echo "
                             <tr>
@@ -79,10 +80,9 @@
                             </tr>
                             ";
                             $total += $temprow[2] * $temprow[3];
-                            echo "<p>" . $total . "</p>";
                         }
                     echo "</table></td>
-                    <td></td>
+                    <td>" . $total . "</td>
                     <td></td>
                     <td></td>
                 </tr>
