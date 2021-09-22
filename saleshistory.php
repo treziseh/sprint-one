@@ -37,12 +37,13 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        while($row = sqlsrv_fetch_array($result)){
+        /*while($row = sqlsrv_fetch_array($result)){
             print_r($row);
-        }
+        }*/
         while($row = sqlsrv_fetch_array($result)){
-            echo $row['sales_ID'];
-            echo $row[0];
+            echo "<p>" . $row[0] . "</p>";
+            echo "<p>" . $row[1] . "</p>";
+            echo "<p>" . $row[2] . "</p>";
         }
 
         echo "<table>"; // start a table tag in the HTML
