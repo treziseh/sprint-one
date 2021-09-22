@@ -104,7 +104,7 @@
 
         if ($numSelected > 0) {
           $i = 0;
-          $query .= " WHERE "
+          $query .= " WHERE ";
           while ($i <= $numSelected) {
             if ($i == 0) {
               $query .= " item_name = " . $_POST[$i];
