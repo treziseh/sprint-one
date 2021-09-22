@@ -98,9 +98,7 @@
         $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
           $node = $row['barcode'];
-          echo $node;
           if (isset($_POST[$node])) {
-            echo "yes";
             array_push($includedItems, $row['item_name']);
             print_r($includedItems);
           }
@@ -108,7 +106,7 @@
 
         $query1 = "SELECT item_name, sale_date, quantity FROM sales";
 
-        for ($i = 0; $i < count($includedItems); $i++) {
+        for ($i = 0; $i <= count($includedItems); $i++) {
           $item = $includedItems[$i];
           if ($i = 1) {
             $query1 .= " WHERE item_name = '$item'";
@@ -116,8 +114,6 @@
             $query1 .= " OR item_name =  '$item'";
           }
         }
-
-        echo $query1;
 
         $result = sqlsrv_query($conn, $query1);
         if ($result === false) { //Checks to see if query was passed
