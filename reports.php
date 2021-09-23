@@ -151,6 +151,9 @@
             echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
 
           }*/
+          while ($row = sqlsrv_fetch_array($result)) {
+            print_r($row);
+          }
 
         }
 
