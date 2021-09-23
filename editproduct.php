@@ -53,11 +53,11 @@
       }
       while($row = sqlsrv_fetch_array($result)){
         echo "
-        <td>" . $row['barcode'] . "</td>
-        <td>" . $row['item_name'] . "</td>
-        <td>" . $row['base_price'] . "</td>
-        <td>" . $row['sale_price'] . "</td>
-        <td>" . $row['soh'] . "</td>
+        <p>" . $row['barcode'] . "</p>
+        <p>" . $row['item_name'] . "</p>
+        <p>" . $row['base_price'] . "</p>
+        <p>" . $row['sale_price'] . "</p>
+        <p>" . $row['soh'] . "</p>
       ";
       }
 
