@@ -73,7 +73,7 @@
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
-        <input class='form-control' name='barCode' required type='text' id='barCode' value='.$row['barcode']'>
+        <input class='form-control' name='barCode' required type='text' id='barCode'>
         <br>
         <br>
         <label for='itemName'>Item Name:</label>
