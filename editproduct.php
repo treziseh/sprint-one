@@ -5,7 +5,6 @@
   }
   if(!isset($_GET["barcode"])) exit();
   $barcode = $_GET["barcode"];
-  $barcode = intval($barcode);
   echo $barCode;
 ?>
 
@@ -74,7 +73,7 @@
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
-        <input class='form-control' name='barCode' required type='text' id='barCode'>
+        <input class='form-control' name='barCode' required type='number' id='barCode'>
         <br>
         <br>
         <label for='itemName'>Item Name:</label>

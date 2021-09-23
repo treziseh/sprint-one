@@ -84,7 +84,7 @@
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
-        <input class='form-control' name='barCode' required type='text' id='barCode' placeholder='Enter product barcode'>
+        <input class='form-control' name='barCode' required type='nunber' id='barCode' placeholder='Enter product barcode'>
         <br>
         <br>
         <label for='itemName'>Item Name:</label>
