@@ -20,21 +20,6 @@
   <body>
     <?php
       include_once "sidebar.inc";
-
-      /*
-      ECHO <h1>INCLUDE IN REPORT</h1>
-      checkboxes for each inventory item
-      dropdown month/week
-      SUBMIT button says generate report
-      in form with POST action to this page.session_id
-
-      IF POST VARS SET,
-      SELECT count of sales FOR item WITHIN specific date range (month or week)
-      ECHO TABLE COLUMNS for product name, number sold, daily average, day with most sold
-
-      Display CSV generate button
-
-      */
     ?>
     <h1>Generate Report</h1>
     <form id="mtdWtd" action="reports.php?<?php echo session_id(); ?>" method="post">
@@ -104,6 +89,7 @@
         }
 
         //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
+        $csvRows = [];
 
         foreach ($includedItems as $key => $value) {
           /*if ($key != 0) {
@@ -150,17 +136,23 @@
           $averageQuantity = $totalQuantity / $numberDays;
 
           echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
-
-          /*while($row = sqlsrv_fetch_array($result)) {
-            echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
-
-          }*/
+          $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
+          array_push($csvRows, $csvRow);
 
         }
 
-
-
         echo "</tbody></table>";
+
+        echo "<br><form action='generatecsv.php?" . session_id(); . "' method='post'>
+        <input type='hidden' name='csvDownloadPast'>";
+
+        foreach($csvRows as $postRow) {
+          echo '<input type="hidden" name="csvRows[]" value="' . $postRow . '">';
+        }
+
+        echo "<input type='hidden' name='csvDownloadPast'>
+        <input type='submit' value='Download as CSV'>
+        </form>";
 
       }
     ?>
