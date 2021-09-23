@@ -51,15 +51,6 @@
       if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
       }
-      while($row = sqlsrv_fetch_array($result)){
-        echo "
-        <p>" . $row['barcode'] . "</p>
-        <p>" . $row['item_name'] . "</p>
-        <p>" . $row['base_price'] . "</p>
-        <p>" . $row['sale_price'] . "</p>
-        <p>" . $row['soh'] . "</p>
-      ";
-      }
 
       //Checking connection - DELETE LATER
       if (!$conn) {
@@ -104,6 +95,12 @@
         </form>
         </div>
       ";
+
+      while($row = sqlsrv_fetch_array($result)){
+        echo "
+        Barcode: ". $row['barcode'] ." Item Name: " . $row['item_name'] . " Base Price: " . $row['base_price'] . " Sale Price: ". $row['sale_price'] . " SOH: " . $row['soh'] . "</p>
+        ";
+      }
 
       sqlsrv_close($conn); //Closes server connection
       validate(); //Calls validate function to check if button submitted data
