@@ -115,20 +115,18 @@
           $uDateMin = date('Y-m-d', $dateMin);
           $query1 .= " AND sale_date >= '$uDateMin'";
 
-          echo $timePeriod . "\n";
+          //echo $timePeriod . "\n";
           if ($timePeriod == 'Month') {
             $dateMax = strtotime($_POST['dateStarting']. ' + 31 days');
-            echo $dateMax;
           } else {
             $dateMax = strtotime($_POST['dateStarting']. ' + 7 days');
-            echo$dateMax;
           }
           $uDateMax = date('Y-m-d', $dateMax);
           $query1 .= " AND sale_date <= '$uDateMax'";
 
           $query1 .= " GROUP BY item_name, sale_date";
 
-          echo $query1;
+          //echo $query1;
 
           $result = sqlsrv_query($conn, $query1);
           if ($result === false) { //Checks to see if query was passed
@@ -141,7 +139,7 @@
           $numberDays = 0;
           while ($row = sqlsrv_fetch_array($result)) {
             $currentQuantity = $row['quantity_sum'];
-            echo $currentQuantity;
+            //echo $currentQuantity;
             $currentDate = $row['sale_date'];
             if ($currentQuantity > $highestQuantity) {
               $highestQuantity = $currentQuantity;
