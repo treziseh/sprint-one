@@ -5,7 +5,7 @@
   }
   if(!isset($_GET["barcode"])) exit();
   $barcode = $_GET["barcode"];
-  $barCode = (int)$barcode;
+  $barcode = intval($barcode);
   echo $barCode;
 ?>
 
@@ -47,7 +47,7 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $query = "SELECT * FROM inventory WHERE barcode='$barCode'";
+      $query = "SELECT * FROM inventory WHERE barcode='$barcode'";
       $result = sqlsrv_query($conn, $query);
       if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
