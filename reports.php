@@ -89,7 +89,9 @@
         }
 
         //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
-        $csvRows = [];
+        $csvPeriod = "Sold " . $timePeriod . " Starting " . $_POST['dateStarting'];
+        $csvHeaderRow = ['Item Name', $csvPeriod, 'Daily Average Sold', 'Peak Day', 'Peak Day Sold'];
+        $csvRows = [$csvHeaderRow];
 
         foreach ($includedItems as $key => $value) {
           /*if ($key != 0) {
