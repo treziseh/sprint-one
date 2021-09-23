@@ -5,6 +5,7 @@
   }
   if(!isset($_GET["barcode"])) exit();
   $barcode = $_GET["barcode"];
+  $barcode = intval($barcode);
   echo $barcode;
 ?>
 
