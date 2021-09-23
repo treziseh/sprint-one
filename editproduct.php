@@ -73,7 +73,7 @@
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
-        <input class='form-control' name='barCode' required type='text' id='barCode' placeholder='Enter product barcode'>
+        <input class='form-control' name='barCode' required type='text' id='barCode' value='.$row['barcode']'>
         <br>
         <br>
         <label for='itemName'>Item Name:</label>
@@ -83,20 +83,20 @@
         <br>
         <label for='basePrice'>Base Price:</label>
         <br>
-        <input class='form-control' name='basePrice' required type='text' id='basePrice' placeholder='Enter pruchase price'>
+        <input class='form-control' name='basePrice' required type='text' id='basePrice'>
         <br>
         <br>
         <label for='sellPrice'>Sell Price:</label>
         <br>
-        <input class='form-control' name='sellPrice' required type='text' id='sellPrice' placeholder='Enter sale price'>
+        <input class='form-control' name='sellPrice' required type='text' id='sellPrice'>
         <br>
         <br>
         <label for='SOH'>Stock on Hand (SOH):</label>
         <br>
-        <input class='form-control' name='SOH' required type='number' id='SOH' placeholder='Stock on Hand'>
+        <input class='form-control' name='SOH' required type='number' id='SOH'>
         <br>
         <br>
-        <input class='btn btn-info' type='submit' value='Add' name='add'>
+        <input class='btn btn-info' type='submit' value='Submit' name='submit'>
 
         </form>
         </div>
