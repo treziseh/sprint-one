@@ -16,10 +16,10 @@
   }
   if (isset($_POST['csvDownloadPast'])) {
     $csvContent = $_SESSION['csvRows'];
-    foreach ($csvContent as $line) {
+    /*foreach ($csvContent as $line) {
       print_r($line);
-    }
-    //arrayCsvDownload($csvContent);
+    }*/
+    arrayCsvDownload($csvContent);
   } else {
     header("location: index.php");
   }

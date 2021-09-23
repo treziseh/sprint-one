@@ -143,8 +143,7 @@
 
         echo "</tbody></table>";
 
-        echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>
-        <input type='hidden' name='csvDownloadPast'>";
+        echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
 
         /*foreach($csvRows as $postRow) {
           echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
