@@ -79,7 +79,6 @@
         echo "<table border='1' style='width: 100%'>
         <thead>
         <tr>
-          <th>Barcode</th>
           <th>Item Name</th>
           <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
           <th>Daily Average Sold</th>
@@ -150,7 +149,7 @@
           }
           $averageQuantity = $totalQuantity / $numberDays;
 
-          echo "<tr><td>$key</td><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
+          echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
 
           /*while($row = sqlsrv_fetch_array($result)) {
             echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
