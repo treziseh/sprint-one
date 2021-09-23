@@ -28,7 +28,26 @@
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
-      $sql = ("SELECT * FROM inventory WHERE barcode = " . $row['barcode'] .);
+      //Grabbing data values from textboxes
+      if(isset($_POST['add'])) {
+        $barcode = $_POST['barCode'];
+        $item_name = $_POST['itemName'];
+        $base_price = $_POST['basePrice'];
+        $sale_price = $_POST['sellPrice'];
+        $soh = $_POST['SOH'];
+
+        // Attempt insert query execution
+        $sql = "INSERT INTO inventory (barcode, item_name, base_price, sale_price, soh)
+        VALUES ('$barcode', '$item_name', '$base_price', '$sale_price', '$soh')";
+        if (sqlsrv_query($conn, $sql)){
+          echo "New record created sucessfully!";
+        }
+        else {
+          echo "Error: " . $sql . "
+          " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+      }
     }
 
     function validate() {
@@ -60,7 +79,7 @@
       }
 
       echo "
-        <form method='post' id='editProduct' action='inventory.php?" . session_id() . "'>
+        <form method='post' id='newProduct' action='newproduct.php?" . session_id() . "'>
         <div class='col-xs-12'>
         <h1>Edit Product</h1>
         <form method='post'>
