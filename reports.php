@@ -116,7 +116,7 @@
           $query1 .= " AND sale_date >= '$uDateMin'";
 
           echo $timePeriod . "\n";
-          if ($timePeriod == 'month') {
+          if ($timePeriod == 'Month') {
             $dateMax = strtotime($_POST['dateStarting']. ' + 31 days');
             echo $dateMax;
           } else {
