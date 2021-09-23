@@ -4,9 +4,6 @@
     header("location: index.php");
   }
   if(!isset($_GET["barcode"])) exit();
-  $barcode = $_GET["barcode"];
-  $barcode = intval($barcode);
-  echo $barcode;
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +44,10 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $query = "SELECT * FROM inventory WHERE barcode='1'";
+      $barcode = $_GET["barcode"];
+      //$barcode = intval($barcode);
+      echo "<p>" . $barcode . "</p>";
+      $query = "SELECT * FROM inventory WHERE barcode = $barcode";
       $result = sqlsrv_query($conn, $query);
       if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
