@@ -125,6 +125,8 @@
 
           $query1 .= " GROUP BY item_name, sale_date";
 
+          echo $query1;
+
           $result = sqlsrv_query($conn, $query1);
           if ($result === false) { //Checks to see if query was passed
             die( print_r( sqlsrv_errors(), true));
