@@ -152,7 +152,7 @@
 
         echo "<input type='hidden' name='csvDownloadPast'>
         <input type='submit' value='Download as CSV'>
-        </form>";
+        </form><br>";
 
       }
     ?>
