@@ -143,7 +143,7 @@
 
         echo "</tbody></table>";
 
-        echo "<br><form action='generatecsv.php?" . session_id(); . "' method='post'>
+        echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>
         <input type='hidden' name='csvDownloadPast'>";
 
         foreach($csvRows as $postRow) {
