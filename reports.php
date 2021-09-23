@@ -109,7 +109,7 @@
           /*if ($key != 0) {
             $query1 .= " OR";
           }*/
-          $query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE item_name = '$value'";
+          $query1 = "SELECT item_name, sale_date, SUM(quantity) AS quantity_sum FROM sales WHERE item_name = '$value'";
           $dateMin = strtotime($_POST['dateStarting']);
           $uDateMin = date('Y-m-d', $dateMin);
           $query1 .= " AND sale_date >= '$uDateMin'";
@@ -134,7 +134,7 @@
           $totalQuantity = 0;
           $numberDays = 0;
           while ($row = sqlsrv_fetch_array($result)) {
-            $currentQuantity = $row['SUM(quantity)'];
+            $currentQuantity = $row['quantity_sum'];
             $currentDate = $row['sale_date'];
             if ($currentQuantity > $highestQuantity) {
               $highestQuantity = $currentQuantity;
@@ -151,9 +151,6 @@
             echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
 
           }*/
-          while ($row = sqlsrv_fetch_array($result)) {
-            print_r($row);
-          }
 
         }
 
