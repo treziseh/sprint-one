@@ -5,7 +5,7 @@
   }
   if(!isset($_GET["barcode"])) exit();
   $barcode = $_GET["barcode"];
-  echo $barCode;
+  echo $barcode;
 ?>
 
 <!DOCTYPE html>
