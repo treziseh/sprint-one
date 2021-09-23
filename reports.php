@@ -147,7 +147,7 @@
         <input type='hidden' name='csvDownloadPast'>";
 
         foreach($csvRows as $postRow) {
-          echo '<input type="hidden" name="csvRows[]" value="' . $postRow . '">';
+          echo '<input type="hidden" name="csvRows[][]" value="' . $postRow . '">';
         }
 
         echo "<input type='hidden' name='csvDownloadPast'>
