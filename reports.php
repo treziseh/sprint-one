@@ -146,9 +146,11 @@
         echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>
         <input type='hidden' name='csvDownloadPast'>";
 
-        foreach($csvRows as $postRow) {
+        /*foreach($csvRows as $postRow) {
           echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
-        }
+        }*/
+
+        $_SESSION['csvRows'] = $csvRows;
 
         echo "<input type='hidden' name='csvDownloadPast'>
         <input type='submit' value='Download as CSV'>

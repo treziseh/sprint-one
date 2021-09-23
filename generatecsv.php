@@ -15,7 +15,7 @@
     header("location: index.php");
   }
   if (isset($_POST['csvDownloadPast'])) {
-    $csvContent = unserialize($_POST['csvRows']);
+    $csvContent = $_SESSION['csvRows'];
     foreach ($csvContent as $line) {
       print_r($line);
     }
