@@ -25,30 +25,12 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
-    function insertdata(){
+    function updatedata(){
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
-      //Grabbing data values from textboxes
-      if(isset($_POST['add'])) {
-        $barcode = $_POST['barCode'];
-        $item_name = $_POST['itemName'];
-        $base_price = $_POST['basePrice'];
-        $sale_price = $_POST['sellPrice'];
-        $soh = $_POST['SOH'];
-
-        // Attempt insert query execution
-        $sql = "INSERT INTO inventory (barcode, item_name, base_price, sale_price, soh)
-        VALUES ('$barcode', '$item_name', '$base_price', '$sale_price', '$soh')";
-        if (sqlsrv_query($conn, $sql)){
-          echo "New record created sucessfully!";
-        }
-        else {
-          echo "Error: " . $sql . "
-          " . mysqli_error($conn);
-        }
         mysqli_close($conn);
       }
     }
@@ -62,7 +44,7 @@
             echo "Form was sent"; //Delete Later
         }
         if ($validateResult) {
-            insertdata(); //Calls sql store function if validation checks are passed
+            updatedata(); //Calls sql store function if validation checks are passed
         }
     }
 
