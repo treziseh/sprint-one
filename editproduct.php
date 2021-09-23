@@ -46,7 +46,7 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $sql = "SELECT * FROM inventory WHERE barcode = '3337875763967'";
+      $sql = "SELECT * FROM inventory WHERE barcode='3337875763967'";
       $result = sqlsrv_query($conn, $query);
       if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
