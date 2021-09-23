@@ -63,7 +63,7 @@
           <td>" . $row['base_price'] . "</td>
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
-          <td> <a class='btn btn-success' href='./newproduct.php?" . session_id() . "'>Edit <i class='fa fa-plus'></i></a> </td>
+          <td> <a class='btn btn-success' href='./editproduct.php?" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
           <td></td>
           </tr>
           </tbody>
