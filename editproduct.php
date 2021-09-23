@@ -46,10 +46,16 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $sql = "SELECT * FROM inventory WHERE barcode='3337875763967'";
+      $sql = "SELECT * FROM inventory WHERE barcode='6969696969696'";
       $result = sqlsrv_query($conn, $query);
       if ($result === false) { //Checks to see if query was passed
               die( print_r( sqlsrv_errors(), true));
+      }
+
+      while($row = sqlsrv_fetch_array($result)){
+        echo "
+        Barcode: ". $row['barcode'] ." Item Name: " . $row['item_name'] . " Base Price: " . $row['base_price'] . " Sale Price: ". $row['sale_price'] . " SOH: " . $row['soh'] . "</p>
+        ";
       }
 
       //Checking connection - DELETE LATER
@@ -95,12 +101,6 @@
         </form>
         </div>
       ";
-
-      while($row = sqlsrv_fetch_array($result)){
-        echo "
-        Barcode: ". $row['barcode'] ." Item Name: " . $row['item_name'] . " Base Price: " . $row['base_price'] . " Sale Price: ". $row['sale_price'] . " SOH: " . $row['soh'] . "</p>
-        ";
-      }
 
       sqlsrv_close($conn); //Closes server connection
       validate(); //Calls validate function to check if button submitted data
