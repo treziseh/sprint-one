@@ -115,10 +115,13 @@
           $uDateMin = date('Y-m-d', $dateMin);
           $query1 .= " AND sale_date >= '$uDateMin'";
 
+          echo $pTimePeriod . "\n";
           if ($pTimePeriod == 'month') {
-            $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 31 days'));
+            $dateMax = strtotime($_POST['dateStarting']. ' + 31 days');
+            echo $dateMax;
           } else {
-            $dateMax = date('Y-m-d', strtotime($_POST['dateStarting']. ' + 7 days'));
+            $dateMax = strtotime($_POST['dateStarting']. ' + 7 days');
+            echo$dateMax;
           }
           $uDateMax = date('Y-m-d', $dateMax);
           $query1 .= " AND sale_date <= '$uDateMax'";
