@@ -3,6 +3,9 @@
   if (!isset($_SESSION['username'])) {
     header("location: index.php");
   }
+  if(!isset($_GET["barcode"])) exit();
+  $barcode = $_GET["barcode"];
+  echo $barcode;
 ?>
 
 <!DOCTYPE html>
