@@ -74,7 +74,7 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $sql = "SELECT * FROM inventory WHERE barcode = $barcode";
+      $sql = "SELECT * FROM inventory WHERE barcode = @barcode";
       $result = sqlsrv_query($conn, $query);
       echo "
       <td>" . $row['barcode'] . "</td>
