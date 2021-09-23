@@ -3,6 +3,8 @@
   if (!isset($_SESSION['username'])) {
     header("location: index.php");
   }
+  if(!isset($_GET["barcode"])) exit();
+  $barcode = $_GET["barcode"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +28,6 @@
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
-
-      if(!isset($_GET["barcode"])) exit();
-      $barcode = $_GET["barcode"];
 
       $sql = ("SELECT * FROM inventory WHERE barcode = " . $row['barcode'] .);
     }
