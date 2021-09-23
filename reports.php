@@ -150,7 +150,7 @@
           }
           $averageQuantity = $totalQuantity / $numberDays;
 
-          echo "<tr><td>$key</td><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate . "</td><td>$highestQuantity</td></tr>";
+          echo "<tr><td>$key</td><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
 
           /*while($row = sqlsrv_fetch_array($result)) {
             echo "<tr><td>" . $row['item_name'] . "</td><td>" . $row['quantity'] . "</td><td>" . "" . "</td><td></td><td></td></tr>";
