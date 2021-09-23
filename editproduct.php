@@ -73,6 +73,12 @@
       //Create connection
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+      // Attempt insert query execution
+      $sql = "SELECT * FROM inventory WHERE barcode = $barcode ";
+      $result = sqlsrv_query($conn, $query);
+      echo "Barcode ".$row['item_name']."";
+
+
       //Checking connection - DELETE LATER
       if (!$conn) {
           echo "<p>Failed</p>";
