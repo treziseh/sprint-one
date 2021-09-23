@@ -82,7 +82,7 @@
       }
 
       echo "
-        <form method='post' id='newProduct' action='newproduct.php?" . session_id() . "'>
+        <form method='post' id='editProduct' action='editproduct.php?" . session_id() . "'>
         <div class='col-xs-12'>
         <h1>Edit Product</h1>
         <form method='post'>
