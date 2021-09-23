@@ -16,7 +16,9 @@
   }
   if (isset($_POST['csvDownloadPast'])) {
     $csvContent = $_POST['csvRows'];
-    print_r($csvContent);
+    foreach ($csvContent as $line) {
+      print_r($line);
+    }
     //arrayCsvDownload($csvContent);
   } else {
     header("location: index.php");
