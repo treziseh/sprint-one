@@ -62,13 +62,18 @@
             </tr>
             ";
         while($row = sqlsrv_fetch_array($result)) {   //Creates a loop to loop through results
+            echo "<p>Here 1</p>";
             $itemname = $row['item_name'];
+            echo "<p>Here 2</p>";
             $inventoryquery = "SELECT * FROM inventory WHERE item_name = $itemname";
+            echo "<p>Here 3</p>";
             $inventoryresult = sqlsrv_query($conn, $inventoryquery);
+            echo "<p>Here 4</p>";
             if ($inventoryresult === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
             $inventoryrow = sqlsrv_fetch_array($inventoryresult);
+            echo "<p>Here 5</p>";
             echo "
             <tr>
                 <td>" . $row['sales_ID'] . "</td>
