@@ -51,7 +51,7 @@
         echo "
         <tr>
             <td>" . $row['sales_ID'] . "</td>
-            <td>" . $row['sale_date'] . "</td>
+            <td>" . $row['sale_date']->format('Y-m-d') . "</td>
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
             <td>A</td>
