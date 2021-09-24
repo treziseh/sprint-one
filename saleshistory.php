@@ -68,7 +68,7 @@
         if ($inventoryresult === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-        $inventoryrow = sqlsrv_fetch_array($inventoryresult)
+        $inventoryrow = sqlsrv_fetch_array($inventoryresult);
         echo "
         <tr>
             <td>" . $row['sales_ID'] . "</td>
