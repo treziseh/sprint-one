@@ -111,7 +111,7 @@
             <td>" . $row['sale_price'] . "</td>
             <td>" . $row['soh'] . "</td>
             <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
-            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='0' max='" . $row['soh'] . "' value='0'></td>
+            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='0'></td>
         </tr>
         ";
         }
