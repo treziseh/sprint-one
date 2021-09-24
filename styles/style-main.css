@@ -14,7 +14,7 @@ body {
   margin-right: 0;
 }
 
-input[type="button"] {
+input[type="submit"] {
   border-radius: 8px;
   background-color: #008CBA;
 }
