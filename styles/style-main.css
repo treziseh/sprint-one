@@ -10,12 +10,8 @@ body {
 }
 
 #loginBody {
-  margin-left: 20%;
-  margin-right: 20%;
-}
-
-#loginBox {
-  border-radius: 12px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 input[type="button"] {
@@ -61,6 +57,7 @@ input[type="button"] {
   margin: auto;
   width: 25%;
   border: 3px solid black;
+  border-radius: 12px;
 }
 
 #loginTitle {
