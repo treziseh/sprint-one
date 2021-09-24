@@ -93,7 +93,7 @@
                     echo "</table></td>
                     <td>$" . $total . "</td>
                     <td></td>
-                    <td><form method='post' id='deleteForm' action='saleshistory.php?'" . session_id() . "><input type='submit' name='delete' value='" . $curID . "'/></form></td>
+                    <td><form method='post' id='deleteForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='delete' value='" . $curID . "'/><p>Delete</p></button></form></td>
                 </tr>
                 ";
                 $preID = $curID;
