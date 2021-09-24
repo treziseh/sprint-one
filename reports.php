@@ -62,107 +62,110 @@
         }
 
         if (empty($_POST['dateStarting'])) {
-          echo "No date";
-        }
+          echo "<p>'Date starting' cannot be empty</p>";
+        } else {
+          echo "<table border='1' style='width: 100%'>
+          <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
+            <th>Daily Average Sold</th>
+            <th>Peak Day</th>
+            <th>Peak Day Sold</th>
+          </tr>
+          </thead>
+          <tbody>
+          ";
 
-        echo "<table border='1' style='width: 100%'>
-        <thead>
-        <tr>
-          <th>Item Name</th>
-          <th>Sold " . $timePeriod . " Starting " . $_POST['dateStarting'] . "</th>
-          <th>Daily Average Sold</th>
-          <th>Peak Day</th>
-          <th>Peak Day Sold</th>
-        </tr>
-        </thead>
-        <tbody>
-        ";
-
-        $query = "SELECT item_name, barcode FROM inventory";
-        $result = sqlsrv_query($conn, $query);
-        if ($result === false) { //Checks to see if query was passed
-            die( print_r( sqlsrv_errors(), true));
-        }
-
-        $includedItems = [];
-        while ($row = sqlsrv_fetch_array($result)) {
-          $node = $row['barcode'];
-          if (isset($_POST[$node])) {
-            array_push($includedItems, $row['item_name']);
-          }
-        }
-
-        //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
-        $csvPeriod = "Sold " . $timePeriod . " Starting " . $_POST['dateStarting'];
-        $csvHeaderRow = ['Item Name', $csvPeriod, 'Daily Average Sold', 'Peak Day', 'Peak Day Sold'];
-        $csvRows = [$csvHeaderRow];
-
-        foreach ($includedItems as $key => $value) {
-          /*if ($key != 0) {
-            $query1 .= " OR";
-          }*/
-          $query1 = "SELECT item_name, sale_date, SUM(quantity) AS quantity_sum FROM sales WHERE item_name = '$value'";
-          $dateMin = strtotime($_POST['dateStarting']);
-          $uDateMin = date('Y-m-d', $dateMin);
-          $query1 .= " AND sale_date >= '$uDateMin'";
-
-          //echo $timePeriod . "\n";
-          if ($timePeriod == 'Month') {
-            $dateMax = strtotime($_POST['dateStarting']. ' + 31 days');
-          } else {
-            $dateMax = strtotime($_POST['dateStarting']. ' + 7 days');
-          }
-          $uDateMax = date('Y-m-d', $dateMax);
-          $query1 .= " AND sale_date <= '$uDateMax'";
-
-          $query1 .= " GROUP BY item_name, sale_date";
-
-          //echo $query1;
-
-          $result = sqlsrv_query($conn, $query1);
+          $query = "SELECT item_name, barcode FROM inventory";
+          $result = sqlsrv_query($conn, $query);
           if ($result === false) { //Checks to see if query was passed
-            die( print_r( sqlsrv_errors(), true));
+              die( print_r( sqlsrv_errors(), true));
           }
 
-          if (empty($row)) {
-            echo "No data";
-          }
-          $highestQuantity = 0;
-          $highestDate = $uDateMin;
-          $totalQuantity = 0;
-          $numberDays = 0;
+          $includedItems = [];
           while ($row = sqlsrv_fetch_array($result)) {
-            $currentQuantity = $row['quantity_sum'];
-            //echo $currentQuantity;
-            $currentDate = $row['sale_date'];
-            if ($currentQuantity > $highestQuantity) {
-              $highestQuantity = $currentQuantity;
-              $highestDate = $currentDate;
+            $node = $row['barcode'];
+            if (isset($_POST[$node])) {
+              array_push($includedItems, $row['item_name']);
             }
-            $totalQuantity += $currentQuantity;
-            $numberDays += 1;
           }
-          $averageQuantity = $totalQuantity / $numberDays;
 
-          echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
-          $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
-          array_push($csvRows, $csvRow);
+          //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
+          $csvPeriod = "Sold " . $timePeriod . " Starting " . $_POST['dateStarting'];
+          $csvHeaderRow = ['Item Name', $csvPeriod, 'Daily Average Sold', 'Peak Day', 'Peak Day Sold'];
+          $csvRows = [$csvHeaderRow];
 
+          foreach ($includedItems as $key => $value) {
+            /*if ($key != 0) {
+              $query1 .= " OR";
+            }*/
+            $query1 = "SELECT item_name, sale_date, SUM(quantity) AS quantity_sum FROM sales WHERE item_name = '$value'";
+            $dateMin = strtotime($_POST['dateStarting']);
+            $uDateMin = date('Y-m-d', $dateMin);
+            $query1 .= " AND sale_date >= '$uDateMin'";
+
+            //echo $timePeriod . "\n";
+            if ($timePeriod == 'Month') {
+              $dateMax = strtotime($_POST['dateStarting']. ' + 31 days');
+            } else {
+              $dateMax = strtotime($_POST['dateStarting']. ' + 7 days');
+            }
+            $uDateMax = date('Y-m-d', $dateMax);
+            $query1 .= " AND sale_date <= '$uDateMax'";
+
+            $query1 .= " GROUP BY item_name, sale_date";
+
+            //echo $query1;
+
+            $result = sqlsrv_query($conn, $query1);
+            if ($result === false) { //Checks to see if query was passed
+              die( print_r( sqlsrv_errors(), true));
+            }
+
+            if (empty($row)) {
+              echo "No data for $value";
+            } else {
+              $highestQuantity = 0;
+              $highestDate = $uDateMin;
+              $totalQuantity = 0;
+              $numberDays = 0;
+              while ($row = sqlsrv_fetch_array($result)) {
+                $currentQuantity = $row['quantity_sum'];
+                //echo $currentQuantity;
+                $currentDate = $row['sale_date'];
+                if ($currentQuantity > $highestQuantity) {
+                  $highestQuantity = $currentQuantity;
+                  $highestDate = $currentDate;
+                }
+                $totalQuantity += $currentQuantity;
+                $numberDays += 1;
+              }
+              $averageQuantity = $totalQuantity / $numberDays;
+
+              echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
+              $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
+              array_push($csvRows, $csvRow);
+            }
+
+          }
+
+          echo "</tbody></table>";
+
+          echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
+
+          /*foreach($csvRows as $postRow) {
+            echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
+          }*/
+
+          $_SESSION['csvRows'] = $csvRows;
+
+          echo "<input type='hidden' name='csvDownload'>
+          <input type='submit' value='Download as CSV'>
+          </form><br>";
         }
 
-        echo "</tbody></table>";
 
-        echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
-
-        /*foreach($csvRows as $postRow) {
-          echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
-        }*/
-
-        $_SESSION['csvRows'] = $csvRows;
-
-        echo "<input type='hidden' name='csvDownload'>
-        <input type='submit' value='Download as CSV'>
-        </form><br>";
 
       }
     ?>
