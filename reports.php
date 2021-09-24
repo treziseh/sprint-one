@@ -124,7 +124,7 @@
             }
 
             if (empty($row)) {
-              echo "<p>No data for $value</p>";
+              echo "No data for $value";
             } else {
               $highestQuantity = 0;
               $highestDate = $uDateMin;
@@ -224,10 +224,6 @@
             die( print_r( sqlsrv_errors(), true));
         }
 
-        /*if (empty($row)) {
-          echo "<p>No items selected</p>";
-        }*/
-
         $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
           $node = $row['barcode'];
@@ -269,37 +265,33 @@
             die( print_r( sqlsrv_errors(), true));
           }
 
-          if (empty($row)) {
-            echo "<p>No data for $value</p>";
-          } else {
-            $highestQuantity = 0;
-            $highestDate = $uDateMin;
-            $totalQuantity = 0;
-            //$numberDays = 0;
-            while ($row = sqlsrv_fetch_array($result)) {
-              $currentQuantity = $row['quantity_sum'];
-              //echo $currentQuantity;
-              $currentDate = $row['sale_date'];
-              if ($currentQuantity > $highestQuantity) {
-                $highestQuantity = $currentQuantity;
-                $highestDate = $currentDate;
-              }
-              $totalQuantity += $currentQuantity;
-              //$numberDays += 1;
+          $highestQuantity = 0;
+          $highestDate = $uDateMin;
+          $totalQuantity = 0;
+          //$numberDays = 0;
+          while ($row = sqlsrv_fetch_array($result)) {
+            $currentQuantity = $row['quantity_sum'];
+            //echo $currentQuantity;
+            $currentDate = $row['sale_date'];
+            if ($currentQuantity > $highestQuantity) {
+              $highestQuantity = $currentQuantity;
+              $highestDate = $currentDate;
             }
-            $averageQuantity = $totalQuantity / $numberDays;
-
-
-            if ($timePeriod == 'Month') {
-              $periodAverage = $averageQuantity * 31;
-            } else {
-              $periodAverage = $averageQuantity * 7;
-            }
-
-            echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
-            $csvRow = [$value, $periodAverage, $averageQuantity];
-            array_push($csvRows, $csvRow);
+            $totalQuantity += $currentQuantity;
+            //$numberDays += 1;
           }
+          $averageQuantity = $totalQuantity / $numberDays;
+
+
+          if ($timePeriod == 'Month') {
+            $periodAverage = $averageQuantity * 31;
+          } else {
+            $periodAverage = $averageQuantity * 7;
+          }
+
+          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
+          $csvRow = [$value, $periodAverage, $averageQuantity];
+          array_push($csvRows, $csvRow);
 
         }
 
