@@ -66,3 +66,17 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 #loginTitle {
   text-align: center;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+table td th {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #008CBA;
+  color: white;
+}
