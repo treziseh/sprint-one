@@ -40,6 +40,7 @@
             }
         } else if (isset($_POST["updatequantity"])) {
             $saleID = $_POST['updatequantity'];
+            //Add code to store updated quantity here
         }
 
         $query = "SELECT * FROM sales
