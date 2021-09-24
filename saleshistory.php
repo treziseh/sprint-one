@@ -21,78 +21,122 @@
     <?php include_once "sidebar.inc" ?>
     <h1>Sales History</h1>
     <?php
-    function main() {
+    function editSale() {
+        $saleID = $_POST['edit'];
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-        $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price 
-                  FROM sales S 
-                  INNER JOIN inventory I 
-                  ON S.item_name = I.item_name
-                  ORDER BY sales_ID ASC";
+        $query = "SELECT * FROM sales
+                  WHERE sales_ID = $saleID";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
-        echo "
-        <tr>
-            <th>Sale ID</th>
-            <th>Date</th>
-            <th>Username</th>
-            <th>Sold Products</th>
-            <th>Total</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        ";
-        $preID = null;
-        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-            $curID = $row[0];
-            if ($curID != $preID) {
-                echo "
-                <tr>
-                    <td>" . $row[0] . "</td>
-                    <td>" . $row[2]->format('Y-m-d') . "</td> 
-                    <td>" . $row[4] . "</td>
-                    <td><table border='1' style='width: 100%'>
-                        <tr>
-                            <th>Barcode</th>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                        </tr>";
-                        $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price 
-                            FROM sales S 
-                            INNER JOIN inventory I 
-                            ON S.item_name = I.item_name
-                            WHERE sales_ID = $curID";
-                        $tempresult = sqlsrv_query($conn, $tempquery);
-                        $total = null;
-                        while($temprow = sqlsrv_fetch_array($tempresult)) {
-                            echo "
-                            <tr>
-                                <td>" . $temprow[0] . "</td>
-                                <td>" . $temprow[1] . "</td>
-                                <td>" . $temprow[2] . "</td>
-                            </tr>
-                            ";
-                            $total += $temprow[2] * $temprow[3];
-                        }
-                    echo "</table></td>
-                    <td>$" . $total . "</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                ";
-                $preID = $curID;
-            }
-        }
-        echo "</table>"; //Close the table in HTML
+        //Edit
 
         sqlsrv_close($conn);
+    }
+
+    function deleteSale() {
+        $saleID = $_POST['delete'];
+        require ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "DELETE FROM sales
+                  WHERE sales_ID = $saleID";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+
+        sqlsrv_close($conn);
+    }
+
+    function main() {
+        if (isset($_POST["edit"])) {
+            editSale();
+        } else {
+            if (isset($_POST["delete"])) {
+                deleteSale();
+            }
+
+            require ("db-settings.php");
+            $serverName = $host;
+            $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+            $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+            $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price 
+                      FROM sales S 
+                      INNER JOIN inventory I 
+                      ON S.item_name = I.item_name
+                      ORDER BY sales_ID ASC";
+            $result = sqlsrv_query($conn, $query);
+            if ($result === false) { //Checks to see if query was passed
+                    die( print_r( sqlsrv_errors(), true));
+            }
+
+            echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
+            echo "
+            <tr>
+                <th>Sale ID</th>
+                <th>Date</th>
+                <th>Username</th>
+                <th>Sold Products</th>
+                <th>Total</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            ";
+            $preID = null;
+            while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+                $curID = $row[0];
+                if ($curID != $preID) {
+                    echo "
+                    <tr>
+                        <td>" . $row[0] . "</td>
+                        <td>" . $row[2]->format('Y-m-d') . "</td> 
+                        <td>" . $row[4] . "</td>
+                        <td><table border='1' style='width: 100%'>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                            </tr>";
+                            $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price 
+                                FROM sales S 
+                                INNER JOIN inventory I 
+                                ON S.item_name = I.item_name
+                                WHERE sales_ID = $curID";
+                            $tempresult = sqlsrv_query($conn, $tempquery);
+                            $total = null;
+                            while($temprow = sqlsrv_fetch_array($tempresult)) {
+                                echo "
+                                <tr>
+                                    <td>" . $temprow[0] . "</td>
+                                    <td>" . $temprow[1] . "</td>
+                                    <td>" . $temprow[2] . "</td>
+                                </tr>
+                                ";
+                                $total += $temprow[2] * $temprow[3];
+                            }
+                        echo "</table></td>
+                        <td>$" . $total . "</td>
+                        <td><form method='post' id='editForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='edit' value='" . $curID . "'/><p>Edit</p></button></form></td>
+                        <td><form method='post' id='deleteForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='delete' value='" . $curID . "'/><p>Delete</p></button></form></td>
+                    </tr>
+                    ";
+                    $preID = $curID;
+                }
+            }
+            echo "</table>"; //Close the table in HTML
+
+            sqlsrv_close($conn);
+        }
     }
 
     main(); //Calls main function
