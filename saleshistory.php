@@ -22,7 +22,12 @@
     <h1>Sales History</h1>
     <?php
     function editSale() {
-        $saleID = $_POST['edit'];
+        if (isset($_POST["edit"])) {
+            $saleID = $_POST['edit'];
+        } else if (isset($_POST["deleteitem"])) {
+            $saleID = $_POST['deleteitem'];
+        }
+
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -55,7 +60,7 @@
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
             <td>A</td>
-            <td>B</td>
+            <td><form method='post' id='deleteitem' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p></button></form></td>
         </tr>
         ";
         }
@@ -88,7 +93,7 @@
     }
 
     function main() {
-        if (isset($_POST["edit"])) {
+        if (isset($_POST["edit"]) || isset($_POST["deleteitem"])) {
             editSale();
         } else {
             if (isset($_POST["delete"])) {
