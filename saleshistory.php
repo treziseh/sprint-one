@@ -64,7 +64,7 @@
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
         $inventoryquery = "SELECT * FROM inventory
                            WHERE item_name = $row['item_name']";
-        $inventoryresult = sqlsrv_query($conn, $query);
+        $inventoryresult = sqlsrv_query($conn, $inventoryquery);
         if ($inventoryresult === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
