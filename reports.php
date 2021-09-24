@@ -61,6 +61,10 @@
           $timePeriod = 'Month';
         }
 
+        if (empty($_POST['dateStarting'])) {
+          echo "No date";
+        }
+
         echo "<table border='1' style='width: 100%'>
         <thead>
         <tr>
@@ -120,6 +124,9 @@
             die( print_r( sqlsrv_errors(), true));
           }
 
+          if (empty($row)) {
+            echo "No data";
+          }
           $highestQuantity = 0;
           $highestDate = $uDateMin;
           $totalQuantity = 0;
@@ -253,9 +260,6 @@
           $result = sqlsrv_query($conn, $query1);
           if ($result === false) { //Checks to see if query was passed
             die( print_r( sqlsrv_errors(), true));
-          }
-          if (empty($row)) {
-            echo "No data";
           }
 
           $highestQuantity = 0;
