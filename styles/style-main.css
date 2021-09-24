@@ -5,7 +5,22 @@
 }
 
 body {
-  margin-left: 150px;
+  margin-left: 180px;
+  margin-right: 30px;
+}
+
+#loginBody {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#loginBox {
+  border-radius: 12px;
+}
+
+input[type="button"] {
+  border-radius: 8px;
+  background-color: #008CBA;
 }
 
 .sidebar {
@@ -19,7 +34,6 @@ body {
   width: 150px;
   text-align: center;
   color: black;
-  margin-right: 5em;
 }
 
 .sidebar a {
