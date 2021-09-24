@@ -9,6 +9,10 @@ body {
   margin-right: 30px;
 }
 
+a {
+  color:#7DCDF0;
+}
+
 #loginBody {
   margin-left: 0;
   margin-right: 0;
