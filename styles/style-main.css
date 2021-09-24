@@ -6,6 +6,12 @@
 
 body {
   margin-left: 180px;
+  margin-right: 30px;
+}
+
+input[type="button"] {
+  border-radius: 8px;
+  background-color: #008CBA;
 }
 
 .sidebar {
