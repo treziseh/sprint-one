@@ -60,7 +60,7 @@
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
             <td>A</td>
-            <td><form method='post' id='deleteitem' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p></button></form></td>
+            <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p></button></form></td>
         </tr>
         ";
         }
