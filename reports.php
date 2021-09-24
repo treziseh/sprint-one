@@ -123,30 +123,26 @@
               die( print_r( sqlsrv_errors(), true));
             }
 
-            if (empty($row)) {
-              echo "No data for $value";
-            } else {
-              $highestQuantity = 0;
-              $highestDate = $uDateMin;
-              $totalQuantity = 0;
-              $numberDays = 0;
-              while ($row = sqlsrv_fetch_array($result)) {
-                $currentQuantity = $row['quantity_sum'];
-                //echo $currentQuantity;
-                $currentDate = $row['sale_date'];
-                if ($currentQuantity > $highestQuantity) {
-                  $highestQuantity = $currentQuantity;
-                  $highestDate = $currentDate;
-                }
-                $totalQuantity += $currentQuantity;
-                $numberDays += 1;
+            $highestQuantity = 0;
+            $highestDate = $uDateMin;
+            $totalQuantity = 0;
+            $numberDays = 0;
+            while ($row = sqlsrv_fetch_array($result)) {
+              $currentQuantity = $row['quantity_sum'];
+              //echo $currentQuantity;
+              $currentDate = $row['sale_date'];
+              if ($currentQuantity > $highestQuantity) {
+                $highestQuantity = $currentQuantity;
+                $highestDate = $currentDate;
               }
-              $averageQuantity = $totalQuantity / $numberDays;
-
-              echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
-              $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
-              array_push($csvRows, $csvRow);
+              $totalQuantity += $currentQuantity;
+              $numberDays += 1;
             }
+            $averageQuantity = $totalQuantity / $numberDays;
+
+            echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
+            $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
+            array_push($csvRows, $csvRow);
 
           }
 
