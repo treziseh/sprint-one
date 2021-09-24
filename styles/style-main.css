@@ -14,9 +14,11 @@ body {
   margin-right: 0;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="reset"], input[type="button"] {
   border-radius: 8px;
   background-color: #008CBA;
+  margin: 1em 1em;
+  color: white;
 }
 
 .sidebar {
