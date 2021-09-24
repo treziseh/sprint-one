@@ -47,6 +47,18 @@
                 <th>Delete Item</th>
             </tr>
             ";
+        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+        echo "
+        <tr>
+            <td>" . $row['sales_ID'] . "</td>
+            <td>" . $row['sale_date'] . "</td>
+            <td>" . $row['uname'] . "</td>
+            <td>" . $row['item_name'] . "</td>
+            <!-- <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='" . $row['quantity'] . "'></td>
+            <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td> -->
+        </tr>
+        ";
+        }
         echo "<input type='submit' name='submit' value='Submit'/>";
         echo "<input type='reset' name='reset' value='Reset'/>";
         echo "</form>";
