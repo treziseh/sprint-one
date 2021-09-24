@@ -5,7 +5,7 @@
 }
 
 body {
-  margin-left: 150px;
+  margin-left: 180px;
 }
 
 .sidebar {
@@ -19,7 +19,6 @@ body {
   width: 150px;
   text-align: center;
   color: black;
-  margin-right: 5em;
 }
 
 .sidebar a {
