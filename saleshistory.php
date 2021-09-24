@@ -21,7 +21,16 @@
     <?php include_once "sidebar.inc" ?>
     <h1>Sales History</h1>
     <?php
+    function deleteSale() {
+        $saleID = $_POST['delete'];
+        echo "<p>" . $saleID . "</p>";
+    }
+
     function main() {
+        if (isset($_POST["delete"])) {
+            deleteSale();
+        }
+
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -84,7 +93,7 @@
                     echo "</table></td>
                     <td>$" . $total . "</td>
                     <td></td>
-                    <td></td>
+                    <td><form method='post' id='deleteForm' action='saleshistory.php?'" . session_id() . "><input type='submit' name='delete' value='" . $curID . "'/></form></td>
                 </tr>
                 ";
                 $preID = $curID;
