@@ -17,9 +17,10 @@ body {
 input[type="submit"], input[type="reset"], input[type="button"] {
   border-radius: 8px;
   background-color: #008CBA;
-  padding: 1em 1em;
+  padding: 0.75em;
   color: white;
   border-color: white;
+  margin-top: 0.5em;
 }
 
 .sidebar {

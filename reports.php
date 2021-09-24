@@ -83,10 +83,6 @@
               die( print_r( sqlsrv_errors(), true));
           }
 
-          if (empty($row)) {
-            echo "<p>No items selected</p>";
-          }
-
           $includedItems = [];
           while ($row = sqlsrv_fetch_array($result)) {
             $node = $row['barcode'];
@@ -228,9 +224,9 @@
             die( print_r( sqlsrv_errors(), true));
         }
 
-        if (empty($row)) {
+        /*if (empty($row)) {
           echo "<p>No items selected</p>";
-        }
+        }*/
 
         $includedItems = [];
         while ($row = sqlsrv_fetch_array($result)) {
