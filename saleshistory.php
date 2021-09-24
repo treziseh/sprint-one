@@ -62,9 +62,8 @@
             </tr>
             ";
         while($row = sqlsrv_fetch_array($result)) {   //Creates a loop to loop through results
-            $itemname = $row['item_name'];
-            $inventoryquery = "SELECT * FROM inventory WHERE item_name = $itemname";
-            echo $inventoryquery;
+            //$barcode = $row['barcode'];
+            $inventoryquery = "SELECT * FROM inventory WHERE barcode = $row['barcode']";
             $inventoryresult = sqlsrv_query($conn, $inventoryquery);
             if ($inventoryresult === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
