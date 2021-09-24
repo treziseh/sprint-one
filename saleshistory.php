@@ -38,7 +38,7 @@
             if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
-        }  else if (isset($_POST["updatequantity"])) {
+        } else if (isset($_POST["updatequantity"])) {
             $saleID = $_POST['updatequantity'];
         }
 
@@ -75,10 +75,7 @@
             <td>" . $row['sale_date']->format('Y-m-d') . "</td>
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
-            <td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
-            <input type='number' id='" . $inventoryrow['barcode'] . "Quantity' name='" . $inventoryrow['barcode'] . "Quantity' min='1' max='" . $inventoryrow['soh'] . "' value='" . $row['quantity'] . "'>
-            <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
-            <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
+            <td>A</td>
             <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p>
             <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
         </tr>
@@ -91,8 +88,10 @@
         echo "<button type='button'><p>Add Item</p></button>";
 
         sqlsrv_close($conn);
-        //<input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='" . $row['quantity'] . "'>
-        //<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'>
+        /*<td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
+            <input type='number' id='" . $inventoryrow['barcode'] . "Quantity' name='" . $inventoryrow['barcode'] . "Quantity' min='1' max='" . $inventoryrow['soh'] . "' value='" . $row['quantity'] . "'>
+            <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
+            <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>*/
     }
 
     function deleteSale() {
