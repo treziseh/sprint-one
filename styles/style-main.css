@@ -14,10 +14,6 @@ body {
   margin-right: 20%;
 }
 
-#loginBox {
-  border-radius: 12px;
-}
-
 input[type="button"] {
   border-radius: 8px;
   background-color: #008CBA;
@@ -61,6 +57,7 @@ input[type="button"] {
   margin: auto;
   width: 25%;
   border: 3px solid black;
+  border-radius: 12px;
 }
 
 #loginTitle {
