@@ -54,11 +54,12 @@
             <td>" . $row['sale_date'] . "</td>
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
-            <td>"A"</td>
-            <td>"B"</td>
+            <td>A</td>
+            <td>B</td>
         </tr>
         ";
         }
+        echo "</table>"; //Close the table in HTML
         echo "<input type='submit' name='submit' value='Submit'/>";
         echo "<input type='reset' name='reset' value='Reset'/>";
         echo "</form>";
