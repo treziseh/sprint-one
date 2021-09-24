@@ -235,13 +235,15 @@
 
           //echo $timePeriod . "\n";
           if ($timePeriod == 'Month') {
-            $uDateMin = $uDateMax->modify('-31 day');
+            $period = strtotime("-31 day");
+            $uDateMin = date('Y-m-d', $period);
             $numberDays = 31;
           } else {
-            $uDateMin = $uDateMax->modify('-7day');
+            $period = strtotime("-7 day");
+            $uDateMin = date('Y-m-d', $period);
             $numberDays = 7;
           }
-          $uDateMax = date('Y-m-d', $dateMax);
+          //$uDateMax = date('Y-m-d', $dateMax);
           $query1 .= " AND sale_date <= '$uDateMax'";
 
           $query1 .= " GROUP BY item_name, sale_date";
