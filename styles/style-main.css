@@ -58,6 +58,10 @@ input[type="button"] {
   width: 25%;
   border: 3px solid black;
   border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 #loginTitle {
