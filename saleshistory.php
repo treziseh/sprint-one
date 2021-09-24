@@ -22,16 +22,23 @@
     <h1>Sales History</h1>
     <?php
     function editSale() {
-        if (isset($_POST["edit"])) {
-            $saleID = $_POST['edit'];
-        } else if (isset($_POST["deleteitem"])) {
-            $saleID = $_POST['deleteitem'];
-        }
-
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        if (isset($_POST["edit"])) {
+            $saleID = $_POST['edit'];
+        } else if (isset($_POST["deleteitem"])) {
+            $saleID = $_POST['deleteitem'];
+            $pk = $_POST['pk'];
+            $query = "DELETE FROM sales
+                      WHERE PK_ID = $pk";
+            $result = sqlsrv_query($conn, $query);
+            if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+            }
+        }
 
         $query = "SELECT * FROM sales
                   WHERE sales_ID = $saleID";
@@ -60,7 +67,8 @@
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
             <td>A</td>
-            <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p></button></form></td>
+            <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p>
+            <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
         </tr>
         ";
         }
