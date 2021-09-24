@@ -38,6 +38,8 @@
             if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
+        }  else if (isset($_POST["updatequantity"])) {
+            $saleID = $_POST['updatequantity'];
         }
 
         $query = "SELECT * FROM sales
@@ -60,13 +62,23 @@
             </tr>
             ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+        $inventoryquery = "SELECT * FROM inventory
+                           WHERE item_name = $row['item_name']";
+        $inventoryresult = sqlsrv_query($conn, $query);
+        if ($inventoryresult === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+        $inventoryrow = sqlsrv_fetch_array($inventoryresult)
         echo "
         <tr>
             <td>" . $row['sales_ID'] . "</td>
             <td>" . $row['sale_date']->format('Y-m-d') . "</td>
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
-            <td>A</td>
+            <td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
+            <input type='number' id='" . $inventoryrow['barcode'] . "Quantity' name='" . $inventoryrow['barcode'] . "Quantity' min='1' max='" . $inventoryrow['soh'] . "' value='" . $row['quantity'] . "'>
+            <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
+            <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
             <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p>
             <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
         </tr>
@@ -101,7 +113,7 @@
     }
 
     function main() {
-        if (isset($_POST["edit"]) || isset($_POST["deleteitem"])) {
+        if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"])) {
             editSale();
         } else {
             if (isset($_POST["delete"])) {
