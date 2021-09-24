@@ -153,7 +153,7 @@
 
         $_SESSION['csvRows'] = $csvRows;
 
-        echo "<input type='hidden' name='csvDownloadPast'>
+        echo "<input type='hidden' name='csvDownload'>
         <input type='submit' value='Download as CSV'>
         </form><br>";
 
@@ -279,7 +279,7 @@
             $periodAverage = $averageQuantity * 7;
           }
 
-          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td><</tr>";
+          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
           $csvRow = [$value, $periodAverage, $averageQuantity];
           array_push($csvRows, $csvRow);
 
@@ -295,7 +295,7 @@
 
         $_SESSION['csvRows'] = $csvRows;
 
-        echo "<input type='hidden' name='csvDownloadPast'>
+        echo "<input type='hidden' name='csvDownload'>
         <input type='submit' value='Download as CSV'>
         </form><br>";
 

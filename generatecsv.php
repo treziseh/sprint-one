@@ -14,7 +14,7 @@
   if (!isset($_SESSION['username'])) {
     header("location: index.php");
   }
-  if (isset($_POST['csvDownloadPast'])) {
+  if (isset($_POST['csvDownload'])) {
     $csvContent = $_SESSION['csvRows'];
     /*foreach ($csvContent as $line) {
       print_r($line);
