@@ -54,8 +54,8 @@
             <td>" . $row['sale_date'] . "</td>
             <td>" . $row['uname'] . "</td>
             <td>" . $row['item_name'] . "</td>
-            <!-- <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='" . $row['quantity'] . "'></td>
-            <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td> -->
+            <td>"A"</td>
+            <td>"B"</td>
         </tr>
         ";
         }
@@ -65,6 +65,8 @@
         echo "<button type='button'><p>Add Item</p></button>";
 
         sqlsrv_close($conn);
+        //<input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='" . $row['quantity'] . "'>
+        //<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'>
     }
 
     function deleteSale() {
