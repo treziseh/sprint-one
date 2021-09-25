@@ -36,13 +36,6 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        $queryValidate = "SELECT * FROM sales
-                          WHERE sales_ID = $saleID";
-        $resultValidate = sqlsrv_query($conn, $queryValidate);
-        if ($resultValidate === false) { //Checks to see if query was passed
-            die( print_r( sqlsrv_errors(), true));
-        }
-
         echo "<form method='post' id='addItemToSaleForm' action='saleshistory.php?'" . session_id() . ">";
         echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
         echo "
@@ -57,6 +50,12 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+            $queryValidate = "SELECT * FROM sales
+                          WHERE sales_ID = $saleID";
+            $resultValidate = sqlsrv_query($conn, $queryValidate);
+            if ($resultValidate === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+            }
             $validationCheck = true;
             while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
                 if ($row['item_name'] == $rowValidate['item_name']) {
