@@ -61,7 +61,10 @@
             while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
                 if ($row['item_name'] == $rowValidate['item_name']) {
                     $validationCheck = false;
+                    echo "<p>Got Called</p>";
                 }
+                echo "<p>" . $row['item_name'] . "</p>";
+                echo "<p>" . $rowValidate['item_name'] . "</p>";
             }
             if ($validationCheck == true) {
                 echo "
