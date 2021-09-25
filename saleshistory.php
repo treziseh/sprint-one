@@ -57,11 +57,10 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+            $validationCheck = true;
             while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
                 if ($row['item_name'] == $rowValidate['item_name']) {
                     $validationCheck = false;
-                } else {
-                    $validationCheck = true;
                 }
             }
             if ($validationCheck == true) {
