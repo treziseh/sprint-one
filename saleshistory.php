@@ -22,6 +22,10 @@
     <h1>Sales History</h1>
     <?php
 
+    function storeNewData() {
+        echo "<p>This Function Got Called</p>";
+    }
+
     function addItemToSale() {
         $saleID = $_POST['additem'];
 
@@ -83,7 +87,8 @@
         }
         if ($addTableHeader == false) {
             echo "</table>"; //Close the table in HTML 
-            echo "<input type='submit' name='submit' value='Submit'/>";
+            echo "<input type='hidden' name='saleID' value='" . $saleID . "'>";
+            echo "<input type='submit' name='storeNewData' value='Submit'/>";
             echo "</form>";
         }
     }
@@ -118,6 +123,9 @@
             }
         }  else if (isset($_POST["additem"])) {
             $saleID = $_POST['additem'];
+        }   else if (isset($_POST["storeNewData"])) {
+            $saleID = $_POST['saleID'];
+            storeNewData();
         }
 
         $query = "SELECT * FROM sales
@@ -190,7 +198,7 @@
     }
 
     function main() {
-        if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"]) || isset($_POST["additem"])) {
+        if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"]) || isset($_POST["additem"]) || isset($_POST["storeNewData"])) {
             editSale();
         } else {
             if (isset($_POST["delete"])) {
