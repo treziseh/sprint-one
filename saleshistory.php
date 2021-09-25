@@ -49,6 +49,8 @@
             if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
+        }  else if (isset($_POST["additem"])) {
+            $saleID = $_POST['additem'];
         }
 
         $query = "SELECT * FROM sales
@@ -94,7 +96,7 @@
         }
         echo "</table>"; //Close the table in HTML
         echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><button type='submit' name='back'/><p>Back</p></button></form>";
-        //echo "<button type='button'><p>Add Item</p></button>";
+        echo "<form method='post' id='addItem' action='saleshistory.php?'" . session_id() . "><button type='submit' name='additem' value='" . $saleID . "'/><p>Add Item</p></button></form>";
 
         sqlsrv_close($conn);
     }
@@ -112,12 +114,12 @@
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-
+         
         sqlsrv_close($conn);
     }
 
     function main() {
-        if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"])) {
+        if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"]) || isset($_POST["additem"])) {
             editSale();
         } else {
             if (isset($_POST["delete"])) {
