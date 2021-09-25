@@ -36,19 +36,8 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        echo "<form method='post' id='addItemToSaleForm' action='saleshistory.php?'" . session_id() . ">";
-        echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
-        echo "
-        <tr>
-            <th>Barcode</th>
-            <th>Item Name</th>
-            <th>Base Price</th>
-            <th>Sale Price</th>
-            <th>SOH</th>
-            <th>Add</th>
-            <th>Quantity To Add</th>
-        </tr>
-        ";
+        $addTableHeader = true;
+        
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $queryValidate = "SELECT * FROM sales
                           WHERE sales_ID = $saleID";
@@ -60,12 +49,25 @@
             while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
                 if ($row['item_name'] == $rowValidate['item_name']) {
                     $validationCheck = false;
-                    echo "<p>Got Called</p>";
                 }
-                echo "<p>" . $row['item_name'] . "</p>";
-                echo "<p>" . $rowValidate['item_name'] . "</p>";
             }
             if ($validationCheck == true) {
+                if ($addTableHeader == true) {
+                    echo "<form method='post' id='addItemToSaleForm' action='saleshistory.php?'" . session_id() . ">";
+                    echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
+                    echo "
+                    <tr>
+                        <th>Barcode</th>
+                        <th>Item Name</th>
+                        <th>Base Price</th>
+                        <th>Sale Price</th>
+                        <th>SOH</th>
+                        <th>Add</th>
+                        <th>Quantity To Add</th>
+                    </tr>
+                    ";
+                    $addTableHeader = false;
+                }
                 echo "
                 <tr>
                     <td>" . $row['barcode'] . "</td>
@@ -80,7 +82,7 @@
             }
         }
         echo "</table>"; //Close the table in HTML 
-        echo "<input type='submit' name='submit' value='addItemToSale'/>";
+        echo "<input type='submit' name='submit' value='Submit'/>";
         echo "</form>";
     }
 
