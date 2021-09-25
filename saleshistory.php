@@ -58,7 +58,6 @@
                 die( print_r( sqlsrv_errors(), true));
         }
 
-        echo "<form method='post' id='editForm' action='saleshistory.php?'" . session_id() . ">";
         echo "<table border='1' style='width: 100%' id='editTable'>"; // start a table tag in the HTML
         echo "
             <tr>
@@ -92,14 +91,12 @@
                 <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
             </tr>
             ";
-            }
+        }
         echo "</table>"; //Close the table in HTML
-        echo "<input type='submit' name='submit' value='Submit'/>";
-        echo "<input type='reset' name='reset' value='Reset'/>";
-        echo "</form>";
-        echo "<button type='button'><p>Add Item</p></button>";
+        echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><input type='submit' name='Back'/</form>";
+        //echo "<button type='button'><p>Add Item</p></button>";
 
-            sqlsrv_close($conn);
+        sqlsrv_close($conn);
     }
 
     function deleteSale() {
