@@ -21,6 +21,67 @@
     <?php include_once "sidebar.inc" ?>
     <h1>Sales History</h1>
     <?php
+
+    function addItemToSale() {
+        $saleID = $_POST['additem'];
+
+        require ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "SELECT * FROM inventory";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+
+        $queryValidate = "SELECT * FROM sales
+                          WHERE sales_ID = $saleID";
+        $resultValidate = sqlsrv_query($conn, $queryValidate);
+        if ($resultValidate === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+        }
+
+        echo "<form method='post' id='addItemToSaleForm' action='saleshistory.php?'" . session_id() . ">";
+        echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
+        echo "
+        <tr>
+            <th>Barcode</th>
+            <th>Item Name</th>
+            <th>Base Price</th>
+            <th>Sale Price</th>
+            <th>SOH</th>
+            <th>Add</th>
+            <th>Quantity To Add</th>
+        </tr>
+        ";
+        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+            while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
+                if ($row['item_name'] == $rowValidate['item_name']) {
+                    $validationCheck = false;
+                } else {
+                    $validationCheck = true;
+                }
+            }
+            if ($validationCheck == true) {
+                echo "
+                <tr>
+                    <td>" . $row['barcode'] . "</td>
+                    <td>" . $row['item_name'] . "</td>
+                    <td>" . $row['base_price'] . "</td>
+                    <td>" . $row['sale_price'] . "</td>
+                    <td>" . $row['soh'] . "</td>
+                    <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
+                    <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
+                </tr>
+            ";
+        }
+        echo "</table>"; //Close the table in HTML 
+        echo "<input type='submit' name='submit' value='addItemToSale'/>";
+        echo "</form>";
+    }
+
     function editSale() {
         require ("db-settings.php");
         $serverName = $host;
@@ -97,6 +158,10 @@
         echo "</table>"; //Close the table in HTML
         echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><button type='submit' name='back'/><p>Back</p></button></form>";
         echo "<form method='post' id='addItem' action='saleshistory.php?'" . session_id() . "><button type='submit' name='additem' value='" . $saleID . "'/><p>Add Item</p></button></form>";
+
+        if (isset($_POST["additem"])) {
+            addItemToSale();
+        }
 
         sqlsrv_close($conn);
     }
