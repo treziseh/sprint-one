@@ -93,7 +93,7 @@
             ";
         }
         echo "</table>"; //Close the table in HTML
-        echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><input type='submit' name='Back'/</form>";
+        echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><button type='submit' name='back'/><p>Back</p></button></form>";
         //echo "<button type='button'><p>Add Item</p></button>";
 
         sqlsrv_close($conn);
