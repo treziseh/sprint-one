@@ -75,7 +75,8 @@
                     <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
                     <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
                 </tr>
-            ";
+                ";
+            }
         }
         echo "</table>"; //Close the table in HTML 
         echo "<input type='submit' name='submit' value='addItemToSale'/>";
