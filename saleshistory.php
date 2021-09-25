@@ -32,12 +32,6 @@
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
         } else {
-            $query = "SELECT TOP 1 sales_ID FROM sales ORDER BY sales_ID DESC";
-            $result = sqlsrv_query($conn, $query);
-            if ($result === false) { //Checks to see if query was passed
-                die( print_r( sqlsrv_errors(), true));
-            }
-            $row = sqlsrv_fetch_array($result);
             $salesID = $_POST['saleID']; 
             $saleDate = date('m/d/Y');
             $uNameSess = $_SESSION['username'];
