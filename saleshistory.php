@@ -81,9 +81,11 @@
                 ";
             }
         }
-        echo "</table>"; //Close the table in HTML 
-        echo "<input type='submit' name='submit' value='Submit'/>";
-        echo "</form>";
+        if ($addTableHeader == false) {
+            echo "</table>"; //Close the table in HTML 
+            echo "<input type='submit' name='submit' value='Submit'/>";
+            echo "</form>";
+        }
     }
 
     function editSale() {
