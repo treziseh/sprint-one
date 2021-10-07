@@ -30,7 +30,7 @@
 
         $query = "UPDATE inventory
                   SET quantity -= $quantity
-                  WHERE item_name = $itemName";
+                  WHERE item_name = '$itemName'";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
             die( print_r( sqlsrv_errors(), true));
