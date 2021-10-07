@@ -29,7 +29,7 @@
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
         $query = "UPDATE inventory
-                  SET quantity -= $quantity
+                  SET soh -= $quantity
                   WHERE item_name = '$itemName'";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
