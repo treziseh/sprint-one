@@ -143,7 +143,11 @@
 
     main(); //Calls main function
     ?>
-
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
