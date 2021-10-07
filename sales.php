@@ -22,6 +22,21 @@
     <h1>Sales</h1>
 
     <?php
+    function update_soh($itemName, $quantity) {
+        require ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "UPDATE inventory
+                  SET quantity -= $quantity
+                  WHERE item_name = $itemName";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+        }
+    }
+
     function sql_store_sale() {
         require ("db-settings.php");
         $serverName = $host;
@@ -111,7 +126,7 @@
             <td>" . $row['sale_price'] . "</td>
             <td>" . $row['soh'] . "</td>
             <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
-            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
+            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='0'></td>
         </tr>
         ";
         }
