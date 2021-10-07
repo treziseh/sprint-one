@@ -78,7 +78,6 @@
             }
         }
         sqlsrv_close($conn);
-        header("Refresh:0");
     }
 
     function validate() {
@@ -94,6 +93,8 @@
     }
 
     function main() {
+        validate(); //Calls validate function
+
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -146,7 +147,6 @@
 
         sqlsrv_close($conn);
 
-        validate(); //Calls validate function
     }
 
     main(); //Calls main function
