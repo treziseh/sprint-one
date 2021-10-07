@@ -73,6 +73,7 @@
                         echo "<p>Failed</p>";
                         die( print_r( sqlsrv_errors(), true));
                     }
+                    update_soh($itemName, $quantity);
                 }
             }
         }
@@ -126,7 +127,7 @@
             <td>" . $row['sale_price'] . "</td>
             <td>" . $row['soh'] . "</td>
             <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
-            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='0'></td>
+            <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
         </tr>
         ";
         }
