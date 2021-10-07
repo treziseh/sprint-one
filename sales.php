@@ -125,11 +125,18 @@
             <td>" . $row['item_name'] . "</td>
             <td>" . $row['base_price'] . "</td>
             <td>" . $row['sale_price'] . "</td>
-            <td>" . $row['soh'] . "</td>
+            <td>" . $row['soh'] . "</td>";
+        if($row['soh'] > 0) {
+        echo "
             <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
             <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
-        </tr>
-        ";
+        </tr>";
+        else {
+        echo "
+            <td><p>OUT OF STOCK</p></td>
+            <td><p>OUT OF STOCK</p></td>
+        </tr>";
+        }
         }
         echo "</table>"; //Close the table in HTML 
         echo "<input type='submit' name='submit' value='Submit'/>";
