@@ -78,6 +78,7 @@
             }
         }
         sqlsrv_close($conn);
+        header("Refresh:0");
     }
 
     function validate() {
