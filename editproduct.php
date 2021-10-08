@@ -82,7 +82,7 @@
         ";
 
         echo "
-          <form method='post' id='editProduct' action='inventory.php'>
+          <form method='post' id='editProduct' action='editproduct.php?barcode=" . $row['barcode'] . "'>
           <div class='col-xs-12'>
           <h1>Edit Product </h1>
           <form method='post'>
