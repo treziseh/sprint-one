@@ -68,7 +68,7 @@
           <br>
           <label for='itemName'>Item Name:</label>
           <br>
-          <textarea required id='itemName' name='itemName' cols='30' rows='5' class='form-control' value='". $row['item_name'] ."'></textarea>
+          <input class='form-control' name='itemName' required type='text' id='itemName' value='". $row['item_name'] ."'>
           <br>
           <br>
           <label for='basePrice'>Base Price:</label>
