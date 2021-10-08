@@ -22,7 +22,7 @@
 
     <?php
     function deleteProduct() {
-        $saleID = $_POST['delete'];
+        $saleID = $_POST['remove'];
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -39,6 +39,9 @@
     }
 
     function main() {
+        if (isset($_POST["remove"])) {
+            deleteProduct();
+        }
         require_once ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -81,7 +84,7 @@
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td> <a class='btn btn-success' href='./editproduct.php?barcode=" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
-          <td> <form method='post' id='removeProduct' action='inventory.php?'" . session_id() . "><button type='submit' name='delete' value='" . $barcode . "'/><p>Delete</p></button></form> </td>
+          <td> <form method='post' id='removeProduct' action='inventory.php?'" . session_id() . "><button type='submit' name='remove' value='" . $barcode . "'/><p>Delete</p></button></form> </td>
           </tr>
           </tbody>
           ";
