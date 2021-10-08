@@ -39,6 +39,10 @@
     }
 
     function main() {
+        if (isset($_POST["delete"])) {
+            deleteSale();
+        }
+
         require_once ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
