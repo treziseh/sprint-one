@@ -22,7 +22,7 @@
 
     <?php
     function deleteProduct() {
-        $saleID = $_POST['remove'];
+        $barcode = $_POST['remove'];
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
