@@ -68,7 +68,7 @@
       echo "
         <form method='post' id='editProduct' action='editproduct.php?" . session_id() . "'>
         <div class='col-xs-12'>
-        <h1>Edit Product</h1>
+        <h1>Edit Product Barcode <?php echo ". $row['barcode'] ."; ?> </h1>
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
