@@ -71,9 +71,9 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      if (isset($_GET['barcode']) {
+      if (isset($_GET['barcode'])) {
         $barcode = $_GET['barcode'];
-      } else if (isset($_POST['barCode']) {
+      } else if (isset($_POST['barCode'])) {
         $barcode = $_POST['barCode'];
       }
       //$barcode = $_GET["barcode"];
