@@ -85,7 +85,7 @@
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td> <a class='btn btn-success' href='./editproduct.php?barcode=" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
-          <td> </td>
+          <td> <a class='btn btn-success' href='./removeproduct.php?barcode=" . $row['barcode'] . "'>Remove <i class='fa fa-plus'></i></a> </td>
           </tr>
           </tbody>
           ";
