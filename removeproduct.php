@@ -4,6 +4,7 @@
 ?>
 
 <?php
+  ob_start();
   require ("db-settings.php");
   $serverName = $host;
   $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
