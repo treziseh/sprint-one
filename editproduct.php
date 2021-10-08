@@ -39,7 +39,7 @@
 
         // Attempt insert query execution
         $query = "UPDATE inventory
-                  SET item_name = $item_name, base_price = $base_price, sale_price = $sale_price, soh = $soh
+                  SET item_name = '$item_name', base_price = $base_price, sale_price = $sale_price, soh = $soh
                   WHERE barcode = $barcode";
                   $result = sqlsrv_query($conn, $query);
                   if ($result === false) { //Checks to see if query was passed
