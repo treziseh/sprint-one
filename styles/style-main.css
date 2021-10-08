@@ -20,7 +20,7 @@ a {
 
 input[type="submit"], input[type="reset"], input[type="button"] {
   border-radius: 8px;
-  background-color: #186985;
+  background-color: #008CBA;
   padding: 0.75em;
   color: white;
   border-color: white;
@@ -87,7 +87,7 @@ table td th {
 }
 
 table th {
-  background-color: #008CBA;
+  background-color: #186985;
   color: white;
   font-weight: normal;
 }

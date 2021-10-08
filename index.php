@@ -27,7 +27,7 @@
     <div class="loginBox">
       <h1 id="loginTitle">PHP-SRePS Staff Login</h1>
       <?php
-        echo "<p class='error'>$err_output</p>";
+        echo $err_output;
       ?>
       <form action="login.php" method="post"> <!-- Change to processlogin.php -->
         <label for="username">Username</label>
