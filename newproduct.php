@@ -93,7 +93,7 @@
       ";
 
       sqlsrv_close($conn); //Closes server connection
-      insertdata();
+      insertdata(); //Calls insertdata function
     }
     main(); //Calls main function
     ?>
