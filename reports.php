@@ -62,7 +62,7 @@
         }
 
         if (empty($_POST['dateStarting'])) {
-          echo "<p>'Date starting' cannot be empty</p>";
+          echo "<p class='error'>'Date starting' cannot be empty</p>";
         } else {
           echo "<table border='1' style='width: 100%'>
           <thead>
