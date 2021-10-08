@@ -62,6 +62,8 @@
     }
 
     function main() {
+      validate(); //Calls validate function to check if button submitted data
+
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -69,7 +71,12 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      $barcode = $_GET["barcode"];
+      if (isset($_GET["barcode"]) {
+        $barcode = $_GET["barcode"];
+      } else if (isset($_POST["barcode"]) {
+        $barcode = $_POST["barcode"];
+      }
+      //$barcode = $_GET["barcode"];
       $query = "SELECT * FROM inventory WHERE barcode = $barcode";
       $result = sqlsrv_query($conn, $query);
       if ($result === false) { //Checks to see if query was passed
@@ -128,11 +135,16 @@
       }
 
       sqlsrv_close($conn); //Closes server connection
-      validate(); //Calls validate function to check if button submitted data
+      //validate(); //Calls validate function to check if button submitted data
     }
     main(); //Calls main function
     ?>
 
     <?php # include_once "footer.inc" ?>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
   </body>
 </html>
