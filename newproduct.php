@@ -84,12 +84,12 @@
         <form method='post'>
         <label for='barCode'>Barcode:</label>
         <br>
-        <input class='form-control' name='barCode' required type='nunber' id='barCode' placeholder='Enter product barcode'>
+        <input class='form-control' name='barCode' required type='number' id='barCode' placeholder='Enter product barcode'>
         <br>
         <br>
         <label for='itemName'>Item Name:</label>
         <br>
-        <textarea required id='itemName' name='itemName' cols='30' rows='5' class='form-control'></textarea>
+        <input class='form-control' name='itemName' required type='text' id='itemName' placeholder='Enter product name'>
         <br>
         <br>
         <label for='basePrice'>Base Price:</label>
