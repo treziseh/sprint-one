@@ -71,10 +71,10 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       // Attempt insert query execution
-      if (isset($_GET["barcode"]) {
-        $barcode = $_GET["barcode"];
-      } else if (isset($_POST["barcode"]) {
-        $barcode = $_POST["barcode"];
+      if (isset($_GET['barcode']) {
+        $barcode = $_GET['barcode'];
+      } else if (isset($_POST['barcode']) {
+        $barcode = $_POST['barcode'];
       }
       //$barcode = $_GET["barcode"];
       $query = "SELECT * FROM inventory WHERE barcode = $barcode";
@@ -135,7 +135,6 @@
       }
 
       sqlsrv_close($conn); //Closes server connection
-      //validate(); //Calls validate function to check if button submitted data
     }
     main(); //Calls main function
     ?>
