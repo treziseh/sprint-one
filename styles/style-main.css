@@ -16,6 +16,7 @@ a {
 #loginBody {
   margin-left: 0;
   margin-right: 0;
+  background-color: #3293a8;
 }
 
 input[type="submit"], input[type="reset"], input[type="button"] {
