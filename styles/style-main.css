@@ -74,6 +74,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 
 table {
   border-collapse: collapse;
+  border-color: #bbb
 }
 
 table td th {
@@ -84,4 +85,21 @@ table td th {
 table th {
   background-color: #008CBA;
   color: white;
+  font-weight: normal;
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+table tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
 }
