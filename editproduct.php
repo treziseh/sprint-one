@@ -86,11 +86,6 @@
           <div class='col-xs-12'>
           <h1>Edit Product with Barcode ". $row['barcode'] ."</h1>
           <form method='post'>
-          <label for='barCode'>Barcode:</label>
-          <br>
-          <input class='form-control' name='barCode' required type='number' id='barCode' value='". $row['barcode'] ."'>
-          <br>
-          <br>
           <label for='itemName'>Item Name:</label>
           <br>
           <input class='form-control' name='itemName' required type='text' id='itemName' value='". $row['item_name'] ."'>
