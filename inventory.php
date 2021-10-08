@@ -21,28 +21,7 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
-    function deleteSale() {
-        $saleID = $_POST['delete'];
-        require ("db-settings.php");
-        $serverName = $host;
-        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-        $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-        $query = "DELETE FROM inventory
-                  WHERE barcode = '$barcode'";
-        $result = sqlsrv_query($conn, $query);
-        if ($result === false) { //Checks to see if query was passed
-                die( print_r( sqlsrv_errors(), true));
-        }
-
-        sqlsrv_close($conn);
-    }
-
     function main() {
-        if (isset($_POST["delete"])) {
-            deleteSale();
-        }
-
         require_once ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
