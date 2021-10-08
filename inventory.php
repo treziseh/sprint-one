@@ -21,27 +21,7 @@
     <?php include_once "sidebar.inc" ?>
 
     <?php
-    function deleteProduct() {
-        $barcode = $_POST['remove'];
-        require ("db-settings.php");
-        $serverName = $host;
-        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-        $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-        $query = "DELETE FROM inventory
-                  WHERE barcode = '$barcode'";
-        $result = sqlsrv_query($conn, $query);
-        if ($result === false) { //Checks to see if query was passed
-                die( print_r( sqlsrv_errors(), true));
-        }
-
-        sqlsrv_close($conn);
-    }
-
     function main() {
-        if (isset($_POST["remove"])) {
-            deleteProduct();
-        }
         require_once ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -84,7 +64,7 @@
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td> <a class='btn btn-success' href='./editproduct.php?barcode=" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
-          <td> <form method='post' id='removeProduct' action='inventory.php?'" . session_id() . "><button type='submit' name='remove' value='" . $barcode . "'/><p>Delete</p></button></form> </td>
+          <td> <a class='btn btn-success' href='./removeproduct.php?barcode=" . $row['barcode'] . "'>Remove <i class='fa fa-plus'></i></a> </td>
           </tr>
           </tbody>
           ";
