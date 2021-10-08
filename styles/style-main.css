@@ -16,7 +16,8 @@ a {
 #loginBody {
   margin-left: 0;
   margin-right: 0;
-  background-color: #3293a8;
+  background: rgb(2,0,36);
+  background: linear-gradient(27deg, rgba(2,0,36,1) 0%, rgba(9,33,121,1) 19%, rgba(0,212,255,1) 100%);
 }
 
 input[type="submit"], input[type="reset"], input[type="button"] {
