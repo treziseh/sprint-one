@@ -8,6 +8,7 @@
     $err_output = "";
     session_destroy();
   }
+  include_once "fonts.inc";
 ?>
 <!DOCTYPE html>
 <html lang="en">

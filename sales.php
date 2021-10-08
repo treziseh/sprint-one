@@ -18,7 +18,7 @@
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <?php include_once "sidebar.inc" ?>
+    <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
     <h1>Sales</h1>
 
     <?php
@@ -140,7 +140,7 @@
             </tr>";
             }
         }
-        echo "</table>"; //Close the table in HTML 
+        echo "</table>"; //Close the table in HTML
         echo "<input type='submit' name='submit' value='Submit'/>";
         echo "<input type='reset' name='reset' value='Reset'/>";
         echo "</form>";

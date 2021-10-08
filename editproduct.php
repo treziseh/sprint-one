@@ -20,7 +20,7 @@
     <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <?php include_once "sidebar.inc" ?>
+    <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
 
     <?php
     function updatedata() {

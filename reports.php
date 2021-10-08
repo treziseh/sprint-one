@@ -19,7 +19,7 @@
   </head>
   <body>
     <?php
-      include_once "sidebar.inc";
+      include_once "sidebar.inc"; include_once "fonts.inc";
     ?>
     <h1>Generate Report</h1>
     <form id="mtdWtd" action="reports.php?<?php echo session_id(); ?>" method="post">

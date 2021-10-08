@@ -15,10 +15,10 @@
     <title>Sales History</title>
 
     <!-- Custom styles for this page -->
-    <link href="styles/style-main.css" rel="stylesheet"> 
+    <link href="styles/style-main.css" rel="stylesheet">
   </head>
   <body>
-    <?php include_once "sidebar.inc" ?>
+    <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
     <h1>Sales History</h1>
     <?php
 
@@ -32,7 +32,7 @@
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
         } else {
-            $salesID = $_POST['saleID']; 
+            $salesID = $_POST['saleID'];
             $saleDate = date('m/d/Y');
             $uNameSess = $_SESSION['username'];
             $query = "SELECT barcode, item_name FROM inventory";
@@ -68,7 +68,7 @@
         }
 
         $addTableHeader = true;
-        
+
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $queryValidate = "SELECT * FROM sales
                           WHERE sales_ID = $saleID";
@@ -113,7 +113,7 @@
             }
         }
         if ($addTableHeader == false) {
-            echo "</table>"; //Close the table in HTML 
+            echo "</table>"; //Close the table in HTML
             echo "<input type='hidden' name='saleID' value='" . $saleID . "'>";
             echo "<input type='submit' name='storeNewData' value='Submit'/>";
             echo "</form>";
@@ -220,7 +220,7 @@
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-         
+
         sqlsrv_close($conn);
     }
 
@@ -237,9 +237,9 @@
             $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
             $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-            $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price 
-                      FROM sales S 
-                      INNER JOIN inventory I 
+            $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price
+                      FROM sales S
+                      INNER JOIN inventory I
                       ON S.item_name = I.item_name
                       ORDER BY sales_ID ASC";
             $result = sqlsrv_query($conn, $query);
@@ -266,7 +266,7 @@
                     echo "
                     <tr>
                         <td>" . $row[0] . "</td>
-                        <td>" . $row[2]->format('Y-m-d') . "</td> 
+                        <td>" . $row[2]->format('Y-m-d') . "</td>
                         <td>" . $row[4] . "</td>
                         <td><table border='1' style='width: 100%'>
                             <tr>
@@ -274,9 +274,9 @@
                                 <th>Item Name</th>
                                 <th>Quantity</th>
                             </tr>";
-                            $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price 
-                                FROM sales S 
-                                INNER JOIN inventory I 
+                            $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price
+                                FROM sales S
+                                INNER JOIN inventory I
                                 ON S.item_name = I.item_name
                                 WHERE sales_ID = $curID";
                             $tempresult = sqlsrv_query($conn, $tempquery);
