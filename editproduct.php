@@ -31,7 +31,6 @@
 
       //Grabbing data values from textboxes
       if(isset($_POST['submit'])) {
-        $barcode = $_POST['barCode'];
         $item_name = $_POST['itemName'];
         $base_price = $_POST['basePrice'];
         $sale_price = $_POST['sellPrice'];
