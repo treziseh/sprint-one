@@ -23,7 +23,7 @@
 
   echo "$barcode"; //Testing - DELETE AFTER
 
-  $query = "DELETE * FROM inventory WHERE barcode = $barcode";
+  $query = "DELETE FROM inventory WHERE barcode = $barcode";
   $result = sqlsrv_query($conn, $query);
   if ($result === false) { //Checks to see if query was passed
           die( print_r( sqlsrv_errors(), true));
