@@ -39,7 +39,7 @@
         $sql = "INSERT INTO inventory (barcode, item_name, base_price, sale_price, soh)
         VALUES ('$barcode', '$item_name', '$base_price', '$sale_price', '$soh')";
         if (sqlsrv_query($conn, $sql)){
-          echo "New record created sucessfully!";
+          //echo "New record created sucessfully!";
         }
         else {
           echo "Error: " . $sql . "
