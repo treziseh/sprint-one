@@ -75,6 +75,9 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 table {
   border-collapse: collapse;
   border-color: #bbb
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 table td th {
