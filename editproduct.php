@@ -48,21 +48,8 @@
         }
     }
 
-    function validate() {
-        $validateResult = true;
-        if (!isset($_POST["submit"])) {
-            $validateResult = false;
-            echo "Form was not sent"; //Delete Later
-        } else {
-            echo "Form was sent"; //Delete Later
-        }
-        if ($validateResult) {
-            updatedata(); //Calls sql store function if validation checks are passed
-        }
-    }
-
     function main() {
-      validate(); //Calls validate function to check if button submitted data
+      updatedata(); //Calls updatedata function
 
       require ("db-settings.php");
       $serverName = $host;
@@ -84,9 +71,6 @@
       }
 
       while($row = sqlsrv_fetch_array($result)){
-        echo "
-        Barcode: ". $row['barcode'] ." Item Name: " . $row['item_name'] . " Base Price: " . $row['base_price'] . " Sale Price: ". $row['sale_price'] . " SOH: " . $row['soh'] . "</p>
-        ";
 
         echo "
           <form method='post' id='editProduct'>
@@ -124,14 +108,6 @@
           </div>
         ";
 
-      }
-
-      //Checking connection - DELETE LATER
-      if (!$conn) {
-          echo "<p>Failed</p>";
-          die( print_r( sqlsrv_errors(), true));
-      } else {
-          echo "<p>Database connection Successful</p>";
       }
 
       sqlsrv_close($conn); //Closes server connection
