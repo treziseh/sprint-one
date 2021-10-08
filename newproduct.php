@@ -49,33 +49,12 @@
       }
     }
 
-    function validate() {
-        $validateResult = true;
-        if (!isset($_POST["add"])) {
-            $validateResult = false;
-            echo "Form was not sent"; //Delete Later
-        } else {
-            echo "Form was sent"; //Delete Later
-        }
-        if ($validateResult) {
-            insertdata(); //Calls sql store function if validation checks are passed
-        }
-    }
-
     function main() {
       require ("db-settings.php");
       $serverName = $host;
       $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
       //Create connection
       $conn = sqlsrv_connect($serverName, $connectionInfo);
-
-      //Checking connection - DELETE LATER
-      if (!$conn) {
-          echo "<p>Failed</p>";
-          die( print_r( sqlsrv_errors(), true));
-      } else {
-          echo "<p>Database connection Successful</p>";
-      }
 
       echo "
         <form method='post' id='newProduct' action='newproduct.php?" . session_id() . "'>
@@ -114,7 +93,7 @@
       ";
 
       sqlsrv_close($conn); //Closes server connection
-      validate(); //Calls validate function to check if button submitted data
+      insertdata();
     }
     main(); //Calls main function
     ?>
