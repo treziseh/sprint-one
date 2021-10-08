@@ -30,7 +30,7 @@
           echo "Error deleting record";
   } else {
     sqlsrv_close($conn);
-    header('location:inventory.php');
+    header("location:inventory.php");
     exit;
   }
 ?>
