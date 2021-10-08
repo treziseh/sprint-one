@@ -28,9 +28,8 @@
   if ($result === false) { //Checks to see if query was passed
           die( print_r( sqlsrv_errors(), true));
           echo "Error deleting record";
-  } else {
-    sqlsrv_close($conn);
-    header("location:inventory.php");
-    exit;
   }
+  sqlsrv_close($conn);
+  header("location:inventory.php");
+  exit;
 ?>
