@@ -84,7 +84,7 @@
         echo "
           <form method='post' id='editProduct'>
           <div class='col-xs-12'>
-          <h1>Edit Product </h1>
+          <h1>Edit Product with Barcode ". $row['barcode'] ."</h1>
           <form method='post'>
           <label for='barCode'>Barcode:</label>
           <br>
