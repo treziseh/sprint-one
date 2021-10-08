@@ -67,6 +67,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
   width: 25%;
   border: 3px solid black;
   border-radius: 12px;
+  background-color: white;
 }
 
 #loginTitle {
