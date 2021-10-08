@@ -63,7 +63,7 @@
           <form method='post'>
           <label for='barCode'>Barcode:</label>
           <br>
-          <input class='form-control' name='barCode' required type='number' id='barCode' value='. $row['barcode'] .'>
+          <input class='form-control' name='barCode' required type='number' id='barCode' value='". $row['barcode'] ."'>
           <br>
           <br>
           <label for='itemName'>Item Name:</label>
