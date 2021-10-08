@@ -89,7 +89,7 @@
         ";
 
         echo "
-          <form method='post' id='editProduct' action='inventory.php?" . session_id() . "'>
+          <form method='post' id='editProduct'>
           <div class='col-xs-12'>
           <h1>Edit Product with Barcode ". $row['barcode'] ."</h1>
           <form method='post'>
@@ -118,7 +118,7 @@
           <input class='form-control' name='SOH' required type='number' id='SOH' value='". $row['soh'] ."'>
           <br>
           <br>
-          <input class='btn btn-info' type='submit' value='Submit' name='submit'>
+          <input class='btn btn-info' type='submit' value='Submit' name='submit' >
 
           </form>
           </div>
