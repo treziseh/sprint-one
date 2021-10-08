@@ -55,6 +55,43 @@
         echo "
         Barcode: ". $row['barcode'] ." Item Name: " . $row['item_name'] . " Base Price: " . $row['base_price'] . " Sale Price: ". $row['sale_price'] . " SOH: " . $row['soh'] . "</p>
         ";
+
+        echo "
+          <form method='post' id='editProduct' action='editproduct.php?" . session_id() . "'>
+          <div class='col-xs-12'>
+          <h1>Edit Product Barcode <?php echo ". $row['barcode'] ."; ?> </h1>
+          <form method='post'>
+          <label for='barCode'>Barcode:</label>
+          <br>
+          <input class='form-control' name='barCode' required type='number' id='barCode'>
+          <br>
+          <br>
+          <label for='itemName'>Item Name:</label>
+          <br>
+          <textarea required id='itemName' name='itemName' cols='30' rows='5' class='form-control'></textarea>
+          <br>
+          <br>
+          <label for='basePrice'>Base Price:</label>
+          <br>
+          <input class='form-control' name='basePrice' required type='text' id='basePrice'>
+          <br>
+          <br>
+          <label for='sellPrice'>Sell Price:</label>
+          <br>
+          <input class='form-control' name='sellPrice' required type='text' id='sellPrice'>
+          <br>
+          <br>
+          <label for='SOH'>Stock on Hand (SOH):</label>
+          <br>
+          <input class='form-control' name='SOH' required type='number' id='SOH'>
+          <br>
+          <br>
+          <input class='btn btn-info' type='submit' value='Submit' name='submit'>
+
+          </form>
+          </div>
+        ";
+        
       }
 
       //Checking connection - DELETE LATER
@@ -65,41 +102,7 @@
           echo "<p>Database connection Successful</p>";
       }
 
-      echo "
-        <form method='post' id='editProduct' action='editproduct.php?" . session_id() . "'>
-        <div class='col-xs-12'>
-        <h1>Edit Product Barcode <?php echo ". $row['barcode'] ."; ?> </h1>
-        <form method='post'>
-        <label for='barCode'>Barcode:</label>
-        <br>
-        <input class='form-control' name='barCode' required type='number' id='barCode'>
-        <br>
-        <br>
-        <label for='itemName'>Item Name:</label>
-        <br>
-        <textarea required id='itemName' name='itemName' cols='30' rows='5' class='form-control'></textarea>
-        <br>
-        <br>
-        <label for='basePrice'>Base Price:</label>
-        <br>
-        <input class='form-control' name='basePrice' required type='text' id='basePrice'>
-        <br>
-        <br>
-        <label for='sellPrice'>Sell Price:</label>
-        <br>
-        <input class='form-control' name='sellPrice' required type='text' id='sellPrice'>
-        <br>
-        <br>
-        <label for='SOH'>Stock on Hand (SOH):</label>
-        <br>
-        <input class='form-control' name='SOH' required type='number' id='SOH'>
-        <br>
-        <br>
-        <input class='btn btn-info' type='submit' value='Submit' name='submit'>
 
-        </form>
-        </div>
-      ";
 
       sqlsrv_close($conn); //Closes server connection
       validate(); //Calls validate function to check if button submitted data
