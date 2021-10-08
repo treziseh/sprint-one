@@ -73,17 +73,17 @@
           <br>
           <label for='basePrice'>Base Price:</label>
           <br>
-          <input class='form-control' name='basePrice' required type='text' id='basePrice'>
+          <input class='form-control' name='basePrice' required type='text' id='basePrice' value='". $row['base_price'] ."'>
           <br>
           <br>
           <label for='sellPrice'>Sell Price:</label>
           <br>
-          <input class='form-control' name='sellPrice' required type='text' id='sellPrice'>
+          <input class='form-control' name='sellPrice' required type='text' id='sellPrice' value='". $row['sale_price'] ."'>
           <br>
           <br>
           <label for='SOH'>Stock on Hand (SOH):</label>
           <br>
-          <input class='form-control' name='SOH' required type='number' id='SOH'>
+          <input class='form-control' name='SOH' required type='number' id='SOH' value='". $row['soh'] ."'>
           <br>
           <br>
           <input class='btn btn-info' type='submit' value='Submit' name='submit'>
@@ -101,8 +101,6 @@
       } else {
           echo "<p>Database connection Successful</p>";
       }
-
-
 
       sqlsrv_close($conn); //Closes server connection
       validate(); //Calls validate function to check if button submitted data
