@@ -85,7 +85,7 @@
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td> <a class='btn btn-success' href='./editproduct.php?barcode=" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
-          <td> <form method='post' id='deleteProduct' action='inventory.php?'" . session_id() . "><button type='submit' name='delete'/><p>Delete</p></button></form> </td>
+          <td> <form method='post' id='deleteProduct' action='inventory.php?'" . session_id() . "><button type='submit' name='delete' value='" . $row['barcode'] . "'/><p>Delete</p></button></form> </td>
           </tr>
           </tbody>
           ";
