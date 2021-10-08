@@ -30,7 +30,22 @@
       $conn = sqlsrv_connect($serverName, $connectionInfo);
 
       //Grabbing data values from textboxes
+      if(isset($_POST['submit'])) {
+        $barcode = $_POST['barCode'];
+        $item_name = $_POST['itemName'];
+        $base_price = $_POST['basePrice'];
+        $sale_price = $_POST['sellPrice'];
+        $soh = $_POST['SOH'];
 
+        // Attempt insert query execution
+        $query = "UPDATE inventory
+                  SET item_name = $item_name, base_price = $base_price, sale_price = $sale_price, soh = $soh
+                  WHERE barcode = $barcode";
+                  $result = sqlsrv_query($conn, $query);
+                  if ($result === false) { //Checks to see if query was passed
+                      die( print_r( sqlsrv_errors(), true));
+                  }
+        }
     }
 
     function validate() {
