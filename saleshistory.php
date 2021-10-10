@@ -141,9 +141,16 @@
             $saleID = $_POST['updatequantity'];
             $pk = $_POST['pk'];
             $quantity = $_POST['quantity'];
+            $oldQuantity = $_POST['oldQuantity'];
+            $ItemName = $_POST['itemName'];
             $query = "UPDATE sales
                       SET quantity = $quantity
                       WHERE PK_ID = $pk";
+            $result = sqlsrv_query($conn, $query);
+            $differenceInValue = $oldQuantity - $quantity;
+            $query = "UPDATE inventory
+                  SET soh += $differenceInValue
+                  WHERE item_name = '$itemName'";
             $result = sqlsrv_query($conn, $query);
             if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
@@ -190,6 +197,8 @@
                 <td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
                 <input type='number' name='quantity' min='1' max='" . $inventoryrow['soh'] . "' value='" . $row['quantity'] . "'>
                 <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
+                <input type='hidden' name='oldQuantity' value='" . $row['quantity'] . "'>
+                <input type='hidden' name='itemName' value='" . $row['item_name'] . "'>
                 <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
                 <td><form method='post' id='deleteItemForm' action='saleshistory.php?'" . session_id() . "><button type='submit' name='deleteitem' value='" . $row['sales_ID'] . "'/><p>Delete Item</p>
                 <input type='hidden' name='pk' value='" . $row['PK_ID'] . "'></button></form></td>
