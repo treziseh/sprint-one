@@ -188,6 +188,7 @@
                 die( print_r( sqlsrv_errors(), true));
             }
             $inventoryrow = sqlsrv_fetch_array($inventoryresult);
+            $maxValueForQuantity = $inventoryrow['soh'] + $row['quantity'];
             echo "
             <tr>
                 <td>" . $row['sales_ID'] . "</td>
@@ -195,7 +196,7 @@
                 <td>" . $row['uname'] . "</td>
                 <td>" . $row['item_name'] . "</td>
                 <td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
-                <input type='number' name='quantity' min='1' max='" . $inventoryrow['soh'] + $row['quantity'] . "' value='" . $row['quantity'] . "'>
+                <input type='number' name='quantity' min='1' max='" . $maxValueForQuantity . "' value='" . $row['quantity'] . "'>
                 <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
                 <input type='hidden' name='oldQuantity' value='" . $row['quantity'] . "'>
                 <input type='hidden' name='itemName' value='" . $row['item_name'] . "'>
