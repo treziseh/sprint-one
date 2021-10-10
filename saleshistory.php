@@ -21,6 +21,20 @@
     <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
     <h1>Sales History</h1>
     <?php
+    function update_soh($itemName, $quantity) {
+        require ("db-settings.php");
+        $serverName = $host;
+        $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+
+        $query = "UPDATE inventory
+                  SET soh -= $quantity
+                  WHERE item_name = '$itemName'";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+        }
+    }
 
     function storeNewData() {
         require ("db-settings.php");
@@ -48,6 +62,7 @@
                         echo "<p>Failed</p>";
                         die( print_r( sqlsrv_errors(), true));
                     }
+                    update_soh($itemName, $quantity);
                 }
             }
         }
