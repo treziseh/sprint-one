@@ -142,7 +142,7 @@
             $pk = $_POST['pk'];
             $quantity = $_POST['quantity'];
             $oldQuantity = $_POST['oldQuantity'];
-            $ItemName = $_POST['itemName'];
+            $itemName = $_POST['itemName'];
             $query = "UPDATE sales
                       SET quantity = $quantity
                       WHERE PK_ID = $pk";
