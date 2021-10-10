@@ -232,6 +232,24 @@
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
+        $query = "SELECT * FROM sales
+                  WHERE sales_ID = $saleID";
+        $result = sqlsrv_query($conn, $query);
+        if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+        }
+        while($row = sqlsrv_fetch_array($result)) { 
+            $itemName = $row['item_name'];
+            $quantity = $row['quantity'];
+            $queryInventory = "UPDATE inventory
+                  SET soh += $quantity
+                  WHERE item_name = '$itemName'";
+            $resultInventory = sqlsrv_query($conn, $queryInventory);
+            if ($result === false) { //Checks to see if query was passed
+                die( print_r( sqlsrv_errors(), true));
+            }
+        }
+
         $query = "DELETE FROM sales
                   WHERE sales_ID = $saleID";
         $result = sqlsrv_query($conn, $query);
