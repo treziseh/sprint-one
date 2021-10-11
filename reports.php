@@ -64,7 +64,7 @@
         if (empty($_POST['dateStarting'])) {
           echo "<p class='error'>'Date starting' cannot be empty</p>";
         } else {
-          echo "<table border='1' style='width: 100%'>
+          echo "<br><table border='1' style='width: 100%'>
           <thead>
           <tr>
             <th>Item Name</th>
@@ -207,7 +207,7 @@
 
         $startDate = date("d\-m\-Y");
 
-        echo "<table border='1' style='width: 100%'>
+        echo "<br><table border='1' style='width: 100%'>
         <thead>
         <tr>
           <th>Item Name</th>
