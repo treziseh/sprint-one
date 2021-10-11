@@ -181,7 +181,7 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            echo "<input type='checkbox' id='a" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "a'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' id='" . $row['barcode'] . "a' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "a'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
         <label for="timePeriod">Time period: </label>
