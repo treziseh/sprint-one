@@ -181,7 +181,7 @@
           }
 
           while ($row = sqlsrv_fetch_array($result)) {
-            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
+            echo "<input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "a' value='" . $row['barcode'] . "'><label for='" . $row['barcode'] . "a'>" . $row['item_name'] . " | " . $row['barcode'] . "</label><br>";
           }
         ?>
         <label for="timePeriod">Time period: </label>
@@ -249,12 +249,10 @@
             $uDateMin = date('Y-m-d', $period);
             $numberDays = 7;
           }
-          //$uDateMax = date('Y-m-d', $dateMax);
+
           $query1 .= " AND sale_date <= '$uDateMax'";
 
           $query1 .= " GROUP BY item_name, sale_date";
-
-          //echo $query1;
 
           $result = sqlsrv_query($conn, $query1);
           if ($result === false) { //Checks to see if query was passed
@@ -264,17 +262,14 @@
           $highestQuantity = 0;
           $highestDate = $uDateMin;
           $totalQuantity = 0;
-          //$numberDays = 0;
           while ($row = sqlsrv_fetch_array($result)) {
             $currentQuantity = $row['quantity_sum'];
-            //echo $currentQuantity;
             $currentDate = $row['sale_date'];
             if ($currentQuantity > $highestQuantity) {
               $highestQuantity = $currentQuantity;
               $highestDate = $currentDate;
             }
             $totalQuantity += $currentQuantity;
-            //$numberDays += 1;
           }
           $averageQuantity = $totalQuantity / $numberDays;
 
