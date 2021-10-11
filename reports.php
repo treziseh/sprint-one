@@ -283,9 +283,9 @@
           echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
           $csvRow = [$value, $periodAverage, $averageQuantity];
           array_push($csvRows, $csvRow);
-
-          echo "</tbody></table>";
           }
+        echo "</tbody></table>";
+
         echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
 
           /*foreach($csvRows as $postRow) {
@@ -297,7 +297,7 @@
         echo "<input type='hidden' name='csvDownload'>
         <input type='submit' value='Download as CSV'>
         </form><br>";
-          
+
 
 
 
