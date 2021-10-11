@@ -259,7 +259,7 @@
             die( print_r( sqlsrv_errors(), true));
           }
 
-          if (!$result.empty()) {
+          if (!$result.is_null()) {
             $highestQuantity = 0;
             $highestDate = $uDateMin;
             $totalQuantity = 0;
