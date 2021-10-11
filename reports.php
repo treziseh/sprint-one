@@ -259,46 +259,50 @@
             die( print_r( sqlsrv_errors(), true));
           }
 
-          $highestQuantity = 0;
-          $highestDate = $uDateMin;
-          $totalQuantity = 0;
-          while ($row = sqlsrv_fetch_array($result)) {
-            $currentQuantity = $row['quantity_sum'];
-            $currentDate = $row['sale_date'];
-            if ($currentQuantity > $highestQuantity) {
-              $highestQuantity = $currentQuantity;
-              $highestDate = $currentDate;
+          if (!$result.empty()) {
+            $highestQuantity = 0;
+            $highestDate = $uDateMin;
+            $totalQuantity = 0;
+            while ($row = sqlsrv_fetch_array($result)) {
+              $currentQuantity = $row['quantity_sum'];
+              $currentDate = $row['sale_date'];
+              if ($currentQuantity > $highestQuantity) {
+                $highestQuantity = $currentQuantity;
+                $highestDate = $currentDate;
+              }
+              $totalQuantity += $currentQuantity;
             }
-            $totalQuantity += $currentQuantity;
+            $averageQuantity = $totalQuantity / $numberDays;
+
+
+            if ($timePeriod == 'Month') {
+              $periodAverage = $averageQuantity * 31;
+            } else {
+              $periodAverage = $averageQuantity * 7;
+            }
+
+            echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
+            $csvRow = [$value, $periodAverage, $averageQuantity];
+            array_push($csvRows, $csvRow);
+
           }
-          $averageQuantity = $totalQuantity / $numberDays;
 
+          echo "</tbody></table>";
 
-          if ($timePeriod == 'Month') {
-            $periodAverage = $averageQuantity * 31;
-          } else {
-            $periodAverage = $averageQuantity * 7;
+          echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
+
+          /*foreach($csvRows as $postRow) {
+            echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
+          }*/
+
+          $_SESSION['csvRows'] = $csvRows;
+
+          echo "<input type='hidden' name='csvDownload'>
+          <input type='submit' value='Download as CSV'>
+          </form><br>";
           }
 
-          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
-          $csvRow = [$value, $periodAverage, $averageQuantity];
-          array_push($csvRows, $csvRow);
 
-        }
-
-        echo "</tbody></table>";
-
-        echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
-
-        /*foreach($csvRows as $postRow) {
-          echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
-        }*/
-
-        $_SESSION['csvRows'] = $csvRows;
-
-        echo "<input type='hidden' name='csvDownload'>
-        <input type='submit' value='Download as CSV'>
-        </form><br>";
 
       }
     ?>
