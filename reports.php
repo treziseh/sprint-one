@@ -259,33 +259,30 @@
             die( print_r( sqlsrv_errors(), true));
           }
 
-          if (!$result.is_null()) {
-            $highestQuantity = 0;
-            $highestDate = $uDateMin;
-            $totalQuantity = 0;
-            while ($row = sqlsrv_fetch_array($result)) {
-              $currentQuantity = $row['quantity_sum'];
-              $currentDate = $row['sale_date'];
-              if ($currentQuantity > $highestQuantity) {
-                $highestQuantity = $currentQuantity;
-                $highestDate = $currentDate;
-              }
-              $totalQuantity += $currentQuantity;
+          $highestQuantity = 0;
+          $highestDate = $uDateMin;
+          $totalQuantity = 0;
+          while ($row = sqlsrv_fetch_array($result)) {
+            $currentQuantity = $row['quantity_sum'];
+            $currentDate = $row['sale_date'];
+            if ($currentQuantity > $highestQuantity) {
+              $highestQuantity = $currentQuantity;
+              $highestDate = $currentDate;
             }
-            $averageQuantity = $totalQuantity / $numberDays;
-
-
-            if ($timePeriod == 'Month') {
-              $periodAverage = $averageQuantity * 31;
-            } else {
-              $periodAverage = $averageQuantity * 7;
-            }
-
-            echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
-            $csvRow = [$value, $periodAverage, $averageQuantity];
-            array_push($csvRows, $csvRow);
-
+            $totalQuantity += $currentQuantity;
           }
+          $averageQuantity = $totalQuantity / $numberDays;
+
+
+          if ($timePeriod == 'Month') {
+            $periodAverage = $averageQuantity * 31;
+          } else {
+            $periodAverage = $averageQuantity * 7;
+          }
+
+          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
+          $csvRow = [$value, $periodAverage, $averageQuantity];
+          array_push($csvRows, $csvRow);
 
           echo "</tbody></table>";
 
