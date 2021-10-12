@@ -36,8 +36,8 @@
         $soh = $_POST['SOH'];
 
         // Attempt insert query execution
-        $sql = "INSERT INTO inventory (barcode, item_name, base_price, sale_price, soh)
-        VALUES ('$barcode', '$item_name', '$base_price', '$sale_price', '$soh')";
+        $sql = "INSERT INTO inventory (barcode, item_name, base_price, sale_price, soh, Discontinued)
+        VALUES ('$barcode', '$item_name', '$base_price', '$sale_price', '$soh', 0)";
         if (sqlsrv_query($conn, $sql)){
           //echo "New record created sucessfully!";
         }
