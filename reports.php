@@ -138,10 +138,17 @@
               $totalQuantity += $currentQuantity;
               $numberDays += 1;
             }
-            $averageQuantity = $totalQuantity / $numberDays;
+
+            if ($numberDays == 0) {
+              $averageQuantity = 0;
+              $highestDateDisplay = "N/A";
+            } else {
+              $averageQuantity = $totalQuantity / $numberDays;
+              $highestDateDisplay = $highestDate->format('Y-m-d');
+            }
 
             echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
-            $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
+            $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDateDisplay, $highestQuantity];
             array_push($csvRows, $csvRow);
 
           }
