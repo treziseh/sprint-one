@@ -216,9 +216,13 @@
             <tr>
                 <td>" . $row['sales_ID'] . "</td>
                 <td>" . $row['sale_date']->format('Y-m-d') . "</td>
-                <td>" . $row['uname'] . "</td>
-                <td>" . $row['item_name'] . "</td>
-                <td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
+                <td>" . $row['uname'] . "</td>"
+                if ($row['Discontinued'] == false) {
+                    echo "<td>" . $row['item_name'] . "</td>";
+                } else {
+                    echo "<td>X" . $row['item_name'] . "</td>";
+                }
+                "<td><form method='post' id='updateQuantityForm' action='saleshistory.php?'" . session_id() . ">
                 <input type='number' name='quantity' min='1' max='" . $maxValueForQuantity . "' value='" . $row['quantity'] . "'>
                 <button type='submit' name='updatequantity' value='" . $row['sales_ID'] . "'/><p>Update Quantity Of Item</p>
                 <input type='hidden' name='oldQuantity' value='" . $row['quantity'] . "'> 
