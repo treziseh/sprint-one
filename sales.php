@@ -121,23 +121,25 @@
         </tr>
         ";
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
-            echo "
-            <tr>
-                <td>" . $row['barcode'] . "</td>
-                <td>" . $row['item_name'] . "</td>
-                <td>" . $row['base_price'] . "</td>
-                <td>" . $row['sale_price'] . "</td>
-                <td>" . $row['soh'] . "</td>";
-            if($row['soh'] > 0) {
-            echo "
-                <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
-                <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
-            </tr>";
-            } else {
-            echo "
-                <td><p>OUT OF STOCK</p></td>
-                <td><p>OUT OF STOCK</p></td>
-            </tr>";
+            if ($row['Discontinued'] == false) {
+                echo "
+                <tr>
+                    <td>" . $row['barcode'] . "</td>
+                    <td>" . $row['item_name'] . "</td>
+                    <td>" . $row['base_price'] . "</td>
+                    <td>" . $row['sale_price'] . "</td>
+                    <td>" . $row['soh'] . "</td>";
+                if($row['soh'] > 0) {
+                echo "
+                    <td><input type='checkbox' id='" . $row['barcode'] . "' name='" . $row['barcode'] . "' value='true'></td>
+                    <td><input type='number' id='" . $row['barcode'] . "Quantity' name='" . $row['barcode'] . "Quantity' min='1' max='" . $row['soh'] . "' value='1'></td>
+                </tr>";
+                } else {
+                echo "
+                    <td>OUT OF STOCK</td>
+                    <td>OUT OF STOCK</td>
+                </tr>";
+                }
             }
         }
         echo "</table>"; //Close the table in HTML
