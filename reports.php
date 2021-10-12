@@ -139,7 +139,7 @@
               $numberDays += 1;
             }
             if ($numberDays == 0) {
-              $averageQuantity = 0
+              $averageQuantity = 0;
             } else {
               $averageQuantity = $totalQuantity / $numberDays;
             }
