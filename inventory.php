@@ -27,7 +27,8 @@
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo); //Create connection
 
-        $query = "SELECT * FROM inventory";
+        $query = "SELECT * FROM inventory
+                  ORDER BY item_name ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
