@@ -138,7 +138,11 @@
               $totalQuantity += $currentQuantity;
               $numberDays += 1;
             }
-            $averageQuantity = $totalQuantity / $numberDays;
+            if ($numberDays == 0) {
+              $averageQuantity = 0
+            } else {
+              $averageQuantity = $totalQuantity / $numberDays;
+            }
 
             echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
             $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDate->format('Y-m-d'), $highestQuantity];
