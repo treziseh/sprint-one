@@ -76,7 +76,8 @@
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-        $query = "SELECT * FROM inventory";
+        $query = "SELECT * FROM inventory
+                  ORDER BY item_name ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
@@ -86,8 +87,7 @@
 
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $queryValidate = "SELECT * FROM sales
-                          WHERE sales_ID = $saleID
-                          ORDER BY item_name ASC";
+                          WHERE sales_ID = $saleID";
             $resultValidate = sqlsrv_query($conn, $queryValidate);
             if ($resultValidate === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
