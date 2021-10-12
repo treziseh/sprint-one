@@ -86,7 +86,8 @@
 
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $queryValidate = "SELECT * FROM sales
-                          WHERE sales_ID = $saleID";
+                          WHERE sales_ID = $saleID
+                          ORDER BY item_name ASC";
             $resultValidate = sqlsrv_query($conn, $queryValidate);
             if ($resultValidate === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
@@ -186,7 +187,8 @@
         }
 
         $query = "SELECT * FROM sales
-                  WHERE sales_ID = $saleID";
+                  WHERE sales_ID = $saleID
+                  ORDER BY item_name ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
@@ -336,7 +338,8 @@
                                 FROM sales S
                                 INNER JOIN inventory I
                                 ON S.item_name = I.item_name
-                                WHERE sales_ID = $curID";
+                                WHERE sales_ID = $curID
+                                ORDER BY item_name ASC";
                             $tempresult = sqlsrv_query($conn, $tempquery);
                             $total = null;
                             while($temprow = sqlsrv_fetch_array($tempresult)) {
