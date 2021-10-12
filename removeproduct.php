@@ -1,4 +1,5 @@
 <?php
+  ob_start();
   session_start();
   if(!isset($_GET["barcode"])) exit();
 ?>
@@ -20,9 +21,7 @@
           echo "Error deleting record";
   } else {
     sqlsrv_close($conn);
-    echo "1";
     header("Location: https://php-sreps.azurewebsites.net/inventory.php");
-    echo "2";
     exit;
   }
 ?>
