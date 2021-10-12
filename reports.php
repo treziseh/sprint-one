@@ -147,7 +147,7 @@
               $highestDateDisplay = $highestDate->format('Y-m-d');
             }
 
-            echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDate->format('Y-m-d') . "</td><td>$highestQuantity</td></tr>";
+            echo "<tr><td>$value</td><td>$totalQuantity</td><td>$averageQuantity</td><td>" . $highestDateDisplay . "</td><td>$highestQuantity</td></tr>";
             $csvRow = [$value, $totalQuantity, $averageQuantity, $highestDateDisplay, $highestQuantity];
             array_push($csvRows, $csvRow);
 
