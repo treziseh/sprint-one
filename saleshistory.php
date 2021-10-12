@@ -217,7 +217,7 @@
                 <td>" . $row['sales_ID'] . "</td>
                 <td>" . $row['sale_date']->format('Y-m-d') . "</td>
                 <td>" . $row['uname'] . "</td>";
-                if ($row['Discontinued'] == false) {
+                if ($inventoryrow['Discontinued'] == false) {
                     echo "<td>" . $row['item_name'] . "</td>";
                 } else {
                     echo "<td>X" . $row['item_name'] . "</td>";
