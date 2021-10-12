@@ -20,7 +20,7 @@
           echo "Error deleting record";
   } else {
     sqlsrv_close($conn);
-    header("Location: inventory.php?" . session_id());
+    header("Location: inventory.php?" . session_id() . "");
     exit;
   }
 ?>
