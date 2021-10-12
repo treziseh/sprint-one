@@ -332,7 +332,7 @@
                                 <th>Item Name</th>
                                 <th>Quantity</th>
                             </tr>";
-                            $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price
+                            $tempquery = "SELECT I.barcode, S.item_name, S.quantity, I.sale_price, I.Discontinued
                                 FROM sales S
                                 INNER JOIN inventory I
                                 ON S.item_name = I.item_name
@@ -342,8 +342,13 @@
                             while($temprow = sqlsrv_fetch_array($tempresult)) {
                                 echo "
                                 <tr>
-                                    <td>" . $temprow[0] . "</td>
-                                    <td>" . $temprow[1] . "</td>
+                                    <td>" . $temprow[0] . "</td>";
+                                    if ($temprow['Discontinued'] == false) {
+                                        echo "<td>" . $temprow['item_name'] . "</td>";
+                                    } else {
+                                       echo "<td>X" . $temprow['item_name'] . "</td>";
+                                    }
+                                    echo "
                                     <td>" . $temprow[2] . "</td>
                                 </tr>
                                 ";
