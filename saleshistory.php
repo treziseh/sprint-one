@@ -95,6 +95,8 @@
             while($rowValidate = sqlsrv_fetch_array($resultValidate)) {
                 if ($row['item_name'] == $rowValidate['item_name']) {
                     $validationCheck = false;
+                } else if ($row['Discontinued'] == false) {
+                    $validationCheck = false;
                 }
             }
             if ($validationCheck == true) {
