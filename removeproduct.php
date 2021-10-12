@@ -21,7 +21,7 @@
           echo "Error deleting record";
   } else {
     sqlsrv_close($conn);
-    header("Location: https://php-sreps.azurewebsites.net/inventory.php");
+    header("Location: https://php-sreps.azurewebsites.net/inventory.php?"  . session_id());
     exit;
   }
 ?>
