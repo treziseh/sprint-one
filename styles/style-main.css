@@ -20,7 +20,7 @@ a {
   background: linear-gradient(27deg, rgba(2,0,36,1) 0%, rgba(9,33,121,1) 19%, rgba(0,212,255,1) 100%);
 }
 
-input[type="submit"], input[type="reset"], input[type="button"] {
+button, input[type="submit"], input[type="reset"], input[type="button"] {
   border-radius: 8px;
   background-color: #008CBA;
   padding: 0.5em;
