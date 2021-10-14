@@ -5,6 +5,7 @@
   }
 
   $err = "";
+  $duplicate = false;
   $newUser = $_POST['username'];
   $newPword = $_POST['password'];
 
@@ -31,10 +32,10 @@
     array_push($unames, $row['uname']);
   }
   if (in_array($newUser, $unames)) {
-    $err .= "duplicate";
+    $duplicate = true;
   }
 
-  if ($err == "") {
+  if ($err == "" && $duplicate == false) {
 
     $query = "INSERT INTO login (uname, pword) VALUES ('$newUser', '$newPword')";
     $result = sqlsrv_query($conn, $query);
@@ -43,6 +44,9 @@
     }
   }
 
+  if ($duplicate == false) {
+    $_SESSION['duplicate'] = 'Y';
+  }
   $_SESSION['uAddError'] = $err;
   header("location: settings.php?" . session_id());
 ?>

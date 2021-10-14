@@ -40,12 +40,11 @@
           } else if ($_SESSION['uAddError'] == "usernamepassword") {
             echo "<p class='error'>No data passed</p>";
           }
-          if (strpos($_SESSION['uAddError'], "duplicate")) {
+          if (isset($_SESSION['duplicate'])) {
             echo "<p class='error'>Duplicate username, not added</p>";
-          } else {
-            echo "<p class='error'>My name jeff</p>";
           }
           unset($_SESSION['uAddError']);
+          unset($_SESSION['duplicate']);
         }
         ?>
       </fieldset>
