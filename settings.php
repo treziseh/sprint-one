@@ -33,17 +33,17 @@
         if (isset($_SESSION['uAddError'])) {
           if ($_SESSION['uAddError'] == "") {
             echo "<p class='success'>User added successfully</p>";
-            unset($_SESSION['uAddError']);
           } else if ($_SESSION['uAddError'] == "username") {
             echo "<p class='error'>Username required</p>";
-            unset($_SESSION['uAddError']);
           } else if ($_SESSION['uAddError'] == "password") {
             echo "<p class='error'>Password required</p>";
-            unset($_SESSION['uAddError']);
           } else if ($_SESSION['uAddError'] == "usernamepassword") {
             echo "<p class='error'>No data passed</p>";
-            unset($_SESSION['uAddError']);
           }
+          if (strpos($_SESSION['uAddError'], "duplicate")) {
+            echo "<p class='error'>Duplicate username, not added</p>";
+          }
+          unset($_SESSION['uAddError']);
         }
         ?>
       </fieldset>
