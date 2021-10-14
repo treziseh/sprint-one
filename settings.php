@@ -21,13 +21,13 @@
     <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
 
     <h1>Settings</h1>
-    <form action="adduser.php">
+    <form action="adduser.php? <?php session_id() ?> ">
       <fieldset>
         <legend>New User</legend>
         <label for="username">Username</label>
         <input type="text" name="username" id="username"><br>
         <label for="username">Password</label>
-        <input type="text" name="password" id="password"><br>
+        <input type="password" name="password" id="password"><br>
         <input type="submit" name="submit" value="Add user">
       </fieldset>
     </form>
