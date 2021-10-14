@@ -48,7 +48,7 @@
           <option value="month">Month</option>
         </select>
         <label for="pdateStarting">Date starting: </label>
-        <input type="date" id="dateStarting" name="dateStarting"><br>
+        <input type="date" id="dateStarting" name="dateStarting" max="<?php echo date("Y-m-d"); ?>"><br>
         <input type="hidden" name="reportPast">
         <input type="submit" value="Generate Report">
       </fieldset>
@@ -97,9 +97,6 @@
           $csvRows = [$csvHeaderRow];
 
           foreach ($includedItems as $key => $value) {
-            /*if ($key != 0) {
-              $query1 .= " OR";
-            }*/
             $query1 = "SELECT item_name, sale_date, SUM(quantity) AS quantity_sum FROM sales WHERE item_name = '$value'";
             $dateMin = strtotime($_POST['dateStarting']);
             $uDateMin = date('Y-m-d', $dateMin);
