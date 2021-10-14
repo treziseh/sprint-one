@@ -22,11 +22,13 @@
 
     <h1>Settings</h1>
     <form action="adduser.php">
-      <fieldset title="New User">
+      <fieldset>
+        <legend>New User</legend>
         <label for="username">Username</label>
-        <input type="text" name="username" id="username">
+        <input type="text" name="username" id="username"><br>
         <label for="username">Password</label>
-        <input type="text" name="password" id="password">
+        <input type="text" name="password" id="password"><br>
+        <input type="submit" name="submit" value="Add user">
       </fieldset>
     </form>
 
