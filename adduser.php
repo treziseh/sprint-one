@@ -1,14 +1,19 @@
 <?php
   session_start();
-  if (!isset($_SESSION['username'])) {
-    header("location: index.php");
-  }
-  if (!isset($_POST['username'])) {
+  if (!isset($_SESSION['username']) || !isset($_POST['username'])) {
     header("location: index.php");
   }
 
+  $err = "";
   $newUser = $_POST['username'];
   $newPword = $_POST['password'];
+
+  if ($newUser == "") {
+    $err .= "username";
+  }
+  if ($newPword == "") {
+    $err .= "password";
+  }
 
   require_once ("db-settings.php");
   $serverName = $host;
@@ -21,5 +26,6 @@
       die( print_r( sqlsrv_errors(), true));
   }
 
+  $_SESSION['uAddError'] = $err;
   header("location: settings.php?" . session_id());
 ?>

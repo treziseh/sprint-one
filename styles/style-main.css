@@ -120,3 +120,7 @@ fieldset {
 .error {
   color: #d11d1d;
 }
+
+.success {
+  color: #12b317;
+}
