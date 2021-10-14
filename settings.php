@@ -30,7 +30,7 @@
         <input type="password" name="password" id="password"><br>
         <input type="submit" value="Add user">
         <?php
-        if (isset($_SESSION['uAddError'])) {
+        if (isset($_SESSION['uAddError']) && !isset($_SESSION['duplicate'])) {
           if ($_SESSION['uAddError'] == "") {
             echo "<p class='success'>User added successfully</p>";
           } else if ($_SESSION['uAddError'] == "username") {
@@ -39,8 +39,7 @@
             echo "<p class='error'>Password required</p>";
           } else if ($_SESSION['uAddError'] == "usernamepassword") {
             echo "<p class='error'>No data passed</p>";
-          }
-          if (isset($_SESSION['duplicate'])) {
+          } else {
             echo "<p class='error'>Duplicate username, not added</p>";
           }
           unset($_SESSION['uAddError']);
