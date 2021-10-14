@@ -42,6 +42,8 @@
           }
           if (strpos($_SESSION['uAddError'], "duplicate")) {
             echo "<p class='error'>Duplicate username, not added</p>";
+          } else {
+            echo "<p class='error'>My name jeff</p>";
           }
           unset($_SESSION['uAddError']);
         }
