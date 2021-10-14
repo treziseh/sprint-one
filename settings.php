@@ -20,6 +20,16 @@
   <body>
     <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
 
+    <h1>Settings</h1>
+    <form action="adduser.php">
+      <fieldset title="New User">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+        <label for="username">Password</label>
+        <input type="text" name="password" id="password">
+      </fieldset>
+    </form>
+
     <?php # include_once "footer.inc" ?>
   </body>
 </html>
