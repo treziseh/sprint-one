@@ -3,9 +3,9 @@
   if (!isset($_SESSION['username'])) {
     header("location: index.php");
   }
-  /*if (!isset($_POST['username'])) {
+  if (!isset($_POST['username'])) {
     header("location: index.php");
-  }*/
+  }
 
   $newUser = $_POST['username'];
   $newPword = $_POST['password'];
