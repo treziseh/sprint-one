@@ -44,7 +44,7 @@
     }
   }
 
-  if ($duplicate == false) {
+  if ($duplicate == true) {
     $_SESSION['duplicate'] = 'Y';
   }
   $_SESSION['uAddError'] = $err;
