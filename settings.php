@@ -21,7 +21,7 @@
     <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
 
     <h1>Settings</h1>
-    <form action="adduser.php? <?php session_id() ?> ">
+    <form action="adduser.php? <?php session_id(); ?> ">
       <fieldset>
         <legend>New User</legend>
         <label for="username">Username</label>
