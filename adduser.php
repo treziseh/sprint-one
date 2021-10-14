@@ -1,6 +1,9 @@
 <?php
   session_start();
-  if (!isset($_SESSION['username']) || !isset($_POST['username'])) {
+  if (!isset($_SESSION['username'])) {
+    header("location: index.php");
+  }
+  if (!isset($_POST['username'])) {
     header("location: index.php");
   }
 
