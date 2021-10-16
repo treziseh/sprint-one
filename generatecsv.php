@@ -6,7 +6,7 @@
     }
     fseek($f, 0);
     header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename="'.$filename.'";');
+    header('Content-Disposition: attachment; filename="'.$filename.'",');
     fpassthru($f);
   }
 
