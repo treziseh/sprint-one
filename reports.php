@@ -288,7 +288,7 @@
             $currentSoh = $row['soh'];
           }
 
-          $expectedSoh = $currentSoh - $periodAverage
+          $expectedSoh = $currentSoh - $periodAverage;
 
           echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td><td>$expectedSoh</td></tr>";
           $csvRow = [$value, $periodAverage, $averageQuantity, $expectedSoh];
