@@ -29,6 +29,10 @@ input[type="submit"], input[type="reset"], input[type="button"], button {
   margin-top: 0.5em;
 }
 
+button {
+  background-color: 186985;
+}
+
 .sidebar {
   height: 100%;
   position: fixed;

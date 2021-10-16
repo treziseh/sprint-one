@@ -154,10 +154,6 @@
 
           echo "<br><form action='generatecsv.php?" . session_id() . "' method='post'>";
 
-          /*foreach($csvRows as $postRow) {
-            echo '<input type="hidden" name="csvRows[]" value="' . serialize($postRow) . '">';
-          }*/
-
           $_SESSION['csvRows'] = $csvRows;
 
           echo "<input type='hidden' name='csvDownload'>
@@ -213,6 +209,7 @@
           <th>Item Name</th>
           <th>Expected Sales " . $timePeriod . " Starting " . $startDate . "</th>
           <th>Expected Daily Average</th>
+          <th>Expected SOH</th>
         </tr>
         </thead>
         <tbody>
@@ -232,18 +229,15 @@
           }
         }
 
-        //$query1 = "SELECT item_name, sale_date, SUM(quantity) FROM sales WHERE";
         $csvPeriod = "Expected Sales " . $timePeriod . " Starting " . $startDate;
-        $csvHeaderRow = ['Item Name', $csvPeriod, 'Expected Daily Average'];
+        $csvHeaderRow = ['Item Name', $csvPeriod, 'Expected Daily Average', 'Expected SOH'];
         $csvRows = [$csvHeaderRow];
 
         foreach ($includedItems as $key => $value) {
           $query1 = "SELECT item_name, sale_date, SUM(quantity) AS quantity_sum FROM sales WHERE item_name = '$value'";
-          //$dateMin = strtotime($_POST['dateStarting']);
           $uDateMax = date('Y-m-d');
           $query1 .= " AND sale_date <= '$uDateMax'";
 
-          //echo $timePeriod . "\n";
           if ($timePeriod == 'Month') {
             $period = strtotime("-31 day");
             $uDateMin = date('Y-m-d', $period);
@@ -284,8 +278,20 @@
             $periodAverage = $averageQuantity * 7;
           }
 
-          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td></tr>";
-          $csvRow = [$value, $periodAverage, $averageQuantity];
+          $query2 = "SELECT soh FROM inventory WHERE item_name = '$value'";
+          $result = sqlsrv_query($conn, $query2);
+          if ($result === false) { //Checks to see if query was passed
+            die( print_r( sqlsrv_errors(), true));
+          }
+          $currentSoh = 0;
+          while ($row = sqlsrv_fetch_array($result)) {
+            $currentSoh = $row['soh'];
+          }
+
+          $expectedSoh = $currentSoh - $periodAverage
+
+          echo "<tr><td>$value</td><td>$periodAverage</td><td>$averageQuantity</td><td>$expectedSoh</td></tr>";
+          $csvRow = [$value, $periodAverage, $averageQuantity, $expectedSoh];
           array_push($csvRows, $csvRow);
           }
         echo "</tbody></table>";
