@@ -241,11 +241,11 @@
           if ($timePeriod == 'Month') {
             $period = strtotime("-31 day");
             $uDateMin = date('Y-m-d', $period);
-            $numberDays = 31;
+            //$numberDays = 31;
           } else {
             $period = strtotime("-7 day");
             $uDateMin = date('Y-m-d', $period);
-            $numberDays = 7;
+            //$numberDays = 7;
           }
 
           $query1 .= " AND sale_date <= '$uDateMax'";
@@ -267,6 +267,7 @@
               $highestQuantity = $currentQuantity;
               $highestDate = $currentDate;
             }
+            $numberDays += 1;
             $totalQuantity += $currentQuantity;
           }
           $averageQuantity = $totalQuantity / $numberDays;
