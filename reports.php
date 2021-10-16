@@ -271,6 +271,7 @@
             $totalQuantity += $currentQuantity;
           }
           $averageQuantity = $totalQuantity / $numberDays;
+          $averageQuantity = round($averageQuantity);
 
 
           if ($timePeriod == 'Month') {
