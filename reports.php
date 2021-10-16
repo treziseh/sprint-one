@@ -55,6 +55,7 @@
     </form>
     <?php
       if (isset($_POST['reportPast'])) {
+        echo $_POST['ptimePeriod'];
         if ($_POST['ptimePeriod'] == 'week') {
           $timePeriod = 'Week';
         } else {
