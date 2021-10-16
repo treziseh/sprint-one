@@ -22,12 +22,14 @@
     <h1>Sales</h1>
 
     <?php
+    //Updates the SOH value of an inventory item to correctly adjust the value when a sale is made
     function update_soh($itemName, $quantity) {
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Queries the database
         $query = "UPDATE inventory
                   SET soh -= $quantity
                   WHERE item_name = '$itemName'";
@@ -37,22 +39,26 @@
         }
     }
 
+    //Gathers the neccessary information to add the sale date into the database
     function sql_store_sale() {
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Checks connection to database is working
         if (!$conn) {
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
         } else {
+            //Queries the database
             $query = "SELECT TOP 1 sales_ID FROM sales ORDER BY sales_ID DESC";
             $result = sqlsrv_query($conn, $query);
             if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
             }
             $row = sqlsrv_fetch_array($result);
+            //Determines the sale ID for the current sale
             if ($row['sales_ID'] == NULL) {
                 $salesID = 1;
             } else {
@@ -60,8 +66,10 @@
             }
             $saleDate = date('m/d/Y');
             $uNameSess = $_SESSION['username'];
+            //Queries the database
             $query = "SELECT barcode, item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
+            //Adds the data into the sales database for the current sale
             while($row = sqlsrv_fetch_array($result)) {
                 if (isset($_POST[$row['barcode']])) { //Doesn't seem to work when item name contains white space/spaces so changed it to barcode'
                     $itemName = $row['item_name'];
@@ -73,6 +81,7 @@
                         echo "<p>Failed</p>";
                         die( print_r( sqlsrv_errors(), true));
                     }
+                    //Updates the stock on hand value for the item currently being stored
                     update_soh($itemName, $quantity);
                 }
             }
@@ -80,34 +89,33 @@
         sqlsrv_close($conn);
     }
 
+    //Checks to ensure that the form has been sent
     function validate() {
         $validateResult = true;
-
         if (!isset($_POST["submit"])) {
             $validateResult = false;
         }
-
         if ($validateResult) {
             sql_store_sale(); //Calls sql store function if validation checks are passed
         }
     }
 
+    //Main function for the page which is responsible the displaying the current inventory items and allowing the user to submit a form to be stored in the database
     function main() {
         validate(); //Calls validate function
-
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Queries the database
         $query = "SELECT * FROM inventory
                   ORDER BY item_name ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-
-        $uName = $_SESSION['username'];
+        //Displays the form data
         echo "<form method='post' id='saleForm' action='sales.php?'" . session_id() . ">";
         echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
         echo "
@@ -121,7 +129,7 @@
             <th>Quantity To Add</th>
         </tr>
         ";
-        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
+        while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through the current inventory items
             if ($row['Discontinued'] == false) {
                 echo "
                 <tr>
@@ -154,6 +162,7 @@
 
     main(); //Calls main function
     ?>
+    <!-- Ensures that the php form isn't submitted if the page is reloaded -->
     <script>
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
