@@ -56,9 +56,13 @@
         while($row = sqlsrv_fetch_array($result)){
           echo "
           <tr>
-          <td>" . $row['barcode'] . "</td>
-          <td>" . $row['item_name'] . "</td>
-          <td>" . $row['base_price'] . "</td>
+          <td>" . $row['barcode'] . "</td>";
+          if ($row['Discontinued'] == false) {
+            echo "<td>" . $row['item_name'] . "</td>";
+          } else {
+            echo "<td>X" . $row['item_name'] . "</td>";
+          }
+          echo "<td>" . $row['base_price'] . "</td>
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
           <td><form method='get' id='editForm' action='editproduct.php?'" . session_id() . "><button type='submit' name='barcode' value='" . $row['barcode'] . "'/><p>Edit</p></button></form></td>
