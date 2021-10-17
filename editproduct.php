@@ -72,9 +72,11 @@
 
       while($row = sqlsrv_fetch_array($result)){
         if ($row['Discontinued'] == 0) {
-         $discontinueBool = false;
+         $discontinueBoolNo = "selected";
+         $discontinueBoolYes = "";
         } else {
-         $discontinueBool = true;
+         $discontinueBoolNo = "";
+         $discontinueBoolYes = "selected";
         }
         echo "
           <form method='post' id='editProduct'>
@@ -110,8 +112,8 @@
           <label for='discontinue'>Discontinued:</label>
           <br>
           <select name='discontinue' id='discontinue' required>
-           <option value=0>No</option>
-           <option value=1>Yes</option>
+           <option value=0 "$discontinueBoolNo">No</option>
+           <option value=1 "$discontinueBoolYes">Yes</option>
           </select>
           <br>
           <br>
