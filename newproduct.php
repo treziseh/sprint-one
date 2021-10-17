@@ -83,7 +83,7 @@
         <br>
         <label for='SOH'>Stock on Hand (SOH):</label>
         <br>
-        <input class='form-control' name='SOH' required type='number' id='SOH' placeholder='Stock on Hand'>
+        <input class='form-control' name='SOH' required type='number' id='SOH' min='0' placeholder='Stock on Hand'>
         <br>
         <br>
         <input class='btn btn-info' type='submit' value='Add' name='add'>

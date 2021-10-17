@@ -21,27 +21,32 @@
     <?php include_once "sidebar.inc"; include_once "fonts.inc"; ?>
     <h1>Sales History</h1>
     <?php
+    //This function is responsible for updating the soh value of an inventory item
     function update_soh($itemName, $quantity) {
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Queries the database
         $query = "UPDATE inventory
                   SET soh -= $quantity
                   WHERE item_name = '$itemName'";
+        //Checks connection to database is working
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
             die( print_r( sqlsrv_errors(), true));
         }
     }
 
+    //This function will store the new item in the sale db 
     function storeNewData() {
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Checks connection to database is working
         if (!$conn) {
             echo "<p>Failed</p>";
             die( print_r( sqlsrv_errors(), true));
@@ -49,6 +54,7 @@
             $salesID = $_POST['saleID'];
             $saleDate = date('m/d/Y');
             $uNameSess = $_SESSION['username'];
+            //Queries the database
             $query = "SELECT barcode, item_name FROM inventory";
             $result = sqlsrv_query($conn, $query);
             while($row = sqlsrv_fetch_array($result)) {
@@ -68,23 +74,22 @@
         }
     }
 
+    //This function is responsible for adding an item to a sale
     function addItemToSale() {
         $saleID = $_POST['additem'];
-
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Queries the database
         $query = "SELECT * FROM inventory
                   ORDER BY item_name ASC";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-
         $addTableHeader = true;
-
         while($row = sqlsrv_fetch_array($result)){   //Creates a loop to loop through results
             $queryValidate = "SELECT * FROM sales
                           WHERE sales_ID = $saleID";
@@ -138,7 +143,9 @@
         }
     }
 
+    //This function will display differently on the page depending on what sale order is being edited and allows for additional options that the user can select
     function editSale() {
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
@@ -185,7 +192,7 @@
             $saleID = $_POST['saleID'];
             storeNewData();
         }
-
+        //Queries the database
         $query = "SELECT * FROM sales
                   WHERE sales_ID = $saleID
                   ORDER BY item_name ASC";
@@ -249,13 +256,15 @@
         sqlsrv_close($conn);
     }
 
+    //Deletes an entire sale from the db 
     function deleteSale() {
         $saleID = $_POST['delete'];
+        //Adds the database data for connection
         require ("db-settings.php");
         $serverName = $host;
         $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
         $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+        //Queries the database
         $query = "SELECT * FROM sales
                   WHERE sales_ID = $saleID";
         $result = sqlsrv_query($conn, $query);
@@ -273,30 +282,31 @@
                 die( print_r( sqlsrv_errors(), true));
             }
         }
-
+        //Queries the database
         $query = "DELETE FROM sales
                   WHERE sales_ID = $saleID";
         $result = sqlsrv_query($conn, $query);
         if ($result === false) { //Checks to see if query was passed
                 die( print_r( sqlsrv_errors(), true));
         }
-
         sqlsrv_close($conn);
     }
 
+    //Main fucntion is responsible for displaying all of the orders and also determines if another function has to be called 
     function main() {
+        //Checks to see if the page was already submitted and the user is trying to do a particluar task else it will just display the default page version
         if (isset($_POST["edit"]) || isset($_POST["deleteitem"]) || isset($_POST["updatequantity"]) || isset($_POST["additem"]) || isset($_POST["storeNewData"])) {
             editSale();
         } else {
             if (isset($_POST["delete"])) {
                 deleteSale();
             }
-
+            //Adds the database data for connection
             require ("db-settings.php");
             $serverName = $host;
             $connectionInfo = array("UID" => $user, "pwd" => $pwd, "Database" => $sql_db, "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
             $conn = sqlsrv_connect($serverName, $connectionInfo);
-
+            //Queries the database
             $query = "SELECT S.sales_ID, S.item_name, S.sale_date, S.quantity, S.uname, I.barcode, I.base_price, I.sale_price
                       FROM sales S
                       INNER JOIN inventory I
@@ -306,7 +316,6 @@
             if ($result === false) { //Checks to see if query was passed
                     die( print_r( sqlsrv_errors(), true));
             }
-
             echo "<table border='1' style='width: 100%'>"; // start a table tag in the HTML
             echo "
             <tr>
@@ -367,7 +376,6 @@
                 }
             }
             echo "</table>"; //Close the table in HTML
-
             sqlsrv_close($conn);
         }
     }
