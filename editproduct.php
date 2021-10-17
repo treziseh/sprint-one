@@ -124,7 +124,7 @@
           </form>
           </div>
         ";
-
+        echo "<form method='post' id='back' action='inventory.php?'" . session_id() . "><button type='submit' name='back'/>Back</button></form>";
       }
 
       sqlsrv_close($conn); //Closes server connection

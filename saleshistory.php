@@ -246,8 +246,8 @@
             ";
         }
         echo "</table>"; //Close the table in HTML
-        echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><button type='submit' name='back'/>Back</button></form>";
         echo "<form method='post' id='addItem' action='saleshistory.php?'" . session_id() . "><button type='submit' name='additem' value='" . $saleID . "'/>Add Item</button></form>";
+        echo "<form method='post' id='back' action='saleshistory.php?'" . session_id() . "><button type='submit' name='back'/>Back</button></form>";
 
         if (isset($_POST["additem"])) {
             addItemToSale();
