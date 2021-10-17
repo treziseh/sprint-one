@@ -37,9 +37,6 @@
         echo "
         <div class='col-xs-12'>
         <h1>Inventory</h1>
-        <div>
-          <a class='btn btn-success' href='./newproduct.php?" . session_id() . "'>New Product <i class='fa fa-plus'></i></a>
-        </div>
         <br>
         <table border='1' style='width: 100%'>
         <thead>
@@ -70,11 +67,11 @@
           </tbody>
           ";
         }
-
         echo "
         </tbody>
         </table>
         </div>
+        <td><form method='post' id='newProductForm' action='newproduct.php?'" . session_id() . "><button type='submit' name='newproduct'/><p>Add New Product</p></button></form></td>
         ";
 
         sqlsrv_close($conn); //Closes server connection
