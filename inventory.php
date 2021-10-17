@@ -64,8 +64,8 @@
           <td>" . $row['base_price'] . "</td>
           <td>" . $row['sale_price'] . "</td>
           <td>" . $row['soh'] . "</td>
-          <td> <a class='btn btn-success' href='./editproduct.php?barcode=" . $row['barcode'] . "'>Edit <i class='fa fa-plus'></i></a> </td>
-          <td> <a class='btn btn-success' href='./removeproduct.php?barcode=" . $row['barcode'] . "'>Remove <i class='fa fa-plus'></i></a> </td>
+          <td><form method='get' id='editForm' action='editproduct.php?'" . session_id() . "><button type='submit' name='edit' value='" . $row['barcode'] . "'/><p>Edit</p></button></form></td>
+          <td><form method='get' id='removeForm' action='removeproduct.php?'" . session_id() . "><button type='submit' name='edit' value='" . $row['barcode'] . "'/><p>Remove</p></button></form></td>
           </tr>
           </tbody>
           ";
