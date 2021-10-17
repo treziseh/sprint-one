@@ -112,8 +112,8 @@
           <label for='discontinue'>Discontinued:</label>
           <br>
           <select name='discontinue' id='discontinue' required>
-           <option value=0 "$discontinueBoolNo">No</option>
-           <option value=1 "$discontinueBoolYes">Yes</option>
+           <option value=0 $discontinueBoolNo>No</option>
+           <option value=1 $discontinueBoolYes>Yes</option>
           </select>
           <br>
           <br>
