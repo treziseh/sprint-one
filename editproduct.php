@@ -36,10 +36,11 @@
         $base_price = $_POST['basePrice'];
         $sale_price = $_POST['sellPrice'];
         $soh = $_POST['SOH'];
+        $discontinue = $_POST['discontinue'];
 
         // Attempt insert query execution
         $query = "UPDATE inventory
-                  SET item_name = '$item_name', base_price = $base_price, sale_price = $sale_price, soh = $soh
+                  SET item_name = '$item_name', base_price = $base_price, sale_price = $sale_price, soh = $soh, Discontinued = $discontinue
                   WHERE barcode = $barcode";
                   $result = sqlsrv_query($conn, $query);
                   if ($result === false) { //Checks to see if query was passed
