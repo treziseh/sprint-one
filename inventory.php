@@ -71,7 +71,7 @@
         </tbody>
         </table>
         </div>
-        <td><form method='post' id='newProductForm' action='newproduct.php?'" . session_id() . "><button type='submit' name='newproduct'/><p>Add New Product</p></button></form></td>
+        <td><form method='post' id='newProductForm' action='newproduct.php?'" . session_id() . "><button type='submit' name='newproduct'/>Add New Product</button></form></td>
         ";
 
         sqlsrv_close($conn); //Closes server connection
