@@ -1,12 +1,12 @@
 <?php
-  function arrayCsvDownload($array, $filename = "report.csv", $delimiter=";") {
+  function arrayCsvDownload($array, $filename = "report.csv", $delimiter=",") {
     $f = fopen('php://memory', 'w');
     foreach ($array as $line) {
       fputcsv($f, $line, $delimiter);
     }
     fseek($f, 0);
     header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename="'.$filename.'",');
+    header('Content-Disposition: attachment; filename="'.$filename.'";');
     fpassthru($f);
   }
 
